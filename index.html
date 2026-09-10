@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Interfaces de Usuario — Primera entrega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #1B1A22;
+    --surface: #24232C;
+    --border: #37353F;
+    --text: #F1EEE8;
+    --text-muted: #A9A5B4;
+    --accent: #9B8CFF;
+    --accent-text: #1B1A22;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .kicker {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.25;
+    margin: 0 0 28px;
+  }
+
+  .members {
+    margin: 0 0 32px;
+    padding: 0;
+    list-style: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 13px 20px;
+    border-radius: 10px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="kicker">TP Interfaces de Usuario</p>
+    <h1>Primera entrega</h1>
+
+    <ul class="members">
+      <li>Emanuel Sadi</li>
+      <li>Arrachea Graziano Tiago</li>
+    </ul>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="https://www.figma.com/proto/jm4w6hgCR7Sxuu04rgTQZ5/TP-P1?node-id=563-1169&t=nyYLQFqtGj4tfpQw-1" target="_blank" rel="noopener">
+        Figma modo presentación
+      </a>
+      <a class="btn btn-secondary" href="https://www.figma.com/design/jm4w6hgCR7Sxuu04rgTQZ5/TP-P1?node-id=0-1&m=dev&t=nyYLQFqtGj4tfpQw-1" target="_blank" rel="noopener">
+        Figma modo editor
+      </a>
+    </div>
+  </div>
+</body>
+</html>
