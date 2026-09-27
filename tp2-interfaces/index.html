@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body class="sin-scroll">
+  <section class="pantalla-carga" data-js="pantalla-carga" role="status" aria-label="Cargando">
+    <span class="pantalla-carga__spinner" aria-hidden="true"></span>
+    <p class="pantalla-carga__texto">Cargando juegos...</p>
+    <div class="pantalla-carga__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <span class="pantalla-carga__progreso" data-js="progreso-carga"></span>
+    </div>
+    <p class="pantalla-carga__porcentaje" data-js="porcentaje-carga">0%</p>
+  </section>
+
+  <main></main>
+</body>
+</html>

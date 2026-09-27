@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/registro.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <main class="registro">
+    <form class="formulario" novalidate>
+      <h1 class="formulario__titulo">Registrarse</h1>
+
+      <div class="campo">
+        <label class="campo__label" for="nombre">Nombre y apellido <span class="campo__obligatorio" aria-hidden="true">*</span></label>
+        <input class="campo__input" type="text" id="nombre" name="nombre" autocomplete="name" required aria-describedby="error-nombre">
+        <p class="campo__error" id="error-nombre" aria-live="polite"></p>
+      </div>
+
+      <div class="formulario__fila">
+        <div class="campo">
+          <label class="campo__label" for="nickname">Nickname</label>
+          <input class="campo__input" type="text" id="nickname" name="nickname" autocomplete="nickname">
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="edad">Edad</label>
+          <input class="campo__input" type="number" id="edad" name="edad">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="campo__label" for="email">Email <span class="campo__obligatorio" aria-hidden="true">*</span></label>
+        <input class="campo__input" type="email" id="email" name="email" autocomplete="email" required aria-describedby="error-email">
+        <p class="campo__error" id="error-email" aria-live="polite"></p>
+      </div>
+
+      <div class="campo">
+        <label class="campo__label" for="contrasena">Contraseña <span class="campo__obligatorio" aria-hidden="true">*</span> <span class="campo__indicacion">(mín. 5 caracteres y 1 número)</span></label>
+        <div class="campo__control">
+          <input class="campo__input" type="password" id="contrasena" name="contrasena" autocomplete="new-password" minlength="5" pattern=".*\d.*" required aria-describedby="error-contrasena">
+          <button class="campo__ojo" type="button" aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="contrasena">
+            <img class="campo__ojo-icono" src="assets/icons/ojo.png" alt="">
+            <img class="campo__ojo-icono campo__ojo-icono--tachado" src="assets/icons/ojo-tachado.png" alt="">
+          </button>
+        </div>
+        <p class="campo__error" id="error-contrasena" aria-live="polite"></p>
+      </div>
+
+      <div class="campo">
+        <label class="campo__label" for="repetir-contrasena">Repetir contraseña <span class="campo__obligatorio" aria-hidden="true">*</span></label>
+        <div class="campo__control">
+          <input class="campo__input" type="password" id="repetir-contrasena" name="repetir-contrasena" autocomplete="new-password" required aria-describedby="error-repetir-contrasena">
+          <button class="campo__ojo" type="button" aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="repetir-contrasena">
+            <img class="campo__ojo-icono" src="assets/icons/ojo.png" alt="">
+            <img class="campo__ojo-icono campo__ojo-icono--tachado" src="assets/icons/ojo-tachado.png" alt="">
+          </button>
+        </div>
+        <p class="campo__error" id="error-repetir-contrasena" aria-live="polite"></p>
+      </div>
+
+      <div class="captcha">
+        <button class="captcha__caja" type="button">
+          <span class="captcha__check" aria-hidden="true"></span>
+          I'm not a robot
+        </button>
+      </div>
+
+      <button class="btn btn--primario" type="submit">
+        <span class="btn__texto">Crear Cuenta</span>
+      </button>
+
+      <section class="redes" aria-labelledby="redes-titulo">
+        <h2 class="redes__titulo" id="redes-titulo">Crear con</h2>
+        <ul class="redes__lista">
+          <li>
+            <button class="redes__btn" type="button" aria-label="Crear cuenta con Instagram">
+              <img class="redes__icono" src="assets/icons/instagram-logo-auth.png" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="redes__btn" type="button" aria-label="Crear cuenta con Facebook">
+              <img class="redes__icono" src="assets/icons/facebook-logo-auth.png" alt="">
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <p class="formulario__cuenta">¿Ya tiene cuenta? <a class="formulario__link" href="login.html">Iniciar sesión</a></p>
+
+      <p class="formulario__nota"><span class="campo__obligatorio" aria-hidden="true">*</span> Significa campo obligatorio</p>
+    </form>
+  </main>
+</body>
+</html>
