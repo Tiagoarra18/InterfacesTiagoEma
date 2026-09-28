@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicia Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login">
+
+  <main class="pagina-login__principal">
+    <section class="tarjeta-login" aria-labelledby="titulo-login">
+      <h1 id="titulo-login" class="tarjeta-login__titulo">Inicia sesión</h1>
+
+      <form class="tarjeta-login__formulario" action="index.html" method="GET">
+        <div class="campo-formulario">
+          <label for="email" class="campo-formulario__etiqueta">
+            Email o teléfono <span class="campo-formulario__asterisco">*</span>
+          </label>
+          <div class="campo-formulario__contenedor-entrada">
+            <input type="text" id="email" name="email" class="campo-formulario__entrada" required>
+          </div>
+        </div>
+
+        <div class="campo-formulario">
+          <label for="password" class="campo-formulario__etiqueta">
+            Contraseña <span class="campo-formulario__asterisco">*</span>
+          </label>
+          <div class="campo-formulario__contenedor-entrada">
+            <input type="password" id="password" name="password" class="campo-formulario__entrada" required>
+            <button type="button" class="campo-formulario__boton-ojo" aria-label="Mostrar u ocultar contraseña">
+              <img src="assets/iconos/ojo.svg" alt="" class="campo-formulario__icono-ojo">
+            </button>
+          </div>
+          <a href="#" class="campo-formulario__enlace-olvido">Olvidé mi contraseña</a>
+        </div>
+
+        <a href="index.html" class="formulario-login__boton-submit">Iniciar Sesión</a>
+
+        <p class="formulario-login__texto-social">Iniciar con</p>
+
+        <div class="redes-sociales-login">
+          <a href="index.html" class="redes-sociales-login__enlace" aria-label="Iniciar sesión con Facebook">
+            <img src="assets/iconos/facebook.svg" alt="Facebook" class="redes-sociales-login__icono">
+          </a>
+          <a href="index.html" class="redes-sociales-login__enlace" aria-label="Iniciar sesión con Google">
+            <img src="assets/iconos/google.svg" alt="Google" class="redes-sociales-login__icono">
+          </a>
+        </div>
+
+        <p class="formulario-login__bloque-registro">
+          ¿No tiene cuenta? <a href="registro.html" class="formulario-login__enlace-registro">Crear cuenta</a>
+        </p>
+
+        <p class="formulario-login__leyenda">
+          <span class="formulario-login__asterisco-leyenda">*</span>Significa campo obligatorio
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="pie-pagina__contenedor">
+      <div class="pie-pagina__columnas">
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Navegación</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Inicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Categorías</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sugerencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Gratuitos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Juegos de pago</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tendencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Próximos lanzamientos</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Privacidad</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Política de privacidad</a></li>
+            <li><a href="#" class="columna-pie__enlace">Cookies</a></li>
+            <li><a href="#" class="columna-pie__enlace">Términos de servicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Política de reembolsos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Control parental</a></li>
+            <li><a href="#" class="columna-pie__enlace">Código de conducta</a></li>
+            <li><a href="#" class="columna-pie__enlace">Licencias y DMFA</a></li>
+          </ul>
+        </div>
+
+        <div class="pie-pagina__seccion-central">
+          <img src="assets/imagenes/logo.png" alt="Logo de la plataforma" class="pie-pagina__logo">
+          <div class="redes-pie">
+            <a href="#" aria-label="Red social 1"><img src="assets/iconos/red1.svg" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="Red social 2"><img src="assets/iconos/red2.svg" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="Red social 3"><img src="assets/iconos/red3.svg" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="Red social 4"><img src="assets/iconos/red4.svg" alt="" class="redes-pie__icono"></a>
+          </div>
+          <div class="pie-pagina__derechos">
+            <span class="pie-pagina__texto-derechos">Todos los derechos reservados</span>
+            <img src="assets/iconos/copyright.svg" alt="Copyright" class="pie-pagina__icono-copyright">
+          </div>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Acerca de nosotros</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Quiénes somos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Equipo</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sedes</a></li>
+            <li><a href="#" class="columna-pie__enlace">Premios</a></li>
+            <li><a href="#" class="columna-pie__enlace">Contacto</a></li>
+            <li><a href="#" class="columna-pie__enlace">Créditos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Blog/Noticias</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Ayuda</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Errores frecuentes</a></li>
+            <li><a href="#" class="columna-pie__enlace">No encuentro un juego</a></li>
+            <li><a href="#" class="columna-pie__enlace">Reportar bugs</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tutoriales</a></li>
+            <li><a href="#" class="columna-pie__enlace">Soporte</a></li>
+            <li><a href="#" class="columna-pie__enlace">Estado del servidor</a></li>
+            <li><a href="#" class="columna-pie__enlace">Requisitos del sistema</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

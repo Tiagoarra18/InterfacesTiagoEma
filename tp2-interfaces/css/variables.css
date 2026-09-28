@@ -1,5 +1,7 @@
 :root {
-  /* Colores */
+  /* ==========================================================================
+     COLORES BASE Y GLOBALES (Conservados intactos)
+     ========================================================================== */
   --color-fondo: #000000;
   --color-formulario: #10003E;
   --color-primario: #2563EB;
@@ -26,21 +28,55 @@
   --color-spinner-pista: #4B5563;
   --color-barra-pista: #262626;
 
-  /* Tipografía */
+  /* Variables específicas para Login y Footer */
+  --color-tarjeta-fondo: #10003E;
+  --color-borde-tarjeta: #FFFFFF;
+  --color-sombra-tarjeta: #000000;
+  --color-texto-blanco: #FFFFFF;
+  --color-label-login: #969696;
+  --color-texto-gris: #FFFFFF;
+  --color-asterisco: #FF070B;
+  --color-link-cyan: #00F0FF;
+  --color-boton-login: #2563EB;
+  --color-boton-login-hover: #1E3A8A;
+  --color-leyenda: #A3A0CC;
+  --color-footer-fondo: #0A0A0A;
+  --color-input-fondo: #FFFFFF;
+
+  /* ==========================================================================
+     TIPOGRAFÍA Y PESOS
+     ========================================================================== */
   --fuente-principal: 'Roboto', sans-serif;
+  --fuente-inter: 'Inter', sans-serif;
+
   --peso-regular: 400;
+  --peso-semibold: 600;
   --peso-bold: 700;
+
+  /* Tamaños base originales */
   --tamano-base: 1rem;
   --tamano-titulo: 1.75rem;
   --tamano-boton: 1.25rem;
   --tamano-subtitulo: 1.25rem;
   --tamano-label: 0.8125rem;
   --tamano-chico: 0.75rem;
-  --tamano-asterisco: 0.625rem;
   --tamano-codigo: 1.25rem;
   --espaciado-codigo: 0.25rem;
 
-  /* Tamaños */
+  /* Tamaños Login y Footer */
+  --tamano-titulo-login: 2.35rem;     /* 37.6px */
+  --tamano-label-login: 1.0768rem;   /* 17.23px */
+  --tamano-asterisco: 1.2312rem;     /* 19.7px */
+  --tamano-link-cyan: 1.0768rem;     /* 17.23px */
+  --tamano-texto-boton: 1.35rem; /* ~21.6px */
+  --tamano-iniciar-con: 1.5rem;      /* 24px */
+  --tamano-footer-titulo: 1.25rem;   /* 20px */
+  --tamano-footer-link: 1rem;        /* 16px */
+  --tamano-footer-copy: 1.25rem;     /* 20px */
+
+  /* ==========================================================================
+     DIMENSIONES Y TAMAÑOS
+     ========================================================================== */
   --ancho-formulario: 21.875rem;
   --alto-formulario: 39.31rem;
   --ancho-boton: 12rem;
@@ -65,17 +101,53 @@
   --ancho-barra-carga: 18rem;
   --alto-barra-carga: 0.5rem;
 
-  /* Espaciados */
+  /* Tarjeta Login y Footer */
+  --ancho-tarjeta-login: 23.75rem;       /* 380px (Antes 440px) */
+  --alto-tarjeta-login: 34.375rem;       /* 550px (Antes 641px) */
+  --radio-tarjeta-login: 2.2rem;         /* 35px proporcional */
+  --borde-tarjeta-peso: 0.205rem;        /* 3.28px */
+  --sombra-tarjeta-desenfoque: 0.205rem; /* 3.28px */
+
+  --ancho-input-login: 25.8125rem;      /* 413px */
+  --alto-input-login: 3.125rem;          /* 50px (Antes 56/63px) */
+  --radio-input-login: 0.75rem;         /* 12px */
+
+  --ancho-boton-login: 18.3125rem;      /* 293px */
+  --alto-boton-login: 3.125rem;          /* 50px (Antes 56/63px) */
+
+  --tamano-social-login: 3rem;           /* 48px (Antes 56px) */
+  --ancho-footer: 90rem;                 /* 1440px */
+  --alto-footer: 19.3125rem;             /* 309px */
+  --tamano-logo-footer: 6.25rem;        /* 100px */
+  --tamano-redes-footer: 2.125rem;       /* 34px */
+  --tamano-copyright-icon: 1.5625rem;    /* 25px */
+
+  /* ==========================================================================
+     ESPACIADOS
+     ========================================================================== */
+  --espacio-cero: 0rem;
   --espacio-xxs: 0.125rem;
   --espacio-xs: 0.25rem;
   --espacio-sm: 0.5rem;
   --espacio-md: 0.75rem;
   --espacio-lg: 1rem;
-  --espacio-xl: 2rem;
+  --espacio-xl: 1.25rem;
+  --espacio-xxl: 2.5rem;
   --espacio-formulario: 2rem;
 
-  /* Efectos y transiciones */
+  --espacio-label-input: 0.25rem;       /* 12px */
+  --espacio-titulo-input: 1.5rem;        /* Espacio entre título e inputs */
+  --espacio-columna-footer: 0.9375rem;   /* 15px */
+  --espacio-tarjeta-padding: 1.5rem;    /* 24px */
+  --espacio-tarjeta-padding-y: 1.5rem;   /* 24px padding vertical interno */
+  --espacio-tarjeta-padding-x: 2rem;     /* 32px padding horizontal interno */
+  --espacio-footer-padding-x: 4rem; /* 64px de espacio horizontal en los bordes del footer */
+
+  /* ==========================================================================
+     EFECTOS Y TRANSICIONES
+     ========================================================================== */
   --duracion-hover: 0.3s;
+  --duracion-transicion: 0.3s;
   --duracion-carga: 5s;
   --desplazamiento-hover: -0.25rem;
   --escala-hover: 1.1;
