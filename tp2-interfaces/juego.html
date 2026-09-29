@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peg Football - Detalle del Juego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/juego.css">
+</head>
+<body class="pagina-juego">
+
+    <div class="contenedor-global">
+        
+        <!-- ENCABEZADO PRINCIPAL -->
+        <header class="encabezado-principal">
+            <div class="encabezado-principal__izquierda">
+                <img src="assets/icons/menu.svg" alt="Menú" class="encabezado-principal__icono-menu">
+                <img src="assets/icons/logo.svg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
+            </div>
+
+            <div class="encabezado-principal__buscador buscador">
+                <input type="text" class="buscador__input" placeholder="Buscar">
+            </div>
+
+            <div class="encabezado-principal__derecha">
+                <img src="assets/icons/carrito-header.svg" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
+                <img src="assets/images/perfil-avatar.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+            </div>
+        </header>
+
+        <main class="contenido-juego">
+            
+            <!-- NAVEGACIÓN MIGAS DE PAN -->
+            <nav class="navegacion-migas" aria-label="Miga de pan">
+                <div class="navegacion-migas__volver">
+                    <img src="assets/icons/flecha-izquierda.svg" alt="" class="navegacion-migas__icono-flecha">
+                    <a href="index.html" class="navegacion-migas__enlace">Volver</a>
+                </div>
+                <div class="navegacion-migas__ruta">
+                    <a href="#" class="navegacion-migas__enlace">Juegos</a> &gt; 
+                    <a href="#" class="navegacion-migas__enlace">Nuevos</a> &gt; 
+                    <span class="navegacion-migas__actual">Peg Football</span>
+                </div>
+            </nav>
+
+            <!-- ÁREA PRINCIPAL DEL JUEGO Y REVIEW -->
+            <section class="area-juego">
+                <div class="area-juego__principal">
+                    <img src="assets/images/peg-football-canvas.png" alt="Peg Football Canvas" class="area-juego__imagen">
+                </div>
+
+                <aside class="revision-juego">
+                    <h3 class="revision-juego__titulo">Review del juego</h3>
+                    <div class="revision-juego__imagenes">
+                        <img src="assets/images/review-1.png" alt="Captura de pantalla 1" class="revision-juego__img">
+                        <img src="assets/images/review-2.png" alt="Captura de pantalla 2" class="revision-juego__img">
+                        <img src="assets/images/review-3.png" alt="Captura de pantalla 3" class="revision-juego__img">
+                    </div>
+                </aside>
+            </section>
+
+            <!-- FICHA TÉCNICA Y DESCRIPCIÓN DEL JUEGO -->
+            <section class="ficha-juego">
+                <div class="ficha-juego__encabezado">
+                    <h1 class="ficha-juego__titulo">Nombre del juego</h1>
+                    <div class="ficha-juego__acciones">
+                        <img src="assets/icons/me-gusta.svg" alt="Me Gusta" class="ficha-juego__icono">
+                        <img src="assets/icons/compartir.svg" alt="Compartir" class="ficha-juego__icono">
+                    </div>
+                </div>
+
+                <div class="ficha-juego__contenedor">
+                    <article class="ficha-juego__info">
+                        <h2 class="ficha-juego__subtitulo">Peg Football</h2>
+                        <p class="ficha-juego__texto">
+                            Peg Football es una adaptación del clásico Peg Solitaire con temática de fútbol.
+                            El objetivo es eliminar todas las pelotas posibles hasta conseguir que quede una
+                            sola en el tablero.
+                        </p>
+                        <p class="ficha-juego__texto">
+                            <strong>Reglas:</strong> una pelota puede saltar horizontal o verticalmente sobre otra pelota
+                            únicamente si la casilla siguiente está vacía. La pelota sobre la que se salta es
+                            eliminada y la pelota que realizó el salto ocupa la nueva posición. No se permiten
+                            movimientos en diagonal.
+                        </p>
+                        <p class="ficha-juego__texto">
+                            <strong>Objetivo:</strong> terminar el juego con una única pelota en el tablero.
+                        </p>
+                    </article>
+
+                    <div class="ficha-juego__divisor" role="separator"></div>
+
+                    <article class="ficha-juego__controles">
+                        <h2 class="ficha-juego__subtitulo">Controles:</h2>
+                        <ul class="lista-controles">
+                            <li class="lista-controles__item">
+                                <img src="assets/icons/click-izquierdo.svg" alt="Clic Izquierdo" class="lista-controles__icono">
+                                <span class="lista-controles__texto"><strong>Clic Izquierdo:</strong> seleccionar una pelota y realizar un movimiento.</span>
+                            </li>
+                            <li class="lista-controles__item">
+                                <img src="assets/icons/movimiento.svg" alt="Movimiento" class="lista-controles__icono">
+                                <span class="lista-controles__texto"><strong>Movimiento:</strong> las pelotas solo pueden moverse horizontal o verticalmente.</span>
+                            </li>
+                            <li class="lista-controles__item">
+                                <img src="assets/icons/reiniciar.svg" alt="Reiniciar" class="lista-controles__icono">
+                                <span class="lista-controles__texto"><strong>Reiniciar:</strong> vuelve el tablero a su estado inicial.</span>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECCIÓN COMENTARIOS -->
+            <section class="seccion-comentarios">
+                <h2 class="seccion-comentarios__titulo">Sección comentarios</h2>
+
+                <div class="publicar-comentario">
+                    <h3 class="publicar-comentario__titulo">Publicar un comentario</h3>
+                    <form class="publicar-comentario__formulario" action="#" method="POST">
+                        <img src="assets/images/perfil-avatar.png" alt="Tu avatar" class="publicar-comentario__avatar">
+                        <div class="publicar-comentario__caja">
+                            <input type="text" class="publicar-comentario__input" placeholder="Escribí tu comentario..." required>
+                            <button type="submit" class="publicar-comentario__boton">Publicar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="lista-comentarios">
+                    <h3 class="lista-comentarios__titulo">Comentarios</h3>
+
+                    <!-- Comentario 1 -->
+                    <article class="comentario">
+                        <div class="comentario__encabezado">
+                            <img src="assets/images/perfil-avatar.png" alt="Avatar de usuario" class="comentario__avatar">
+                            <span class="comentario__usuario">Nombre de usuario</span>
+                            <span class="comentario__separador">•</span>
+                            <span class="comentario__fecha">hace 2 semanas</span>
+                        </div>
+                        <div class="comentario__cuerpo">
+                            <div class="comentario__texto-box">
+                                <p class="comentario__texto">Muy bueno! Me gusto mucho la jugabilidad y la tematica, muy recomendado.</p>
+                            </div>
+                            <button class="comentario__boton-like" aria-label="Me gusta">
+                                <img src="assets/icons/me-gusta.svg" alt="Me gusta" class="comentario__icono-like">
+                            </button>
+                        </div>
+                        <button class="comentario__boton-responder">Responder</button>
+
+                        <!-- Respuesta anidada -->
+                        <div class="lista-comentarios__respuestas">
+                            <article class="comentario comentario--respuesta">
+                                <div class="comentario__encabezado">
+                                    <img src="assets/images/perfil-avatar.png" alt="Avatar de usuario" class="comentario__avatar">
+                                    <span class="comentario__usuario">Nombre de usuario</span>
+                                    <span class="comentario__separador">•</span>
+                                    <span class="comentario__fecha">hace 2 semanas</span>
+                                </div>
+                                <div class="comentario__cuerpo">
+                                    <div class="comentario__texto-box">
+                                        <p class="comentario__texto">Si, muy buena la temática, lo recomiendo!</p>
+                                    </div>
+                                    <button class="comentario__boton-like" aria-label="Me gusta">
+                                        <img src="assets/icons/me-gusta.svg" alt="Me gusta" class="comentario__icono-like">
+                                    </button>
+                                </div>
+                                <button class="comentario__boton-responder">Responder</button>
+                            </article>
+                        </div>
+                    </article>
+
+                    <!-- Comentario 2 -->
+                    <article class="comentario">
+                        <div class="comentario__encabezado">
+                            <img src="assets/images/perfil-avatar.png" alt="Avatar de usuario" class="comentario__avatar">
+                            <span class="comentario__usuario">Nombre de usuario</span>
+                            <span class="comentario__separador">•</span>
+                            <span class="comentario__fecha">hace 2 semanas</span>
+                        </div>
+                        <div class="comentario__cuerpo">
+                            <div class="comentario__texto-box">
+                                <p class="comentario__texto">Buen juego! Me quedo con la temática clásica.</p>
+                            </div>
+                            <button class="comentario__boton-like" aria-label="Me gusta">
+                                <img src="assets/icons/me-gusta.svg" alt="Me gusta" class="comentario__icono-like">
+                            </button>
+                        </div>
+                        <button class="comentario__boton-responder">Responder</button>
+                    </article>
+                </div>
+            </section>
+
+            <!-- JUEGOS RECOMENDADOS (5 CARDS) -->
+            <section class="juegos-recomendados">
+                <h2 class="juegos-recomendados__titulo">Juegos recomendados</h2>
+                <div class="juegos-recomendados__grilla">
+                    
+                    <article class="tarjeta-juego">
+                        <img src="assets/images/juego1.jpg" alt="Juego" class="tarjeta-juego__imagen">
+                        <div class="tarjeta-juego__info">
+                            <h4 class="tarjeta-juego__nombre">Juego</h4>
+                            <span class="tarjeta-juego__genero">Categoría</span>
+                            <div class="tarjeta-juego__pie">
+                                <span class="tarjeta-juego__precio">GRATIS</span>
+                            </div>
+                            <button class="tarjeta-juego__carrito" aria-label="Añadir al carrito">
+                                <img src="assets/icons/carrito-card.svg" alt="Carrito" class="tarjeta-juego__icono-carrito">
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-juego">
+                        <img src="assets/images/juego1.jpg" alt="Juego" class="tarjeta-juego__imagen">
+                        <div class="tarjeta-juego__info">
+                            <h4 class="tarjeta-juego__nombre">Juego</h4>
+                            <span class="tarjeta-juego__genero">Categoría</span>
+                            <div class="tarjeta-juego__pie">
+                                <span class="tarjeta-juego__precio">GRATIS</span>
+                            </div>
+                            <button class="tarjeta-juego__carrito" aria-label="Añadir al carrito">
+                                <img src="assets/icons/carrito-card.svg" alt="Carrito" class="tarjeta-juego__icono-carrito">
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-juego">
+                        <img src="assets/images/juego1.jpg" alt="Juego" class="tarjeta-juego__imagen">
+                        <div class="tarjeta-juego__info">
+                            <h4 class="tarjeta-juego__nombre">Juego</h4>
+                            <span class="tarjeta-juego__genero">Categoría</span>
+                            <div class="tarjeta-juego__pie">
+                                <span class="tarjeta-juego__precio">GRATIS</span>
+                            </div>
+                            <button class="tarjeta-juego__carrito" aria-label="Añadir al carrito">
+                                <img src="assets/icons/carrito-card.svg" alt="Carrito" class="tarjeta-juego__icono-carrito">
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-juego">
+                        <img src="assets/images/juego1.jpg" alt="Juego" class="tarjeta-juego__imagen">
+                        <div class="tarjeta-juego__info">
+                            <h4 class="tarjeta-juego__nombre">Juego</h4>
+                            <span class="tarjeta-juego__genero">Categoría</span>
+                            <div class="tarjeta-juego__pie">
+                                <span class="tarjeta-juego__precio">GRATIS</span>
+                            </div>
+                            <button class="tarjeta-juego__carrito" aria-label="Añadir al carrito">
+                                <img src="assets/icons/carrito-card.svg" alt="Carrito" class="tarjeta-juego__icono-carrito">
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-juego">
+                        <img src="assets/images/juego1.jpg" alt="Juego" class="tarjeta-juego__imagen">
+                        <div class="tarjeta-juego__info">
+                            <h4 class="tarjeta-juego__nombre">Juego</h4>
+                            <span class="tarjeta-juego__genero">Categoría</span>
+                            <div class="tarjeta-juego__pie">
+                                <span class="tarjeta-juego__precio">GRATIS</span>
+                            </div>
+                            <button class="tarjeta-juego__carrito" aria-label="Añadir al carrito">
+                                <img src="assets/icons/carrito-card.svg" alt="Carrito" class="tarjeta-juego__icono-carrito">
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER INTEGRADO -->
+        <footer class="pie-pagina">
+            <div class="pie-pagina__contenedor">
+              <div class="pie-pagina__columnas">
+                <div class="columna-pie">
+                  <h2 class="columna-pie__titulo">Navegación</h2>
+                  <ul class="columna-pie__lista">
+                    <li><a href="#" class="columna-pie__enlace">Inicio</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Categorías</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Sugerencias</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Gratuitos</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Juegos de pago</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Tendencias</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Próximos lanzamientos</a></li>
+                  </ul>
+                </div>
+
+                <div class="columna-pie">
+                  <h2 class="columna-pie__titulo">Privacidad</h2>
+                  <ul class="columna-pie__lista">
+                    <li><a href="#" class="columna-pie__enlace">Política de privacidad</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Cookies</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Términos de servicio</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Política de reembolsos</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Control parental</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Código de conducta</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Licencias y DMFA</a></li>
+                  </ul>
+                </div>
+
+                <div class="pie-pagina__seccion-central">
+                  <img src="assets/imagenes/logo.png" alt="Logo de la plataforma" class="pie-pagina__logo">
+                  <div class="redes-pie">
+                    <a href="#" aria-label="Red social 1"><img src="assets/iconos/red1.svg" alt="" class="redes-pie__icono"></a>
+                    <a href="#" aria-label="Red social 2"><img src="assets/iconos/red2.svg" alt="" class="redes-pie__icono"></a>
+                    <a href="#" aria-label="Red social 3"><img src="assets/iconos/red3.svg" alt="" class="redes-pie__icono"></a>
+                    <a href="#" aria-label="Red social 4"><img src="assets/iconos/red4.svg" alt="" class="redes-pie__icono"></a>
+                  </div>
+                  <div class="pie-pagina__derechos">
+                    <span class="pie-pagina__texto-derechos">Todos los derechos reservados</span>
+                    <img src="assets/iconos/copyright.svg" alt="Copyright" class="pie-pagina__icono-copyright">
+                  </div>
+                </div>
+
+                <div class="columna-pie">
+                  <h2 class="columna-pie__titulo">Acerca de nosotros</h2>
+                  <ul class="columna-pie__lista">
+                    <li><a href="#" class="columna-pie__enlace">Quiénes somos</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Equipo</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Sedes</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Premios</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Contacto</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Créditos</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Blog/Noticias</a></li>
+                  </ul>
+                </div>
+
+                <div class="columna-pie">
+                  <h2 class="columna-pie__titulo">Ayuda</h2>
+                  <ul class="columna-pie__lista">
+                    <li><a href="#" class="columna-pie__enlace">Errores frecuentes</a></li>
+                    <li><a href="#" class="columna-pie__enlace">No encuentro un juego</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Reportar bugs</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Tutoriales</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Soporte</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Estado del servidor</a></li>
+                    <li><a href="#" class="columna-pie__enlace">Requisitos del sistema</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

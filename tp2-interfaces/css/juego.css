@@ -1,0 +1,692 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body.pagina-juego {
+  background-color: #000000;
+  color: var(--color-texto-blanco);
+  font-family: var(--fuente-roboto);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-global {
+    width: 100%;
+    background-color: #000000; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Este contenedor envuelve todo el contenido entre el header y el footer */
+.contenido-juego {
+    width: 100%;
+    max-width: 90rem; /* 1440px de Figma */
+    margin: 0 auto;   /* Centra todo el contenido horizontalmente */
+    padding: 0 2rem;  /* Margen de seguridad para pantallas pequeñas */
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   ENCABEZADO PRINCIPAL (HEADER)
+   ========================================================================== */
+.encabezado-principal {
+    width: 100%;
+    height: 5.625rem; 
+    background-color: #0A0A0A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; 
+    box-sizing: border-box;
+}
+
+.encabezado-principal__izquierda,
+.encabezado-principal__derecha {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.encabezado-principal__icono-menu,
+.encabezado-principal__icono-carrito {
+    width: 2.5rem; 
+    height: 2.5rem;
+}
+
+.encabezado-principal__logo {
+    width: 3.75rem; 
+    height: 3.75rem;
+}
+
+.encabezado-principal__icono-perfil {
+    width: 2.875rem; 
+    height: 2.875rem;
+    border-radius: 50%;
+}
+
+.buscador__input {
+    width: 29.3125rem; 
+    height: 2.5rem; 
+    background-color: var(--color-texto-secundario);
+    border: none;
+    border-radius: 6.1875rem;
+    padding: 0 1.5rem; 
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-ligero);
+    font-size: 1.25rem; 
+    color: #000;
+}
+
+.buscador__input::placeholder {
+    color: #333;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN MIGAS DE PAN
+   ========================================================================== */
+.navegacion-migas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+}
+
+.navegacion-migas__volver {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navegacion-migas__icono-flecha {
+    width: 0.9375rem; 
+    height: 0.9375rem;
+}
+
+.navegacion-migas__enlace,
+.navegacion-migas__ruta,
+.navegacion-migas__actual {
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-regular);
+    font-size: 1rem; 
+    color: var(--color-texto-miga);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   ÁREA JUEGO (HERO)
+   ========================================================================== */
+.area-juego {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem; /* 28px de separación entre cancha y sidebar */
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* La cancha de Peg Football */
+.area-juego__principal {
+    width: 64.5rem;       /* 1032px de Figma */
+    height: 39.6875rem;   /* 635px de Figma */
+    flex-shrink: 0;
+}
+
+.area-juego__imagen {
+    width: 100%; 
+    height: 39.6875rem; /* 635px */
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* El sidebar de Review del Juego */
+.revision-juego {
+    width: 19.9375rem;    /* 319px de Figma */
+    height: 39.6875rem;   /* 635px de Figma */
+    background-color: #0A0A0A;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.revision-juego__titulo {
+    font-size: 1.25rem; 
+    font-weight: var(--peso-audaz);
+    margin: 0 0 2rem 0;
+    text-align: center;
+}
+
+.revision-juego__imagenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    width: 100%;
+}
+
+.revision-juego__img {
+    width: 14.5625rem; 
+    height: 8.9375rem; 
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   FICHA TÉCNICA
+   ========================================================================== */
+.ficha-juego {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.ficha-juego__encabezado {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ficha-juego__titulo {
+    font-size: 2.75rem; 
+    font-weight: var(--peso-audaz);
+    margin: 0;
+}
+
+.ficha-juego__acciones {
+    display: flex;
+    gap: 1rem;
+}
+
+.ficha-juego__icono {
+    width: 2.5rem; 
+    height: 2.5rem;
+    cursor: pointer;
+}
+
+.ficha-juego__contenedor {
+    width: 100%;
+    background-color: #0A0A0A;
+    border-radius: 0.5rem;
+    display: flex;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    gap: 3rem;
+}
+
+.ficha-juego__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ficha-juego__subtitulo {
+    font-size: 1.6875rem; 
+    font-weight: var(--peso-audaz);
+    margin: 0 0 0.5rem 0;
+}
+
+.ficha-juego__texto {
+    font-size: 1rem; 
+    font-weight: var(--peso-medio);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ficha-juego__divisor {
+    width: 0.0625rem; 
+    background-color: var(--color-texto-blanco);
+    align-self: stretch;
+}
+
+.ficha-juego__controles {
+    flex: 1;
+}
+
+.lista-controles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.lista-controles__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lista-controles__icono {
+    width: 2.5rem; 
+    height: 2.5rem;
+}
+
+.lista-controles__texto {
+    font-size: 1rem; 
+    font-weight: var(--peso-medio);
+}
+
+/* ==========================================================================
+   SECCIÓN COMENTARIOS
+   ========================================================================== */
+.seccion-comentarios {
+    width: 100%;
+    background-color: #0A0A0A;
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.seccion-comentarios__titulo {
+    font-size: 1.9375rem; 
+    font-weight: var(--peso-audaz);
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.publicar-comentario {
+    margin-bottom: 2rem;
+}
+
+.publicar-comentario__titulo {
+    font-size: 1.25rem; 
+    font-weight: var(--peso-audaz);
+    margin-bottom: 1.5rem;
+}
+
+.publicar-comentario__formulario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.publicar-comentario__avatar {
+    width: 2.875rem; 
+    height: 2.875rem;
+    border-radius: 50%;
+}
+
+.publicar-comentario__caja {
+    flex: 1;
+    height: 3.5rem; 
+    background-color: var(--color-fondo-comentarios);
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+.publicar-comentario__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-texto-blanco);
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-ligero);
+    font-size: 1rem;
+    outline: none;
+}
+
+.publicar-comentario__input::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+.publicar-comentario__boton {
+    background: transparent;
+    border: none;
+    color: var(--color-texto-terciario);
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-medio);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* LISTA DE COMENTARIOS PUBLICADOS */
+.lista-comentarios {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.lista-comentarios__titulo {
+    font-size: 1.25rem;
+    font-weight: var(--peso-audaz);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--color-texto-blanco);
+}
+
+.comentario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comentario--respuesta {
+    margin-left: 3.5rem;
+    margin-top: 1rem;
+}
+
+.comentario__encabezado {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.comentario__avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comentario__usuario {
+    font-size: 0.9375rem;
+    font-weight: var(--peso-medio);
+    color: var(--color-texto-blanco);
+}
+
+.comentario__separador {
+    color: var(--color-texto-secundario);
+    font-size: 0.875rem;
+}
+
+.comentario__fecha {
+    font-size: 0.875rem;
+    font-weight: var(--peso-regular);
+    color: var(--color-texto-secundario);
+}
+
+.comentario__cuerpo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.comentario__texto-box {
+    flex: 1;
+    background-color: var(--color-fondo-comentarios);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    box-sizing: border-box;
+}
+
+.comentario__texto {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: var(--peso-regular);
+    color: var(--color-texto-blanco);
+    line-height: 1.4;
+}
+
+.comentario__boton-like {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comentario__icono-like {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.comentario__boton-responder {
+    background: transparent;
+    border: none;
+    color: var(--color-texto-secundario);
+    font-family: var(--fuente-roboto);
+    font-size: 0.875rem;
+    font-weight: var(--peso-regular);
+    cursor: pointer;
+    align-self: flex-start;
+    padding: 0;
+    margin-top: 0.25rem;
+}
+
+.comentario__boton-responder:hover {
+    color: var(--color-texto-blanco);
+}
+
+/* ==========================================================================
+   JUEGOS RECOMENDADOS
+   ========================================================================== */
+.juegos-recomendados {
+    width: 100%;
+    max-width: 1374px;
+    min-height: 434px;
+    background-color: #0A0A0A;
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    margin-bottom: 2.5rem;
+}
+
+.juegos-recomendados__titulo {
+    font-family: var(--fuente-roboto);
+    font-size: 31px; 
+    font-weight: var(--peso-audaz);
+    color: #FFFFFF;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.juegos-recomendados__grilla {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.tarjeta-juego {
+    width: 170px; 
+    height: 253px; 
+    background-color: #10003E;
+    border: 3.5px solid #93C5FD;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.tarjeta-juego__imagen {
+    width: 170px;
+    height: 170px; 
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.tarjeta-juego__info {
+    padding: 0.5rem 0.625rem;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.tarjeta-juego__nombre {
+    font-family: var(--fuente-roboto);
+    font-weight: 500;
+    font-size: 16px; 
+    color: #FFFFFF;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+}
+
+.tarjeta-juego__genero {
+    font-family: var(--fuente-roboto);
+    font-weight: 400;
+    font-size: 15px; 
+    color: #969696;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tarjeta-juego__pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tarjeta-juego__precio {
+    font-family: var(--fuente-inter);
+    font-size: 15px; 
+    font-weight: 400;
+    color: #33FF00;
+    margin: 0;
+}
+
+.tarjeta-juego__carrito {
+    width: 35px;
+    height: 35px;
+    background-color: #FFFFFF;
+    border: 2.5px solid #000005;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
+
+.tarjeta-juego__icono-carrito {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (ANCHO COMPLETO 1440px)
+   ========================================================================== */
+.pie-pagina {
+    width: 100%;
+    height: var(--alto-footer); 
+    background-color: var(--color-footer-fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.pie-pagina__contenedor {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pie-pagina__columnas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: var(--espacio-footer-padding-x);
+    padding-right: var(--espacio-footer-padding-x);
+}
+
+.columna-pie {
+    display: flex;
+    flex-direction: column;
+}
+
+.columna-pie__titulo {
+    font-family: var(--fuente-principal);
+    font-weight: var(--peso-bold);
+    font-size: var(--tamano-footer-titulo);
+    color: var(--color-footer-titulo);
+    margin-bottom: var(--espacio-columna-footer);
+}
+
+.columna-pie__lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-columna-footer);
+}
+
+.columna-pie__enlace {
+    font-family: var(--fuente-principal);
+    font-weight: var(--peso-regular);
+    font-size: var(--tamano-footer-link);
+    color: var(--color-texto-gris);
+    text-decoration: none;
+}
+
+.pie-pagina__seccion-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-md);
+}
+
+.pie-pagina__logo {
+    width: var(--tamano-logo-footer);
+    height: var(--tamano-logo-footer);
+}
+
+.redes-pie {
+    display: flex;
+    gap: var(--espacio-lg);
+}
+
+.redes-pie__icono {
+    width: var(--tamano-redes-footer);
+    height: var(--tamano-redes-footer);
+}
+
+.pie-pagina__derechos {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+}
+
+.pie-pagina__texto-derechos {
+    font-family: var(--fuente-principal);
+    font-weight: var(--peso-regular);
+    font-size: var(--tamano-footer-copy);
+    color: var(--color-texto-blanco);
+}
+
+.pie-pagina__icono-copyright {
+    width: var(--tamano-copyright-icon);
+    height: var(--tamano-copyright-icon);
+}

@@ -1,6 +1,6 @@
 :root {
   /* ==========================================================================
-     COLORES BASE Y GLOBALES (Conservados intactos)
+     COLORES BASE Y GLOBALES
      ========================================================================== */
   --color-fondo: #000000;
   --color-formulario: #10003E;
@@ -64,15 +64,15 @@
   --espaciado-codigo: 0.25rem;
 
   /* Tamaños Login y Footer */
-  --tamano-titulo-login: 2.35rem;     /* 37.6px */
-  --tamano-label-login: 1.0768rem;   /* 17.23px */
-  --tamano-asterisco: 1.2312rem;     /* 19.7px */
-  --tamano-link-cyan: 1.0768rem;     /* 17.23px */
-  --tamano-texto-boton: 1.35rem; /* ~21.6px */
-  --tamano-iniciar-con: 1.5rem;      /* 24px */
-  --tamano-footer-titulo: 1.25rem;   /* 20px */
-  --tamano-footer-link: 1rem;        /* 16px */
-  --tamano-footer-copy: 1.25rem;     /* 20px */
+  --tamano-titulo-login: 2.35rem;     
+  --tamano-label-login: 1.0768rem;   
+  --tamano-asterisco: 1.2312rem;     
+  --tamano-link-cyan: 1.0768rem;     
+  --tamano-texto-boton: 1.35rem; 
+  --tamano-iniciar-con: 1.5rem;      
+  --tamano-footer-titulo: 1.25rem;   
+  --tamano-footer-link: 1rem;        
+  --tamano-footer-copy: 1.25rem;     
 
   /* ==========================================================================
      DIMENSIONES Y TAMAÑOS
@@ -102,25 +102,25 @@
   --alto-barra-carga: 0.5rem;
 
   /* Tarjeta Login y Footer */
-  --ancho-tarjeta-login: 23.75rem;       /* 380px (Antes 440px) */
-  --alto-tarjeta-login: 34.375rem;       /* 550px (Antes 641px) */
-  --radio-tarjeta-login: 2.2rem;         /* 35px proporcional */
-  --borde-tarjeta-peso: 0.205rem;        /* 3.28px */
-  --sombra-tarjeta-desenfoque: 0.205rem; /* 3.28px */
+  --ancho-tarjeta-login: 23.75rem;       
+  --alto-tarjeta-login: 34.375rem;       
+  --radio-tarjeta-login: 2.2rem;         
+  --borde-tarjeta-peso: 0.205rem;        
+  --sombra-tarjeta-desenfoque: 0.205rem; 
 
-  --ancho-input-login: 25.8125rem;      /* 413px */
-  --alto-input-login: 3.125rem;          /* 50px (Antes 56/63px) */
-  --radio-input-login: 0.75rem;         /* 12px */
+  --ancho-input-login: 25.8125rem;      
+  --alto-input-login: 3.125rem;          
+  --radio-input-login: 0.75rem;         
 
-  --ancho-boton-login: 18.3125rem;      /* 293px */
-  --alto-boton-login: 3.125rem;          /* 50px (Antes 56/63px) */
+  --ancho-boton-login: 18.3125rem;      
+  --alto-boton-login: 3.125rem;          
 
-  --tamano-social-login: 3rem;           /* 48px (Antes 56px) */
-  --ancho-footer: 90rem;                 /* 1440px */
-  --alto-footer: 19.3125rem;             /* 309px */
-  --tamano-logo-footer: 6.25rem;        /* 100px */
-  --tamano-redes-footer: 2.125rem;       /* 34px */
-  --tamano-copyright-icon: 1.5625rem;    /* 25px */
+  --tamano-social-login: 3rem;           
+  --ancho-footer: 90rem;                 
+  --alto-footer: 19.3125rem;             
+  --tamano-logo-footer: 6.25rem;        
+  --tamano-redes-footer: 2.125rem;       
+  --tamano-copyright-icon: 1.5625rem;    
 
   /* ==========================================================================
      ESPACIADOS
@@ -135,13 +135,13 @@
   --espacio-xxl: 2.5rem;
   --espacio-formulario: 2rem;
 
-  --espacio-label-input: 0.25rem;       /* 12px */
-  --espacio-titulo-input: 1.5rem;        /* Espacio entre título e inputs */
-  --espacio-columna-footer: 0.9375rem;   /* 15px */
-  --espacio-tarjeta-padding: 1.5rem;    /* 24px */
-  --espacio-tarjeta-padding-y: 1.5rem;   /* 24px padding vertical interno */
-  --espacio-tarjeta-padding-x: 2rem;     /* 32px padding horizontal interno */
-  --espacio-footer-padding-x: 4rem; /* 64px de espacio horizontal en los bordes del footer */
+  --espacio-label-input: 0.25rem;       
+  --espacio-titulo-input: 1.5rem;        
+  --espacio-columna-footer: 0.9375rem;   
+  --espacio-tarjeta-padding: 1.5rem;    
+  --espacio-tarjeta-padding-y: 1.5rem;   
+  --espacio-tarjeta-padding-x: 2rem;     
+  --espacio-footer-padding-x: 4rem; 
 
   /* ==========================================================================
      EFECTOS Y TRANSICIONES
@@ -157,4 +157,35 @@
   --duracion-giro: 1s;
   --duracion-desvanecer: 0.5s;
   --z-pantalla-carga: 1000;
+
+  /* ==========================================================================
+     NUEVAS VARIABLES PARA LA VISTA "JUEGO"
+     ========================================================================== */
+  
+  /* Colores */
+  --color-fondo-panel: #0A0A0A; 
+  --color-fondo-comentarios: #323232;
+  --color-texto-blanco: #FFFFFF;
+  --color-texto-secundario: #969696;
+  --color-texto-terciario: #B9B9B9;
+  --color-texto-miga: #2DD4BF;
+  --color-tarjeta-fondo: #10003E;
+  --color-tarjeta-borde: #93C5FD;
+  --color-tarjeta-precio: #33FF00;
+  --color-borde-boton-carrito: #000005;
+
+  /* Tipografías y Pesos */
+  --fuente-roboto: 'Roboto', sans-serif;
+  --fuente-inter: 'Inter', sans-serif;
+  
+  --peso-ligero: 300;
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-audaz: 700;
+
+  html {
+  scrollbar-gutter: stable;
 }
+}
+
+

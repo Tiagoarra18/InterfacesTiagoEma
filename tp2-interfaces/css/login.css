@@ -4,13 +4,16 @@
   padding: var(--espacio-cero);
 }
 
-html, body.pagina-login {
+html {
+  overflow-y: scroll;
+}
+
+body.pagina-login {
   height: 100vh;
-  overflow: hidden; /* Evita cualquier barra de desplazamiento vertical */
 }
 
 .pagina-login {
-  background-color: var(--color-fondo);
+  background-color: var(--color-fondo); 
   font-family: var(--fuente-principal);
   display: flex;
   flex-direction: column;
@@ -66,7 +69,7 @@ html, body.pagina-login {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: var(--espacio-xs);
+  margin-bottom: var(--espacio-lg);
 }
 
 .campo-formulario__etiqueta {
