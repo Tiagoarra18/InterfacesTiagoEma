@@ -6,7 +6,7 @@
   <title>Juegos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/home.css">
   <script src="js/main.js" defer></script>
@@ -21,6 +21,75 @@
     <p class="pantalla-carga__porcentaje" data-js="porcentaje-carga">0%</p>
   </section>
 
-  <main></main>
+  <main>
+    <section class="carrusel" data-js="carrusel" aria-roledescription="carrusel" aria-label="Nuevos lanzamientos">
+      <h2 class="carrusel__titulo">Nuevos Lanzamientos</h2>
+
+      <div class="carrusel__visor">
+        <ul class="carrusel__diapositivas">
+          <li class="carrusel__diapositiva carrusel__diapositiva--activa" aria-roledescription="diapositiva" aria-label="1 de 5">
+            <article class="carrusel__juego">
+              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <div class="carrusel__info">
+                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
+                <p class="carrusel__precio">$99.99</p>
+              </div>
+            </article>
+          </li>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="2 de 5" aria-hidden="true" inert>
+            <article class="carrusel__juego">
+              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <div class="carrusel__info">
+                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
+                <p class="carrusel__precio">$99.99</p>
+              </div>
+            </article>
+          </li>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="3 de 5" aria-hidden="true" inert>
+            <article class="carrusel__juego">
+              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <div class="carrusel__info">
+                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
+                <p class="carrusel__precio">$99.99</p>
+              </div>
+            </article>
+          </li>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="4 de 5" aria-hidden="true" inert>
+            <article class="carrusel__juego">
+              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <div class="carrusel__info">
+                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
+                <p class="carrusel__precio">$99.99</p>
+              </div>
+            </article>
+          </li>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="5 de 5" aria-hidden="true" inert>
+            <article class="carrusel__juego">
+              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <div class="carrusel__info">
+                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
+                <p class="carrusel__precio">$99.99</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+
+        <button type="button" class="carrusel__flecha carrusel__flecha--anterior" data-js="carrusel-anterior" aria-label="Juego anterior">
+          <span class="carrusel__chevron carrusel__chevron--izquierda" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="carrusel__flecha carrusel__flecha--siguiente" data-js="carrusel-siguiente" aria-label="Juego siguiente">
+          <span class="carrusel__chevron carrusel__chevron--derecha" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <ol class="carrusel__indicadores">
+        <li><button type="button" class="carrusel__indicador carrusel__indicador--activo" data-js="carrusel-indicador" data-indice="0" aria-label="Ir al juego 1" aria-current="true"></button></li>
+        <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="1" aria-label="Ir al juego 2"></button></li>
+        <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="2" aria-label="Ir al juego 3"></button></li>
+        <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="3" aria-label="Ir al juego 4"></button></li>
+        <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="4" aria-label="Ir al juego 5"></button></li>
+      </ol>
+    </section>
+  </main>
 </body>
 </html>

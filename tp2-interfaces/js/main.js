@@ -200,9 +200,105 @@ function iniciarPantallaCarga() {
   });
 }
 
+/* ---------- Carrusel principal ---------- */
+
+const DIRECCIONES_CARRUSEL = { 'carrusel-anterior': -1, 'carrusel-siguiente': 1 };
+
+const CLASES_TRANSICION_CARRUSEL = [
+  'carrusel__diapositiva--entrando-derecha',
+  'carrusel__diapositiva--entrando-izquierda',
+  'carrusel__diapositiva--saliendo-izquierda',
+  'carrusel__diapositiva--saliendo-derecha'
+];
+
+function calcularIndiceCircular(actual, paso, total) {
+  return (actual + paso + total) % total;
+}
+
+function actualizarAccesibilidadDiapositivas(diapositivas, indiceActivo) {
+  diapositivas.forEach((diapositiva, indice) => {
+    const activa = indice === indiceActivo;
+    diapositiva.inert = !activa;
+    if (activa) {
+      diapositiva.removeAttribute('aria-hidden');
+    } else {
+      diapositiva.setAttribute('aria-hidden', 'true');
+    }
+  });
+}
+
+function actualizarIndicadores(indicadores, indiceActivo) {
+  indicadores.forEach((indicador, indice) => {
+    const activo = indice === indiceActivo;
+    indicador.classList.toggle('carrusel__indicador--activo', activo);
+    if (activo) {
+      indicador.setAttribute('aria-current', 'true');
+    } else {
+      indicador.removeAttribute('aria-current');
+    }
+  });
+}
+
+function aplicarClasesTransicion(saliente, entrante, paso) {
+  const haciaAdelante = paso > 0;
+  saliente.classList.remove('carrusel__diapositiva--activa');
+  saliente.classList.add(haciaAdelante ? 'carrusel__diapositiva--saliendo-izquierda' : 'carrusel__diapositiva--saliendo-derecha');
+  entrante.classList.add('carrusel__diapositiva--activa', haciaAdelante ? 'carrusel__diapositiva--entrando-derecha' : 'carrusel__diapositiva--entrando-izquierda');
+}
+
+function limpiarClasesTransicion(saliente, entrante) {
+  saliente.classList.remove(...CLASES_TRANSICION_CARRUSEL);
+  entrante.classList.remove(...CLASES_TRANSICION_CARRUSEL);
+}
+
+function iniciarCarrusel() {
+  const carrusel = document.querySelector('[data-js="carrusel"]');
+  if (!carrusel) return;
+
+  const diapositivas = Array.from(carrusel.querySelectorAll('.carrusel__diapositiva'));
+  const indicadores = Array.from(carrusel.querySelectorAll('[data-js="carrusel-indicador"]'));
+  const estado = { actual: 0, animando: false, saliente: null };
+
+  function irA(destino, paso) {
+    if (estado.animando || destino === estado.actual) return;
+
+    estado.animando = true;
+    estado.saliente = diapositivas[estado.actual];
+    aplicarClasesTransicion(estado.saliente, diapositivas[destino], paso);
+    actualizarIndicadores(indicadores, destino);
+    actualizarAccesibilidadDiapositivas(diapositivas, destino);
+    estado.actual = destino;
+  }
+
+  carrusel.addEventListener('click', (evento) => {
+    const control = evento.target.closest('[data-js]');
+    if (!control) return;
+
+    if (control.dataset.js === 'carrusel-indicador') {
+      const destino = Number(control.dataset.indice);
+      irA(destino, destino > estado.actual ? 1 : -1);
+      return;
+    }
+
+    const paso = DIRECCIONES_CARRUSEL[control.dataset.js];
+    if (paso === undefined) return;
+    irA(calcularIndiceCircular(estado.actual, paso, diapositivas.length), paso);
+  });
+
+  carrusel.addEventListener('animationend', (evento) => {
+    const entrante = diapositivas[estado.actual];
+    if (evento.target !== entrante || !evento.animationName.startsWith('entrar')) return;
+
+    limpiarClasesTransicion(estado.saliente, entrante);
+    estado.saliente = null;
+    estado.animando = false;
+  });
+}
+
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();
 iniciarRegistro();
 iniciarLogin();
 iniciarPantallaCarga();
+iniciarCarrusel();
