@@ -281,6 +281,8 @@ body.pagina-login {
 .pie-pagina__logo {
   width: var(--tamano-logo-footer);
   height: var(--tamano-logo-footer);
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .redes-pie {

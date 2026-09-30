@@ -66,6 +66,8 @@ body.pagina-juego {
 .encabezado-principal__logo {
     width: 3.75rem; 
     height: 3.75rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .encabezado-principal__icono-perfil {
@@ -661,6 +663,8 @@ body.pagina-juego {
 .pie-pagina__logo {
     width: var(--tamano-logo-footer);
     height: var(--tamano-logo-footer);
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .redes-pie {
