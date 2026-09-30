@@ -119,8 +119,9 @@
   --ancho-footer: 90rem;                 
   --alto-footer: 19.3125rem;             
   --tamano-logo-footer: 6.25rem;        
-  --tamano-redes-footer: 2.125rem;       
-  --tamano-copyright-icon: 1.5625rem;    
+  --tamano-redes-footer: 2.125rem;    
+  --tamano-copyright-icon-width: 3.150rem;
+  --tamano-copyright-icon-height: 2rem;    
 
   /* ==========================================================================
      ESPACIADOS
