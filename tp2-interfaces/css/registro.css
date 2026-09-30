@@ -318,3 +318,97 @@ input {
   display: block;
   width: var(--tamano-icono-red);
 }
+
+/* Pie de Página */
+.pie-pagina {
+  width: 100%;
+  height: var(--alto-footer); /* 309px */
+  background-color: var(--color-footer-fondo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pie-pagina__contenedor {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-pagina__columnas {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: var(--espacio-footer-padding-x);
+  padding-right: var(--espacio-footer-padding-x);
+}
+
+.columna-pie {
+  display: flex;
+  flex-direction: column;
+}
+
+.columna-pie__titulo {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-bold);
+  font-size: var(--tamano-footer-titulo);
+  color: var(--color-footer-titulo);
+  margin-bottom: var(--espacio-columna-footer);
+}
+
+.columna-pie__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-columna-footer);
+}
+
+.columna-pie__enlace {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-footer-link);
+  color: var(--color-texto-gris);
+  text-decoration: none;
+}
+
+.pie-pagina__seccion-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-md);
+}
+
+.pie-pagina__logo {
+  width: var(--tamano-logo-footer);
+  height: var(--tamano-logo-footer);
+}
+
+.redes-pie {
+  display: flex;
+  gap: var(--espacio-lg);
+}
+
+.redes-pie__icono {
+  width: var(--tamano-redes-footer);
+  height: var(--tamano-redes-footer);
+}
+
+.pie-pagina__derechos {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.pie-pagina__texto-derechos {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-footer-copy);
+  color: var(--color-texto-blanco);
+}
+
+.pie-pagina__icono-copyright {
+  width: var(--tamano-copyright-icon);
+  height: var(--tamano-copyright-icon);
+}
