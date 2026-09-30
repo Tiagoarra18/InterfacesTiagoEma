@@ -295,6 +295,53 @@ function iniciarCarrusel() {
   });
 }
 
+/* ---------- Carruseles secundarios ---------- */
+
+const DIRECCIONES_SECUNDARIAS = { 'secundario-anterior': -1, 'secundario-siguiente': 1 };
+
+function moverFilaSecundaria(fila, enFinal) {
+  fila.classList.toggle('carrusel-secundario__fila--final', enFinal);
+  fila.classList.add(enFinal ? 'carrusel-secundario__fila--moviendo-adelante' : 'carrusel-secundario__fila--moviendo-atras');
+}
+
+function actualizarFlechasSecundarias(anterior, siguiente, enFinal) {
+  anterior.hidden = !enFinal;
+  siguiente.hidden = enFinal;
+  (enFinal ? anterior : siguiente).focus();
+}
+
+function iniciarCarruselSecundario(carrusel) {
+  const fila = carrusel.querySelector('[data-js="fila-secundaria"]');
+  const anterior = carrusel.querySelector('[data-js="secundario-anterior"]');
+  const siguiente = carrusel.querySelector('[data-js="secundario-siguiente"]');
+  const estado = { enFinal: false, animando: false };
+
+  carrusel.addEventListener('click', (evento) => {
+    const control = evento.target.closest('[data-js]');
+    const paso = control ? DIRECCIONES_SECUNDARIAS[control.dataset.js] : undefined;
+    if (paso === undefined || estado.animando) return;
+
+    const enFinal = paso > 0;
+    if (enFinal === estado.enFinal) return;
+
+    estado.animando = true;
+    estado.enFinal = enFinal;
+    moverFilaSecundaria(fila, enFinal);
+    actualizarFlechasSecundarias(anterior, siguiente, enFinal);
+  });
+
+  fila.addEventListener('transitionend', (evento) => {
+    if (evento.target !== fila || evento.propertyName !== 'transform') return;
+
+    fila.classList.remove('carrusel-secundario__fila--moviendo-adelante', 'carrusel-secundario__fila--moviendo-atras');
+    estado.animando = false;
+  });
+}
+
+function iniciarCarruselesSecundarios() {
+  document.querySelectorAll('[data-js="carrusel-secundario"]').forEach(iniciarCarruselSecundario);
+}
+
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();
@@ -302,3 +349,4 @@ iniciarRegistro();
 iniciarLogin();
 iniciarPantallaCarga();
 iniciarCarrusel();
+iniciarCarruselesSecundarios();

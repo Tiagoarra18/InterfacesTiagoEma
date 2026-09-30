@@ -224,6 +224,52 @@
   --z-diapositiva-entrante: 1;
   --z-controles-carrusel: 2;
 
+  /* ==========================================================================
+     CARRUSELES SECUNDARIOS (HOME)
+     ========================================================================== */
+
+  /* Colores */
+  --color-fondo-carrusel-secundario: #0E0E0E;
+  --color-borde-flecha-secundaria: #62D6E4;
+  --color-fondo-flecha-secundaria: #100D1A;
+
+  /* Tipografía */
+  --tamano-titulo-secundario: 1.9756rem;
+  --tamano-ver-todos: 1.375rem;
+  --tamano-titulo-card: 0.9881rem;
+  --tamano-texto-card: 0.9263rem;
+
+  /* Dimensiones */
+  --ancho-carrusel-secundario: 72.25rem;
+  --alto-carrusel-secundario: 21.625rem;
+  --radio-carrusel-secundario: 3.125rem;
+  --ancho-card: 10.4956rem;
+  --alto-card: 15.6756rem;
+  --radio-card: 0.7406rem;
+  --borde-card: 0.1875rem;
+  --alto-imagen-card: 10.5006rem;
+  --tamano-carrito-card: 2.1606rem;
+  --tamano-icono-carrito-card: 1.125rem;
+  --tamano-flecha-secundaria: 3.7044rem;
+  --tamano-chevron-secundario: 1rem;
+
+  /* Espaciados */
+  --separacion: 2.3125rem;
+  --ancho-ventana-secundaria: calc(5 * var(--ancho-card) + 4 * var(--separacion));
+  --espacio-carrusel-secundario-arriba: 0.625rem;
+  --espacio-titulo-secundario: 2.4375rem;
+  --espacio-ver-todos: 6.4375rem;
+  --espacio-encabezado-ventana: 1.6875rem;
+  --espacio-texto-card: 1rem;
+  --espacio-titulo-card: 0.375rem;
+  --alto-linea-card: 1.4375rem;
+  --espacio-separador-home: 1.5625rem;
+
+  /* Animación */
+  --duracion-carrusel-secundario: 0.7s;
+  --curva-carrusel-secundario: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --inclinacion-card: 8deg;
+
   html {
   scrollbar-gutter: stable;
 }
