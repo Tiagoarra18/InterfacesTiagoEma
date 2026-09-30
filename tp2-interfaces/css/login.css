@@ -309,6 +309,6 @@ body.pagina-login {
 }
 
 .pie-pagina__icono-copyright {
-  width: var(--tamano-copyright-icon);
-  height: var(--tamano-copyright-icon);
+    width: var(--tamano-copyright-icon-width);
+    height: var(--tamano-copyright-icon-height);
 }

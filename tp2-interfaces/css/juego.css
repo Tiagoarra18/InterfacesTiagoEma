@@ -76,21 +76,42 @@ body.pagina-juego {
     border-radius: 50%;
 }
 
+/* ==========================================================================
+   BUSCADOR CON LUPA
+   ========================================================================== */
+.buscador {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 29.3125rem; /* Ancho total de la barra de búsqueda */
+}
+
 .buscador__input {
-    width: 29.3125rem; 
+    width: 100%; 
     height: 2.5rem; 
     background-color: var(--color-texto-secundario);
     border: none;
     border-radius: 6.1875rem;
-    padding: 0 1.5rem; 
+    padding-left: 1.5rem;   /* Espacio para el texto al escribir */
+    padding-right: 2.75rem; /* Espacio reservado a la derecha para la lupa */
     font-family: var(--fuente-roboto);
     font-weight: var(--peso-ligero);
     font-size: 1.25rem; 
     color: #000;
+    outline: none;
 }
 
 .buscador__input::placeholder {
     color: #333;
+}
+
+/* Ícono de la lupa a la derecha dentro del buscador */
+.buscador__icono {
+    position: absolute;
+    right: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    pointer-events: none; /* Evita interferir al hacer clic en el campo de texto */
 }
 
 /* ==========================================================================
@@ -115,6 +136,7 @@ body.pagina-juego {
 .navegacion-migas__icono-flecha {
     width: 0.9375rem; 
     height: 0.9375rem;
+    transform: scaleX(-1);
 }
 
 .navegacion-migas__enlace,
@@ -520,17 +542,17 @@ body.pagina-juego {
 }
 
 .tarjeta-juego__imagen {
-    width: 170px;
-    height: 170px; 
+    width: 100%;
+    height: 150px; /* Cambiado de 170px a 150px */
     object-fit: cover;
     flex-shrink: 0;
 }
 
 .tarjeta-juego__info {
-    padding: 0.5rem 0.625rem;
+    padding: 8px 10px 10px 10px;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    justify-content: space-between; /* Divide el espacio sobrante en 2 partes exactamente iguales */
     flex: 1;
     box-sizing: border-box;
     position: relative;
@@ -545,15 +567,15 @@ body.pagina-juego {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 110px;
+    max-width: 100%; /* Aprovecha todo el ancho antes de poner los '...' */
 }
 
 .tarjeta-juego__genero {
     font-family: var(--fuente-roboto);
     font-weight: 400;
-    font-size: 15px; 
+    font-size: 14px; 
     color: #969696;
-    margin: 0;
+    margin: 0; /* Cambiado de 'auto 0' a 0 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -563,7 +585,7 @@ body.pagina-juego {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
+    margin-top: 0; /* Cambiado de 'auto' a 0 */
 }
 
 .tarjeta-juego__precio {
@@ -571,14 +593,15 @@ body.pagina-juego {
     font-size: 15px; 
     font-weight: 400;
     color: #33FF00;
-    margin: 0;
+    margin: 0; /* Remueve el margin-top: auto para permitir el centrado exacto */
 }
 
+/* 3. Posicionamiento del botón del carrito con distancia simétrica (10px de la derecha y 10px del piso) */
 .tarjeta-juego__carrito {
     width: 35px;
     height: 35px;
     background-color: #FFFFFF;
-    border: 2.5px solid #000005;
+    border: 2.5px solid #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -586,14 +609,18 @@ body.pagina-juego {
     cursor: pointer;
     padding: 0;
     position: absolute;
-    bottom: 8px;
-    right: 8px;
+    bottom: 10px; /* Misma distancia hacia abajo */
+    right: 10px;  /* que hacia la derecha */
 }
 
+/* 4. Forzamos el icono a verse en negro y por encima del fondo */
 .tarjeta-juego__icono-carrito {
     width: 18px;
     height: 18px;
     object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: brightness(0); /* Convierte cualquier PNG a color negro puro */
 }
 
 /* ==========================================================================
@@ -677,6 +704,13 @@ body.pagina-juego {
     height: var(--tamano-redes-footer);
 }
 
+.pie-pagina__icono-red--twitter {
+    border: 1.5px solid #FFFFFF; /* Borde blanco */
+    border-radius: 4px;          /* Esquinas levemente redondeadas (o 50% si lo quieres circular) */
+    padding: 2px;                /* Espacio interno entre el icono y el borde */
+    box-sizing: border-box;
+}
+
 .pie-pagina__derechos {
     display: flex;
     align-items: center;
@@ -691,6 +725,6 @@ body.pagina-juego {
 }
 
 .pie-pagina__icono-copyright {
-    width: var(--tamano-copyright-icon);
-    height: var(--tamano-copyright-icon);
+    width: var(--tamano-copyright-icon-width);
+    height: var(--tamano-copyright-icon-height);
 }
