@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
   <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/home.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -21,13 +22,30 @@
     <p class="pantalla-carga__porcentaje" data-js="porcentaje-carga">0%</p>
   </section>
 
+  <!-- ENCABEZADO PRINCIPAL -->
+        <header class="encabezado-principal">
+            <div class="encabezado-principal__izquierda">
+                <img src="assets/icons/menu-hamburguesa.png" alt="Menú" class="encabezado-principal__icono-menu">
+                <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
+            </div>
+
+            <div class="encabezado-principal__buscador buscador">
+                <input type="text" class="buscador__input" placeholder="Buscar">
+                <img src="assets/icons/lupa.png" alt="Buscar" class="buscador__icono">
+            </div>
+
+            <div class="encabezado-principal__derecha">
+                <img src="assets/icons/carrito-de-compras.png" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
+                <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+            </div>
+        </header>
+
   <main>
     <section class="carrusel" data-js="carrusel" aria-roledescription="carrusel" aria-label="Nuevos lanzamientos">
       <h2 class="carrusel__titulo">Nuevos Lanzamientos</h2>
-
       <div class="carrusel__visor">
         <ul class="carrusel__diapositivas">
-          <li class="carrusel__diapositiva carrusel__diapositiva--activa" aria-roledescription="diapositiva" aria-label="1 de 5">
+          <li class="carrusel__diapositiva carrusel__diapositiva--activa" aria-roledescription="diapositiva" aria-label="1 de 4">
             <article class="carrusel__juego">
               <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
               <div class="carrusel__info">
@@ -36,39 +54,30 @@
               </div>
             </article>
           </li>
-          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="2 de 5" aria-hidden="true" inert>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="2 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
-              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <img class="carrusel__imagen" src="assets/img/dota2.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
               <div class="carrusel__info">
-                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
-                <p class="carrusel__precio">$99.99</p>
+                <h3 class="carrusel__nombre">Dota 2</h3>
+                <p class="carrusel__precio">$29.99</p>
               </div>
             </article>
           </li>
-          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="3 de 5" aria-hidden="true" inert>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="3 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
-              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <img class="carrusel__imagen" src="assets/img/redDeadRedemption2.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
               <div class="carrusel__info">
-                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
-                <p class="carrusel__precio">$99.99</p>
+                <h3 class="carrusel__nombre">Red Dead Redemption 2</h3>
+                <p class="carrusel__precio">$69.99</p>
               </div>
             </article>
           </li>
-          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="4 de 5" aria-hidden="true" inert>
+          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="4 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
-              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+              <img class="carrusel__imagen" src="assets/img/marvelRivals.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
               <div class="carrusel__info">
-                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
-                <p class="carrusel__precio">$99.99</p>
-              </div>
-            </article>
-          </li>
-          <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="5 de 5" aria-hidden="true" inert>
-            <article class="carrusel__juego">
-              <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
-              <div class="carrusel__info">
-                <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
-                <p class="carrusel__precio">$99.99</p>
+                <h3 class="carrusel__nombre">Marvel Rivals</h3>
+                <p class="carrusel__precio">$29.99</p>
               </div>
             </article>
           </li>
@@ -87,7 +96,6 @@
         <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="1" aria-label="Ir al juego 2"></button></li>
         <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="2" aria-label="Ir al juego 3"></button></li>
         <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="3" aria-label="Ir al juego 4"></button></li>
-        <li><button type="button" class="carrusel__indicador" data-js="carrusel-indicador" data-indice="4" aria-label="Ir al juego 5"></button></li>
       </ol>
     </section>
 
@@ -119,9 +127,9 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2027%20portada.png" alt="Portada de EA Sports FC 27">
+                <h3 class="tarjeta-juego__titulo">EA Sports FC 27</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$69.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
@@ -130,10 +138,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/nba%202026.jpg" alt="Portada de NBA 2K26">
+                <h3 class="tarjeta-juego__titulo">NBA 2K26</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$59.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -141,10 +149,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/f1-25-gx.png" alt="Portada de F1 25">
+                <h3 class="tarjeta-juego__titulo">F1 25</h3>
+                <p class="tarjeta-juego__categoria">Autos</p>
+                <p class="tarjeta-juego__precio">$49.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -152,10 +160,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa26.jpg" alt="Portada de EA Sports FC 26">
+                <h3 class="tarjeta-juego__titulo">EA Sports FC 26</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$54.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -163,54 +171,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/blackOps3.jpeg" alt="Portada de Call of Duty: Black Ops III">
+                <h3 class="tarjeta-juego__titulo">Call of Duty: Black Ops III</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$39.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -242,10 +206,10 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/RedDeadRedemption.png" alt="Portada de Red Dead Redemption">
+                <h3 class="tarjeta-juego__titulo">Red Dead Redemption</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$49.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -253,10 +217,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa25.webp" alt="Portada de EA Sports FC 25">
+                <h3 class="tarjeta-juego__titulo">EA Sports FC 25</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$34.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -264,10 +228,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2023.png" alt="Portada de FIFA 23">
+                <h3 class="tarjeta-juego__titulo">FIFA 23</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$24.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -275,10 +239,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa18.png" alt="Portada de FIFA 18">
+                <h3 class="tarjeta-juego__titulo">FIFA 18</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$14.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -286,10 +250,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa24.webp" alt="Portada de EA Sports FC 24">
+                <h3 class="tarjeta-juego__titulo">EA Sports FC 24</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$29.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -297,54 +261,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2016.png" alt="Portada de FIFA 16">
+                <h3 class="tarjeta-juego__titulo">FIFA 16</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$7.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -376,10 +296,10 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/cs2.png" alt="Portada de Counter-Strike 2">
+                <h3 class="tarjeta-juego__titulo">Counter-Strike 2</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -387,10 +307,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/csgo.png" alt="Portada de Counter-Strike: Global Offensive">
+                <h3 class="tarjeta-juego__titulo">Counter-Strike: Global Offensive</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -398,10 +318,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2011.jpg" alt="Portada de Pro Evolution Soccer 2011">
+                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2011</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -409,10 +329,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2012.jpg" alt="Portada de Pro Evolution Soccer 2012">
+                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2012</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -420,10 +340,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2013.jpg" alt="Portada de Pro Evolution Soccer 2013">
+                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2013</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -431,54 +351,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa14.png" alt="Portada de FIFA 14">
+                <h3 class="tarjeta-juego__titulo">FIFA 14</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -510,10 +386,10 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/call-of-duty-4-modern-warfare-pc-mac-juego-steam-cover.png" alt="Portada de Call of Duty 4: Modern Warfare">
+                <h3 class="tarjeta-juego__titulo">Call of Duty 4: Modern Warfare</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$19.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -521,10 +397,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa22.webp" alt="Portada de FIFA 22">
+                <h3 class="tarjeta-juego__titulo">FIFA 22</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$17.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -532,10 +408,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa21.png.webp" alt="Portada de FIFA 21">
+                <h3 class="tarjeta-juego__titulo">FIFA 21</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$12.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -543,10 +419,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa19.jpeg" alt="Portada de FIFA 19">
+                <h3 class="tarjeta-juego__titulo">FIFA 19</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$11.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -554,10 +430,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa17.png" alt="Portada de FIFA 17">
+                <h3 class="tarjeta-juego__titulo">FIFA 17</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$9.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -565,54 +441,10 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
-              </article>
-            </li>
-            <li class="carrusel-secundario__item">
-              <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
-                <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
-                <p class="tarjeta-juego__categoria">Aventura</p>
-                <p class="tarjeta-juego__precio">$69.99</p>
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa15.png" alt="Portada de FIFA 15">
+                <h3 class="tarjeta-juego__titulo">FIFA 15</h3>
+                <p class="tarjeta-juego__categoria">Deportes</p>
+                <p class="tarjeta-juego__precio">$5.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -626,6 +458,80 @@
         </button>
       </div>
     </section>
+
+    <hr class="separador-home">
   </main>
+
+  <footer class="pie-pagina">
+    <div class="pie-pagina__contenedor">
+      <div class="pie-pagina__columnas">
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Navegación</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Inicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Categorías</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sugerencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Gratuitos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Juegos de pago</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tendencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Próximos lanzamientos</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Privacidad</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Política de privacidad</a></li>
+            <li><a href="#" class="columna-pie__enlace">Cookies</a></li>
+            <li><a href="#" class="columna-pie__enlace">Términos de servicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Política de reembolsos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Control parental</a></li>
+            <li><a href="#" class="columna-pie__enlace">Código de conducta</a></li>
+            <li><a href="#" class="columna-pie__enlace">Licencias y DMFA</a></li>
+          </ul>
+        </div>
+
+        <div class="pie-pagina__seccion-central">
+          <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la plataforma" class="pie-pagina__logo">
+          <div class="redes-pie">
+            <a href="#" aria-label="Instagram"><img src="assets/icons/logoig.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="X"><img src="assets/icons/logox.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="YouTube"><img src="assets/icons/logoyt.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="Facebook"><img src="assets/icons/logofbcuadrado.png" alt="" class="redes-pie__icono"></a>
+          </div>
+          <div class="pie-pagina__derechos">
+            <span class="pie-pagina__texto-derechos">Todos los derechos reservados</span>
+            <img src="assets/icons/Copyright-Logo.png" alt="Copyright" class="pie-pagina__icono-copyright">
+          </div>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Acerca de nosotros</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Quiénes somos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Equipo</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sedes</a></li>
+            <li><a href="#" class="columna-pie__enlace">Premios</a></li>
+            <li><a href="#" class="columna-pie__enlace">Contacto</a></li>
+            <li><a href="#" class="columna-pie__enlace">Créditos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Blog/Noticias</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Ayuda</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Errores frecuentes</a></li>
+            <li><a href="#" class="columna-pie__enlace">No encuentro un juego</a></li>
+            <li><a href="#" class="columna-pie__enlace">Reportar bugs</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tutoriales</a></li>
+            <li><a href="#" class="columna-pie__enlace">Soporte</a></li>
+            <li><a href="#" class="columna-pie__enlace">Estado del servidor</a></li>
+            <li><a href="#" class="columna-pie__enlace">Requisitos del sistema</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
