@@ -22,10 +22,12 @@
     <p class="pantalla-carga__porcentaje" data-js="porcentaje-carga">0%</p>
   </section>
 
-  <!-- ENCABEZADO PRINCIPAL -->
+<!-- ENCABEZADO PRINCIPAL -->
         <header class="encabezado-principal">
             <div class="encabezado-principal__izquierda">
-                <img src="assets/icons/menu-hamburguesa.png" alt="Menú" class="encabezado-principal__icono-menu">
+                <button type="button" class="encabezado-principal__boton-menu" id="boton-menu-categorias" aria-label="Abrir menú de categorías" aria-expanded="false" aria-controls="menu-categorias">
+                     <img src="assets/icons/menu-hamburguesa.png" alt="" class="encabezado-principal__icono-menu">
+                </button>
                 <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
             </div>
 
@@ -36,9 +38,106 @@
 
             <div class="encabezado-principal__derecha">
                 <img src="assets/icons/carrito-de-compras.png" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
-                <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+                <button class="encabezado-principal__boton-perfil" id="boton-perfil-header" aria-label="Alternar menú de perfil">
+                    <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+                </button>
             </div>
         </header>
+
+         <!-- ========================================== -->
+        <!-- NUEVO: OVERLAY Y MENÚ LATERAL DE CATEGORÍAS -->
+        <!-- ========================================== -->
+        <div class="overlay-categorias" id="overlay-categorias" aria-hidden="true"></div>
+
+        <aside class="menu-categorias" id="menu-categorias" aria-hidden="true">
+            <div class="menu-categorias__encabezado">
+                <button type="button" class="menu-categorias__boton-cerrar" id="boton-cerrar-categorias" aria-label="Cerrar menú">
+                    <img src="assets/icons/cerrarmenu.png" alt="Cerrar" class="menu-categorias__icono-cerrar">
+                </button>
+                <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo Plataforma" class="menu-categorias__logo">
+            </div>
+
+            <nav class="menu-categorias__navegacion">
+                <ul class="menu-categorias__lista">
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/casa.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Inicio</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/flama-de-fuego (1).png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Tendencias</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/idea.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Sugerencias</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/flecha-hacia-abajo (1).png" alt="" class="menu-categorias__icono-item" style="transform: rotate(180deg);">
+                        <a href="#" class="menu-categorias__enlace">Nuevos</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/montanas.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Aventura</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/coche (1).png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Autos</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/pelota-de-baloncesto.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Deportes</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/mano.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Terror</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/espada.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Acción</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/globo.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Mundo Abierto</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/excavador.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Simulación</a>
+                    </li>
+                    <li class="menu-categorias__item">
+                        <img src="assets/icons/carpa-para-camping.png" alt="" class="menu-categorias__icono-item">
+                        <a href="#" class="menu-categorias__enlace">Supervivencia</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ========================================== -->
+        <!-- TU CÓDIGO ORIGINAL: OVERLAY Y MENÚ DE PERFIL -->
+        <!-- ========================================== -->
+        <div class="overlay-perfil" id="overlay-perfil" aria-hidden="true"></div>
+
+        <aside class="menu-perfil" id="menu-perfil" aria-hidden="true">
+            <div class="menu-perfil__encabezado">
+                <img src="assets/icons/carrito-de-compras.png" alt="Ir al carrito" class="menu-perfil__icono-carrito">
+                <!-- El ícono de perfil aquí dentro también puede cerrar el menú si lo deseas -->
+                <img src="assets/icons/perfil.png" alt="Cerrar menú" class="menu-perfil__icono-perfil" id="boton-perfil-interno">
+            </div>
+            
+            <nav class="menu-perfil__navegacion">
+                <ul class="menu-perfil__lista">
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Perfil</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Biblioteca</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Recientes</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Amigos</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Configuración</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Notificaciones</a></li>
+                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Redes</a></li>
+                    <li class="menu-perfil__item menu-perfil__item--sin-borde">
+                        <a href="#" class="menu-perfil__enlace menu-perfil__enlace--cerrar">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
   <main>
     <section class="carrusel" data-js="carrusel" aria-roledescription="carrusel" aria-label="Nuevos lanzamientos">
