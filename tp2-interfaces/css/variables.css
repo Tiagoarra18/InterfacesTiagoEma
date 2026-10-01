@@ -243,6 +243,8 @@
   /* Colores */
   --color-fondo-carrusel-secundario: #0E0E0E;
   --color-borde-flecha-secundaria: #62D6E4;
+  --color-borde-hover: #00D0FF;
+  --color-resplandor-card: rgba(0, 208, 255, 0.4);
   --color-fondo-flecha-secundaria: #100D1A;
 
   /* Tipografía (mobile) */
@@ -259,7 +261,7 @@
   --ancho-card: clamp(6.5rem, (100vw - 5rem) / 2.4, 12rem);
   --alto-card: calc(var(--ancho-card) + var(--espacio-titulo-card) + 3 * var(--alto-linea-card) + var(--espacio-sm));
   --radio-card: 0.5rem;
-  --borde-card: 0.1875rem;
+  --borde-card: 0.2125rem; /* 3.4px: mismo grosor en reposo y en hover */
   --alto-imagen-card: calc(var(--ancho-card) - 2 * var(--borde-card));
   --tamano-carrito-card: 1.75rem;
   --tamano-icono-carrito-card: 0.875rem;
@@ -283,6 +285,11 @@
   --duracion-carrusel-secundario: 0.7s;
   --curva-carrusel-secundario: cubic-bezier(0.34, 1.56, 0.64, 1);
   --inclinacion-card: 8deg;
+
+  /* Hover de las cards */
+  --sombra-hover-card: 0 0 1.25rem;
+  /* Lugar para que el resplandor no se recorte en la ventana con scroll (mobile y tablet) */
+  --espacio-resplandor-card: 0.75rem;
 
   /* ==========================================================================
      VARIABLES PARA EL MENÚ DESPLEGABLE DE PERFIL

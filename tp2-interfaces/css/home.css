@@ -150,6 +150,20 @@ body {
   height: 100%;
 }
 
+/* Toda la diapositiva es un enlace a la página del juego */
+.carrusel__enlace {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Offset negativo: el visor recorta lo que sobresale */
+.carrusel__enlace:focus-visible {
+  outline: var(--borde-foco) solid var(--color-foco);
+  outline-offset: calc(-1 * var(--borde-foco));
+}
+
 .carrusel__imagen {
   display: block;
   width: 100%;
@@ -427,6 +441,7 @@ body {
 
 /* Scroll táctil con la barra oculta: el desplazamiento sigue funcionando */
 .carrusel-secundario__ventana {
+  margin-block: calc(-1 * var(--espacio-resplandor-card));
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
@@ -443,7 +458,7 @@ body {
   display: flex;
   gap: var(--separacion);
   margin: 0;
-  padding: 0 var(--espacio-titulo-secundario);
+  padding: var(--espacio-resplandor-card) var(--espacio-titulo-secundario);
   list-style: none;
 }
 
@@ -489,12 +504,15 @@ body {
     align-items: center;
   }
 
-  /* clip en vez de hidden: la ventana no se puede desplazar al hacer foco en una card oculta */
+  /* clip en vez de hidden: la ventana no se puede desplazar al hacer foco en una card oculta.
+     Solo recorta en horizontal, así el resplandor del hover se ve arriba y abajo */
   .carrusel-secundario__ventana {
     grid-row: 1;
     grid-column: 2;
     width: var(--ancho-ventana-secundaria);
-    overflow: clip;
+    margin-block: 0;
+    overflow-x: clip;
+    overflow-y: visible;
     scroll-snap-type: none;
   }
 
@@ -564,6 +582,22 @@ body {
   border: var(--borde-card) solid var(--color-tarjeta-borde);
   border-radius: var(--radio-card);
   background-color: var(--color-tarjeta-fondo);
+  transition: border-color var(--duracion-hover) ease-out, box-shadow var(--duracion-hover) ease-out;
+}
+
+/* Trazo interior: el borde ya mide lo mismo en reposo, solo cambia el color */
+.tarjeta-juego:focus-within {
+  border-color: var(--color-borde-hover);
+  box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
+  transition-timing-function: ease-in;
+}
+
+@media (hover: hover) {
+  .tarjeta-juego:hover {
+    border-color: var(--color-borde-hover);
+    box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
+    transition-timing-function: ease-in;
+  }
 }
 
 .tarjeta-juego__imagen {
