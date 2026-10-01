@@ -271,9 +271,43 @@
   --curva-carrusel-secundario: cubic-bezier(0.34, 1.56, 0.64, 1);
   --inclinacion-card: 8deg;
 
+  /* ==========================================================================
+     VARIABLES PARA EL MENÚ DESPLEGABLE DE PERFIL
+     ========================================================================== */
+  --ancho-menu-perfil: 16.375rem;          /* 262px */
+  --fondo-menu-perfil: #0A0A0A;
+  --color-texto-menu-perfil: #FFFFFF;
+  --color-texto-cerrar-sesion: #14B8A6;     /* Turquesa / Teal */
+  --color-linea-menu-perfil: #FFFFFF;
+  
+  --tamano-icono-carrito-menu: 2.5rem;      /* 40px */
+  --tamano-icono-perfil-menu: 2.875rem;     /* 46px */
+  
+  --fuente-tamano-menu-item: 1.6875rem;     /* 27px */
+  --espaciado-menu-items: 4.0625rem;        /* 65px entre opciones */
+  --padding-superior-menu: 2.5rem;          /* 40px */
+  --padding-lateral-menu: 1.75rem;          /* Espaciado interno simétrico lateral */
+  --espaciado-encabezado-lista: 2.5rem;     /* 40px de separación entre íconos y la palabra 'Perfil' */
+
+  /* ==========================================================================
+     VARIABLES PARA EL MENÚ LATERAL DE CATEGORÍAS
+     ========================================================================== */
+  --ancho-menu-categorias: 16rem; /* Aumentamos el ancho (256px aprox) */
+  --fondo-menu-categorias: #0A0A0A;
+  --espaciado-top-encabezado: 1.875rem;      /* 30px */
+  --espaciado-left-encabezado: 1.25rem;      /* 20px */
+  --tamano-icono-cerrar: 3.125rem;           /* 50px */
+  --tamano-logo-menu: 3.75rem;               /* 60px */
+  --espaciado-iconos-encabezado: 2.1875rem;  /* 35px */
+  --espaciado-items-lista: 2.9375rem;        /* 47px */
+  --tamano-texto-categorias: 1.25rem;        /* 20px */
+  --color-texto-categorias: #FFFFFF;
+}
+
+
+
   html {
   scrollbar-gutter: stable;
-}
 }
 
 

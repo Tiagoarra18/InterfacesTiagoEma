@@ -16,6 +16,7 @@ body.pagina-juego {
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden; /* Corta cualquier desbordamiento accidental a lo ancho */
 }
 
 .contenedor-global {
@@ -155,29 +156,30 @@ body.pagina-juego {
 .area-juego {
     display: flex;
     justify-content: center;
-    gap: 1.75rem; /* 28px de separación entre cancha y sidebar */
+    align-items: flex-start;
+    gap: 1.75rem; 
     width: 100%;
     margin-top: 1rem;
 }
 
 /* La cancha de Peg Football */
 .area-juego__principal {
-    width: 64.5rem;       /* 1032px de Figma */
-    height: 39.6875rem;   /* 635px de Figma */
-    flex-shrink: 0;
+    flex: 1;             /* Absorbe la diferencia de espacio sobrante */
+    min-width: 0;        /* Permite que flexbox reduzca el ancho sin desbordar */
+    max-width: 64.5rem;  /* Ancho máximo original de Figma (1032px) */
 }
 
 .area-juego__imagen {
     width: 100%; 
-    height: 39.6875rem; /* 635px */
+    height: auto;
+    aspect-ratio: 1032 / 635; /* Mantiene la proporción de la cancha sin deformarla */
     object-fit: cover;
     border-radius: 0.5rem;
 }
 
 /* El sidebar de Review del Juego */
 .revision-juego {
-    width: 19.9375rem;    /* 319px de Figma */
-    height: 39.6875rem;   /* 635px de Figma */
+    width: 19.9375rem;    /* 319px */
     background-color: #0A0A0A;
     border-radius: 0.5rem;
     box-sizing: border-box;
@@ -727,4 +729,232 @@ body.pagina-juego {
 .pie-pagina__icono-copyright {
     width: var(--tamano-copyright-icon-width);
     height: var(--tamano-copyright-icon-height);
+}
+
+/* ==========================================================================
+   BOTÓN PERFIL HEADER (Limpieza de estilos)
+   ========================================================================== */
+.encabezado-principal__boton-perfil {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+}
+
+/* ==========================================================================
+   MENÚ DESPLEGABLE DE PERFIL
+   ========================================================================== */
+/* Overlay invisible que cubre la pantalla para detectar el clic fuera */
+.overlay-perfil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 998;
+    display: none;
+}
+.overlay-perfil--activo {
+    display: block;
+}
+
+/* Contenedor del menú lateral */
+.menu-perfil {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--ancho-menu-perfil);
+    height: 100vh;
+    background-color: var(--fondo-menu-perfil);
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    /* El padding lateral empuja el contenido hacia el centro. Así el border-bottom 
+       arranca exacto en la letra y respeta el margen a la derecha */
+    padding: var(--padding-superior-menu) var(--padding-lateral-menu) 2rem var(--padding-lateral-menu);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.menu-perfil--activo {
+    transform: translateX(0);
+}
+
+/* Encabezado e íconos */
+.menu-perfil__encabezado {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.6875rem; /* 27px de separación */
+    margin-bottom: var(--espaciado-encabezado-lista);
+}
+.menu-perfil__icono-carrito {
+    width: var(--tamano-icono-carrito-menu);
+    height: var(--tamano-icono-carrito-menu);
+    cursor: pointer;
+}
+.menu-perfil__icono-perfil {
+    width: var(--tamano-icono-perfil-menu);
+    height: var(--tamano-icono-perfil-menu);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Lista de navegación y líneas divisorias */
+.menu-perfil__lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.menu-perfil__item {
+    /* La línea blanca inferior */
+    border-bottom: 1px solid var(--color-linea-menu-perfil);
+    padding-bottom: 0.375rem; /* Ajuste fino de la distancia de la línea al texto */
+    margin-bottom: var(--espaciado-menu-items); /* 65px hasta el siguiente bloque */
+}
+/* Al último elemento le quitamos el borde y el margen sobrante */
+.menu-perfil__item--sin-borde {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.menu-perfil__enlace {
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-audaz);
+    font-size: var(--fuente-tamano-menu-item);
+    color: var(--color-texto-menu-perfil);
+    text-decoration: none;
+    display: block;
+}
+.menu-perfil__enlace--cerrar {
+    color: var(--color-texto-cerrar-sesion);
+}
+
+/* ==========================================================================
+   MENÚ LATERAL DE CATEGORÍAS (HAMBURGUESA)
+   ========================================================================== */
+
+/* Overlay de fondo */
+.overlay-categorias {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente opcional */
+    z-index: 998;
+    display: none;
+}
+.overlay-categorias--activo {
+    display: block;
+}
+
+/* Contenedor del menú */
+.menu-categorias {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--ancho-menu-categorias);
+    height: 100vh;
+    background-color: var(--fondo-menu-categorias);
+    z-index: 1000;
+    transform: translateX(-100%); /* Oculto hacia la izquierda por defecto */
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-sizing: border-box;
+    /* Aplicamos el padding izquierdo global para alinear encabezado y lista */
+    padding-left: var(--espaciado-left-encabezado);
+    padding-top: var(--espaciado-top-encabezado);
+    padding-bottom: 2rem;
+}
+.menu-categorias--activo {
+    transform: translateX(0); /* Se desliza hacia la vista */
+}
+
+/* Encabezado: Ícono 'X' y Logo */
+.menu-categorias__encabezado {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-iconos-encabezado);
+    margin-bottom: var(--espaciado-items-lista);
+}
+.menu-categorias__boton-cerrar {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-categorias__icono-cerrar {
+    width: var(--tamano-icono-cerrar);
+    height: var(--tamano-icono-cerrar);
+}
+.menu-categorias__logo {
+    width: var(--tamano-logo-menu);
+    height: var(--tamano-logo-menu);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Lista de navegación */
+.menu-categorias__navegacion {
+    /* Ajuste fino si se requiere alinear la lista con el botón 'X' */
+    padding-left: 0.5rem; 
+}
+.menu-categorias__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-items-lista);
+}
+.menu-categorias__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem; /* Podés agrandar o achicar este valor si querés el texto más lejos o cerca del ícono */
+}
+.menu-categorias__icono-item {
+    width: 1.75rem; /* Ancho estrictamente fijo para todos los íconos */
+    height: 1.75rem; /* Alto estrictamente fijo */
+    object-fit: contain;
+    object-position: center; /* Centra el ícono dentro de su caja */
+    flex-shrink: 0; /* Evita que flexbox aplaste o achique el ícono */
+}
+.menu-categorias__enlace {
+    font-family: var(--fuente-roboto);
+    font-weight: var(--peso-audaz); /* Asumiendo que tenés bold (700) en esta variable */
+    font-size: var(--tamano-texto-categorias);
+    color: var(--color-texto-categorias);
+    text-decoration: none;
+    line-height: 1;
+}
+.menu-categorias__enlace:hover {
+    color: #14B8A6; /* Detalle opcional hover, mismo turquesa de cerrar sesión */
+}
+
+
+.encabezado-principal__boton-menu {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-categorias__icono-cerrar {
+    background-color: #ffffff; /* Aplica el fondo blanco */
+    border-radius: 50%; /* Convierte el fondo en un círculo perfecto */
+    padding: 0.3rem; /* Controla cuánto blanco se ve alrededor del ícono negro. Subí o bajá este número a gusto */
+    
+    /* Opcional: si querés que ese círculo blanco además tenga una línea de borde dibujada */
+    border: 2px solid #000000; 
 }

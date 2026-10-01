@@ -342,6 +342,83 @@ function iniciarCarruselesSecundarios() {
   document.querySelectorAll('[data-js="carrusel-secundario"]').forEach(iniciarCarruselSecundario);
 }
 
+/* ---------- Menú Desplegable de Perfil ---------- */
+
+function iniciarMenuPerfil() {
+  const botonAbrir = document.getElementById('boton-perfil-header');
+  const botonCerrarInterno = document.getElementById('boton-perfil-interno');
+  const menuPerfil = document.getElementById('menu-perfil');
+  const overlay = document.getElementById('overlay-perfil');
+
+  if (!botonAbrir || !menuPerfil || !overlay) return;
+
+  function alternarMenu(evento) {
+    // Evitar que el clic se propague al overlay si están superpuestos
+    if (evento) evento.stopPropagation(); 
+    
+    const estaAbierto = menuPerfil.classList.contains('menu-perfil--activo');
+    
+    if (estaAbierto) {
+      menuPerfil.classList.remove('menu-perfil--activo');
+      overlay.classList.remove('overlay-perfil--activo');
+      menuPerfil.setAttribute('aria-hidden', 'true');
+      botonAbrir.setAttribute('aria-expanded', 'false');
+    } else {
+      menuPerfil.classList.add('menu-perfil--activo');
+      overlay.classList.add('overlay-perfil--activo');
+      menuPerfil.setAttribute('aria-hidden', 'false');
+      botonAbrir.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  function cerrarMenu() {
+    menuPerfil.classList.remove('menu-perfil--activo');
+    overlay.classList.remove('overlay-perfil--activo');
+    menuPerfil.setAttribute('aria-hidden', 'true');
+    botonAbrir.setAttribute('aria-expanded', 'false');
+  }
+
+  // Eventos de apertura/cierre
+  botonAbrir.addEventListener('click', alternarMenu);
+  
+  // Cierre por clic afuera (overlay) o botón interno
+  overlay.addEventListener('click', cerrarMenu);
+  if (botonCerrarInterno) botonCerrarInterno.addEventListener('click', cerrarMenu);
+}
+
+
+/* ---------- Menú Lateral de Categorías (Izquierda) ---------- */
+
+function iniciarMenuCategorias() {
+  const botonAbrir = document.getElementById('boton-menu-categorias');
+  const botonCerrar = document.getElementById('boton-cerrar-categorias');
+  const menuCategorias = document.getElementById('menu-categorias');
+  const overlay = document.getElementById('overlay-categorias');
+
+  if (!botonAbrir || !botonCerrar || !menuCategorias || !overlay) return;
+
+  function abrirMenu(evento) {
+    if (evento) evento.stopPropagation();
+    menuCategorias.classList.add('menu-categorias--activo');
+    overlay.classList.add('overlay-categorias--activo');
+    menuCategorias.setAttribute('aria-hidden', 'false');
+    botonAbrir.setAttribute('aria-expanded', 'true');
+  }
+
+  function cerrarMenu() {
+    menuCategorias.classList.remove('menu-categorias--activo');
+    overlay.classList.remove('overlay-categorias--activo');
+    menuCategorias.setAttribute('aria-hidden', 'true');
+    botonAbrir.setAttribute('aria-expanded', 'false');
+  }
+
+  // Evento para abrir haciendo clic en el menú hamburguesa del header
+  botonAbrir.addEventListener('click', abrirMenu);
+  
+  // Eventos para cerrar desde la X o el overlay
+  botonCerrar.addEventListener('click', cerrarMenu);
+  overlay.addEventListener('click', cerrarMenu);
+}
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();
@@ -350,3 +427,5 @@ iniciarLogin();
 iniciarPantallaCarga();
 iniciarCarrusel();
 iniciarCarruselesSecundarios();
+iniciarMenuPerfil();
+iniciarMenuCategorias();
