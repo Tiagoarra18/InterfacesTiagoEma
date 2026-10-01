@@ -1,3 +1,6 @@
+/* Mobile First: en mobile y tablet el bloque central va arriba y las columnas en grilla.
+   Desde 75rem (desktop) queda igual al footer de login. */
+
 /* Mismo reseteo que aplica login.css con *, acotado al footer: así se ve igual en todas las páginas */
 .pie-pagina,
 .pie-pagina * {
@@ -8,7 +11,8 @@
 
 .pie-pagina {
   width: 100%;
-  height: var(--alto-footer);
+  height: var(--alto-pie-pagina);
+  padding-block: var(--espacio-pie-pagina-y);
   background-color: var(--color-footer-fondo);
   display: flex;
   justify-content: center;
@@ -24,11 +28,11 @@
 }
 
 .pie-pagina__columnas {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-left: var(--espacio-footer-padding-x);
-  padding-right: var(--espacio-footer-padding-x);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-filas-pie-pagina) var(--espacio-columnas-pie-pagina);
+  padding-left: var(--espacio-pie-pagina-x);
+  padding-right: var(--espacio-pie-pagina-x);
 }
 
 .columna-pie {
@@ -60,15 +64,18 @@
 }
 
 .pie-pagina__seccion-central {
+  grid-column: 1 / -1;
+  order: -1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--espacio-md);
+  text-align: center;
 }
 
 .pie-pagina__logo {
-  width: var(--tamano-logo-footer);
-  height: var(--tamano-logo-footer);
+  width: var(--tamano-logo-pie-pagina);
+  height: var(--tamano-logo-pie-pagina);
   border-radius: 50%;
   object-fit: cover;
 }
@@ -92,11 +99,34 @@
 .pie-pagina__texto-derechos {
   font-family: var(--fuente-principal);
   font-weight: var(--peso-regular);
-  font-size: var(--tamano-footer-copy);
+  font-size: var(--tamano-derechos-pie-pagina);
   color: var(--color-texto-blanco);
 }
 
 .pie-pagina__icono-copyright {
   width: var(--tamano-copyright-icon-width);
   height: var(--tamano-copyright-icon-height);
+}
+
+/* Tablet: las 4 columnas en una fila, debajo del bloque central */
+@media (min-width: 48rem) {
+  .pie-pagina__columnas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: 5 columnas en fila con el bloque central en el medio, como en login */
+@media (min-width: 75rem) {
+  .pie-pagina__columnas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .pie-pagina__seccion-central {
+    grid-column: auto;
+    order: 0;
+    text-align: start;
+  }
 }

@@ -64,6 +64,12 @@ body.pagina-juego {
     height: 2.5rem;
 }
 
+/* Envuelve al logo: flex evita el espacio extra que deja la línea de texto */
+.encabezado-principal__enlace-logo {
+    display: flex;
+    border-radius: 50%;
+}
+
 .encabezado-principal__logo {
     width: 3.75rem; 
     height: 3.75rem;

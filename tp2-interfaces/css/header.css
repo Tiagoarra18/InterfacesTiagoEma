@@ -1,0 +1,127 @@
+/* ==========================================================================
+   ENCABEZADO PRINCIPAL (HEADER) - Mobile First
+   Mobile: dos filas (íconos arriba, buscador abajo). Tablet y desktop: una fila.
+   ========================================================================== */
+.encabezado-principal {
+  position: relative; /* Mantiene la jerarquía del header por encima del carrusel */
+  z-index: var(--z-encabezado);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "izquierda . derecha"
+    "buscador buscador buscador";
+  align-items: center;
+  row-gap: var(--espacio-filas-encabezado);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--alto-encabezado);
+  padding: var(--espacio-vertical-encabezado) var(--espacio-lateral-encabezado);
+  background-color: var(--color-fondo-encabezado);
+}
+
+.encabezado-principal__izquierda,
+.encabezado-principal__derecha {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-iconos-encabezado);
+}
+
+.encabezado-principal__izquierda {
+  grid-area: izquierda;
+}
+
+.encabezado-principal__buscador {
+  grid-area: buscador;
+}
+
+.encabezado-principal__derecha {
+  grid-area: derecha;
+}
+
+/* Área táctil mínima de 44x44 en mobile y tablet; en desktop miden lo que su ícono */
+.encabezado-principal__boton-menu,
+.encabezado-principal__boton-perfil,
+.encabezado-principal__enlace-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--area-tactil-encabezado);
+  min-height: var(--area-tactil-encabezado);
+}
+
+.encabezado-principal__boton-menu,
+.encabezado-principal__boton-perfil {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.encabezado-principal__enlace-logo {
+  border-radius: 50%;
+}
+
+.encabezado-principal__icono-menu,
+.encabezado-principal__icono-carrito {
+  width: var(--tamano-icono-encabezado);
+  height: var(--tamano-icono-encabezado);
+}
+
+.encabezado-principal__logo {
+  width: var(--tamano-logo-encabezado);
+  height: var(--tamano-logo-encabezado);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.encabezado-principal__icono-perfil {
+  width: var(--tamano-perfil-encabezado);
+  height: var(--tamano-perfil-encabezado);
+  border-radius: 50%;
+}
+
+/* Tablet en adelante: una sola fila, como el diseño de desktop */
+@media (min-width: 48rem) {
+  .encabezado-principal {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   BUSCADOR CON LUPA
+   ========================================================================== */
+.buscador {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: var(--ancho-buscador);
+}
+
+.buscador__input {
+  width: 100%;
+  height: var(--alto-buscador);
+  padding-left: var(--relleno-buscador-izquierda); /* Espacio para el texto al escribir */
+  padding-right: var(--relleno-buscador-derecha); /* Espacio reservado a la derecha para la lupa */
+  border: none;
+  border-radius: var(--radio-buscador);
+  background-color: var(--color-texto-secundario);
+  color: var(--color-texto-buscador);
+  font-family: var(--fuente-roboto);
+  font-weight: var(--peso-ligero);
+  font-size: var(--tamano-texto-buscador);
+  outline: none;
+}
+
+.buscador__input::placeholder {
+  color: var(--color-placeholder-buscador);
+}
+
+/* Ícono de la lupa a la derecha dentro del buscador */
+.buscador__icono {
+  position: absolute;
+  right: var(--espacio-lupa);
+  width: var(--tamano-lupa);
+  height: var(--tamano-lupa);
+  pointer-events: none; /* Evita interferir al hacer clic en el campo de texto */
+}

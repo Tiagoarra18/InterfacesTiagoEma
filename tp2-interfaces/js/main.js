@@ -330,12 +330,16 @@ function iniciarCarruselSecundario(carrusel) {
     actualizarFlechasSecundarias(anterior, siguiente, enFinal);
   });
 
-  fila.addEventListener('transitionend', (evento) => {
+  function terminarMovimiento(evento) {
     if (evento.target !== fila || evento.propertyName !== 'transform') return;
 
     fila.classList.remove('carrusel-secundario__fila--moviendo-adelante', 'carrusel-secundario__fila--moviendo-atras');
     estado.animando = false;
-  });
+  }
+
+  fila.addEventListener('transitionend', terminarMovimiento);
+  // Si se achica la pantalla a mobile en pleno movimiento, la transición se cancela sin transitionend
+  fila.addEventListener('transitioncancel', terminarMovimiento);
 }
 
 function iniciarCarruselesSecundarios() {

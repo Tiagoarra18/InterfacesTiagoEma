@@ -53,6 +53,7 @@ body {
 .pantalla-carga__texto,
 .pantalla-carga__porcentaje {
   margin: 0;
+  font-size: var(--tamano-texto-carga);
 }
 
 .pantalla-carga__barra {
@@ -83,86 +84,6 @@ body {
 
 .pantalla-carga__porcentaje {
   font-weight: var(--peso-bold);
-}
-
-/* ==========================================================================
-   ENCABEZADO PRINCIPAL (HEADER)
-   ========================================================================== */
-.encabezado-principal {
-    position: relative; /* Mantiene la jerarquía del header por encima del carrusel */
-    z-index: 100;
-    width: 100%;
-    height: 5.625rem; 
-    background-color: #0A0A0A;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem; 
-    box-sizing: border-box;
-}
-
-.encabezado-principal__izquierda,
-.encabezado-principal__derecha {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.encabezado-principal__icono-menu,
-.encabezado-principal__icono-carrito {
-    width: 2.5rem; 
-    height: 2.5rem;
-}
-
-.encabezado-principal__logo {
-    width: 3.75rem; 
-    height: 3.75rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.encabezado-principal__icono-perfil {
-    width: 2.875rem; 
-    height: 2.875rem;
-    border-radius: 50%;
-}
-
-/* ==========================================================================
-   BUSCADOR CON LUPA
-   ========================================================================== */
-.buscador {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 29.3125rem; /* Ancho total de la barra de búsqueda */
-}
-
-.buscador__input {
-    width: 100%; 
-    height: 2.5rem; 
-    background-color: var(--color-texto-secundario);
-    border: none;
-    border-radius: 6.1875rem;
-    padding-left: 1.5rem;   /* Espacio para el texto al escribir */
-    padding-right: 2.75rem; /* Espacio reservado a la derecha para la lupa */
-    font-family: var(--fuente-roboto);
-    font-weight: var(--peso-ligero);
-    font-size: 1.25rem; 
-    color: #000;
-    outline: none;
-}
-
-.buscador__input::placeholder {
-    color: #333;
-}
-
-/* Ícono de la lupa a la derecha dentro del buscador */
-.buscador__icono {
-    position: absolute;
-    right: 1.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    pointer-events: none; /* Evita interferir al hacer clic en el campo de texto */
 }
 
 /* Carrusel principal */
@@ -292,21 +213,17 @@ body {
 }
 
 .carrusel__flecha--anterior {
-  left: var(--espacio-lateral-carrusel);
+  left: var(--espacio-flecha-carrusel);
 }
 
 .carrusel__flecha--siguiente {
-  right: var(--espacio-lateral-carrusel);
+  right: var(--espacio-flecha-carrusel);
 }
 
-.carrusel__flecha:hover,
 .carrusel__flecha:focus-visible {
   transform: scale(var(--escala-hover));
   background-color: var(--color-flecha-carrusel-hover);
   transition-timing-function: ease-in;
-}
-
-.carrusel__flecha:focus-visible {
   outline: var(--borde-foco) solid var(--color-foco);
 }
 
@@ -328,20 +245,38 @@ body {
   transform: rotate(-135deg);
 }
 
-.carrusel__flecha:hover .carrusel__chevron,
 .carrusel__flecha:focus-visible .carrusel__chevron {
   transition-timing-function: ease-in;
 }
 
 /* translateX va antes del rotate para que el corrimiento sea horizontal */
-.carrusel__flecha:hover .carrusel__chevron--derecha,
 .carrusel__flecha:focus-visible .carrusel__chevron--derecha {
   transform: translateX(var(--desplazamiento-flecha-carrusel)) rotate(45deg);
 }
 
-.carrusel__flecha:hover .carrusel__chevron--izquierda,
 .carrusel__flecha:focus-visible .carrusel__chevron--izquierda {
   transform: translateX(calc(-1 * var(--desplazamiento-flecha-carrusel))) rotate(-135deg);
+}
+
+/* Hover solo en dispositivos con puntero: en pantallas táctiles quedaría "pegado" */
+@media (hover: hover) {
+  .carrusel__flecha:hover {
+    transform: scale(var(--escala-hover));
+    background-color: var(--color-flecha-carrusel-hover);
+    transition-timing-function: ease-in;
+  }
+
+  .carrusel__flecha:hover .carrusel__chevron {
+    transition-timing-function: ease-in;
+  }
+
+  .carrusel__flecha:hover .carrusel__chevron--derecha {
+    transform: translateX(var(--desplazamiento-flecha-carrusel)) rotate(45deg);
+  }
+
+  .carrusel__flecha:hover .carrusel__chevron--izquierda {
+    transform: translateX(calc(-1 * var(--desplazamiento-flecha-carrusel))) rotate(-135deg);
+  }
 }
 
 /* Indicadores */
@@ -445,13 +380,16 @@ body {
   border-top: var(--borde-fino) solid var(--color-borde);
 }
 
-/* Carruseles secundarios */
+/* Carruseles secundarios
+   Mobile y tablet: scroll horizontal nativo con snap, sin flechas.
+   Desktop: flechas, ventana recortada y desplazamiento animado (ver media query). */
 .carrusel-secundario {
   box-sizing: border-box;
   width: var(--ancho-carrusel-secundario);
   height: var(--alto-carrusel-secundario);
   margin-inline: auto;
   padding-block-start: var(--espacio-carrusel-secundario-arriba);
+  padding-block-end: var(--espacio-carrusel-secundario-abajo);
   border-radius: var(--radio-carrusel-secundario);
   background-color: var(--color-fondo-carrusel-secundario);
 }
@@ -484,50 +422,39 @@ body {
 }
 
 .carrusel-secundario__cuerpo {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
   margin-block-start: var(--espacio-encabezado-ventana);
 }
 
-/* clip en vez de hidden: la ventana no se puede desplazar al hacer foco en una card oculta */
+/* Scroll táctil con la barra oculta: el desplazamiento sigue funcionando */
 .carrusel-secundario__ventana {
-  grid-row: 1;
-  grid-column: 2;
-  width: var(--ancho-ventana-secundaria);
-  overflow: clip;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--espacio-titulo-secundario);
+  scrollbar-width: none;
 }
 
+.carrusel-secundario__ventana::-webkit-scrollbar {
+  display: none;
+}
+
+/* El padding alinea la primera card con el título y deja aire después de la última */
 .carrusel-secundario__fila {
   display: flex;
   gap: var(--separacion);
   margin: 0;
-  padding: 0;
+  padding: 0 var(--espacio-titulo-secundario);
   list-style: none;
-  transition: transform var(--duracion-carrusel-secundario) var(--curva-carrusel-secundario);
-}
-
-.carrusel-secundario__fila--final {
-  transform: translateX(calc(-1 * (var(--ancho-card) + var(--separacion))));
-}
-
-.carrusel-secundario__fila--moviendo-adelante .tarjeta-juego {
-  animation: inclinar-adelante var(--duracion-carrusel-secundario) ease-in-out;
-}
-
-.carrusel-secundario__fila--moviendo-atras .tarjeta-juego {
-  animation: inclinar-atras var(--duracion-carrusel-secundario) ease-in-out;
 }
 
 .carrusel-secundario__item {
   flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
-/* Flechas de los carruseles secundarios */
+/* Flechas de los carruseles secundarios: solo en desktop */
 .carrusel-secundario__flecha {
-  grid-row: 1;
-  justify-self: center;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
@@ -544,14 +471,6 @@ body {
   display: none;
 }
 
-.carrusel-secundario__flecha--anterior {
-  grid-column: 1;
-}
-
-.carrusel-secundario__flecha--siguiente {
-  grid-column: 3;
-}
-
 .carrusel-secundario__flecha:focus-visible {
   outline: var(--borde-foco) solid var(--color-foco);
 }
@@ -559,6 +478,80 @@ body {
 .carrusel__chevron--chico {
   width: var(--tamano-chevron-secundario);
   height: var(--tamano-chevron-secundario);
+}
+
+/* Desktop: el carrusel por estados. Los transform de --final y las inclinaciones
+   viven solo acá, así en mobile la fila nunca queda corrida */
+@media (min-width: 75rem) {
+  .carrusel-secundario__cuerpo {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  /* clip en vez de hidden: la ventana no se puede desplazar al hacer foco en una card oculta */
+  .carrusel-secundario__ventana {
+    grid-row: 1;
+    grid-column: 2;
+    width: var(--ancho-ventana-secundaria);
+    overflow: clip;
+    scroll-snap-type: none;
+  }
+
+  .carrusel-secundario__fila {
+    padding: 0;
+    transition: transform var(--duracion-carrusel-secundario) var(--curva-carrusel-secundario);
+  }
+
+  .carrusel-secundario__fila--final {
+    transform: translateX(calc(-1 * (var(--ancho-card) + var(--separacion))));
+  }
+
+  .carrusel-secundario__fila--moviendo-adelante .tarjeta-juego {
+    animation: inclinar-adelante var(--duracion-carrusel-secundario) ease-in-out;
+  }
+
+  .carrusel-secundario__fila--moviendo-atras .tarjeta-juego {
+    animation: inclinar-atras var(--duracion-carrusel-secundario) ease-in-out;
+  }
+
+  .carrusel-secundario__flecha {
+    grid-row: 1;
+    justify-self: center;
+    display: flex;
+  }
+
+  .carrusel-secundario__flecha--anterior {
+    grid-column: 1;
+  }
+
+  .carrusel-secundario__flecha--siguiente {
+    grid-column: 3;
+  }
+
+  @keyframes inclinar-adelante {
+    0% {
+      transform: skewX(0);
+    }
+    40% {
+      transform: skewX(calc(-1 * var(--inclinacion-card)));
+    }
+    100% {
+      transform: skewX(0);
+    }
+  }
+
+  @keyframes inclinar-atras {
+    0% {
+      transform: skewX(0);
+    }
+    40% {
+      transform: skewX(var(--inclinacion-card));
+    }
+    100% {
+      transform: skewX(0);
+    }
+  }
 }
 
 /* Card de juego */
@@ -638,32 +631,6 @@ body {
   width: var(--tamano-icono-carrito-card);
   height: var(--tamano-icono-carrito-card);
   filter: brightness(0);
-}
-
-@keyframes inclinar-adelante {
-  0% {
-    transform: skewX(0);
-  }
-  40% {
-    transform: skewX(calc(-1 * var(--inclinacion-card)));
-  }
-  100% {
-    transform: skewX(0);
-  }
-}
-
-@keyframes inclinar-atras {
-  0% {
-    transform: skewX(0);
-  }
-  40% {
-    transform: skewX(var(--inclinacion-card));
-  }
-  100% {
-    transform: skewX(0);
-  }
-
-  
 }
 
 /* ==========================================================================
@@ -857,19 +824,10 @@ body {
     text-decoration: none;
     line-height: 1;
 }
-.menu-categorias__enlace:hover {
-    color: #14B8A6; /* Detalle opcional hover, mismo turquesa de cerrar sesión */
-}
-
-
-.encabezado-principal__boton-menu {
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (hover: hover) {
+    .menu-categorias__enlace:hover {
+        color: #14B8A6; /* Detalle opcional hover, mismo turquesa de cerrar sesión */
+    }
 }
 
 .menu-categorias__icono-cerrar {
