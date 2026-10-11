@@ -23,134 +23,91 @@
     <p class="pantalla-carga__porcentaje" data-js="porcentaje-carga">0%</p>
   </section>
 
-<!-- ENCABEZADO PRINCIPAL -->
-        <header class="encabezado-principal">
-            <div class="encabezado-principal__izquierda">
-                <button type="button" class="encabezado-principal__boton-menu" id="boton-menu-categorias" aria-label="Abrir menú de categorías" aria-expanded="false" aria-controls="menu-categorias">
-                     <img src="assets/icons/menu-hamburguesa.png" alt="" class="encabezado-principal__icono-menu">
-                </button>
-                <a href="index.html" class="encabezado-principal__enlace-logo" aria-label="Ir al inicio">
-                    <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
-                </a>
-            </div>
+  <!-- ENCABEZADO PRINCIPAL -->
+  <header class="encabezado-principal">
+      <div class="encabezado-principal__izquierda">
+          <button type="button" class="encabezado-principal__boton-menu" id="boton-menu-categorias" aria-label="Abrir menú de categorías" aria-expanded="false" aria-controls="menu-categorias">
+               <img src="assets/icons/menu-hamburguesa.png" alt="" class="encabezado-principal__icono-menu">
+          </button>
+          <a href="index.html" class="encabezado-principal__enlace-logo" aria-label="Ir al inicio">
+              <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
+          </a>
+      </div>
 
-            <div class="encabezado-principal__buscador buscador">
-                <input type="text" class="buscador__input" placeholder="Buscar">
-                <img src="assets/icons/lupa.png" alt="Buscar" class="buscador__icono">
-            </div>
+      <div class="encabezado-principal__buscador buscador">
+          <input type="text" class="buscador__input" placeholder="Buscar">
+          <img src="assets/icons/lupa.png" alt="Buscar" class="buscador__icono">
+      </div>
 
-            <div class="encabezado-principal__derecha">
-                <img src="assets/icons/carrito-de-compras.png" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
-                <button class="encabezado-principal__boton-perfil" id="boton-perfil-header" aria-label="Alternar menú de perfil">
-                    <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
-                </button>
-            </div>
-        </header>
+      <div class="encabezado-principal__derecha">
+          <img src="assets/icons/carrito-de-compras.png" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
+          <button class="encabezado-principal__boton-perfil" id="boton-perfil-header" aria-label="Alternar menú de perfil">
+              <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+          </button>
+      </div>
+  </header>
 
-         <!-- ========================================== -->
-        <!-- NUEVO: OVERLAY Y MENÚ LATERAL DE CATEGORÍAS -->
-        <!-- ========================================== -->
-        <div class="overlay-categorias" id="overlay-categorias" aria-hidden="true"></div>
+  <!-- OVERLAY Y MENÚ CATEGORÍAS -->
+  <div class="overlay-categorias" id="overlay-categorias" aria-hidden="true"></div>
+  <aside class="menu-categorias" id="menu-categorias" aria-hidden="true">
+      <div class="menu-categorias__encabezado">
+          <button type="button" class="menu-categorias__boton-cerrar" id="boton-cerrar-categorias" aria-label="Cerrar menú">
+              <img src="assets/icons/cerrarmenu.png" alt="Cerrar" class="menu-categorias__icono-cerrar">
+          </button>
+          <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo Plataforma" class="menu-categorias__logo">
+      </div>
 
-        <aside class="menu-categorias" id="menu-categorias" aria-hidden="true">
-            <div class="menu-categorias__encabezado">
-                <button type="button" class="menu-categorias__boton-cerrar" id="boton-cerrar-categorias" aria-label="Cerrar menú">
-                    <img src="assets/icons/cerrarmenu.png" alt="Cerrar" class="menu-categorias__icono-cerrar">
-                </button>
-                <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo Plataforma" class="menu-categorias__logo">
-            </div>
+      <nav class="menu-categorias__navegacion">
+          <ul class="menu-categorias__lista">
+              <li class="menu-categorias__item"><img src="assets/icons/casa.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Inicio</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/flama-de-fuego (1).png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Tendencias</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/idea.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Sugerencias</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/flecha-hacia-abajo (1).png" alt="" class="menu-categorias__icono-item" style="transform: rotate(180deg);"><a href="#" class="menu-categorias__enlace">Nuevos</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/montanas.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Aventura</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/coche (1).png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Autos</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/pelota-de-baloncesto.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Deportes</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/mano.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Terror</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/espada.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Acción</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/globo.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Mundo Abierto</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/excavador.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Simulación</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/carpa-para-camping.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Supervivencia</a></li>
+          </ul>
+      </nav>
+  </aside>
 
-            <nav class="menu-categorias__navegacion">
-                <ul class="menu-categorias__lista">
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/casa.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Inicio</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/flama-de-fuego (1).png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Tendencias</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/idea.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Sugerencias</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/flecha-hacia-abajo (1).png" alt="" class="menu-categorias__icono-item" style="transform: rotate(180deg);">
-                        <a href="#" class="menu-categorias__enlace">Nuevos</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/montanas.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Aventura</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/coche (1).png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Autos</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/pelota-de-baloncesto.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Deportes</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/mano.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Terror</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/espada.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Acción</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/globo.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Mundo Abierto</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/excavador.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Simulación</a>
-                    </li>
-                    <li class="menu-categorias__item">
-                        <img src="assets/icons/carpa-para-camping.png" alt="" class="menu-categorias__icono-item">
-                        <a href="#" class="menu-categorias__enlace">Supervivencia</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- ========================================== -->
-        <!-- TU CÓDIGO ORIGINAL: OVERLAY Y MENÚ DE PERFIL -->
-        <!-- ========================================== -->
-        <div class="overlay-perfil" id="overlay-perfil" aria-hidden="true"></div>
-
-        <aside class="menu-perfil" id="menu-perfil" aria-hidden="true">
-            <div class="menu-perfil__encabezado">
-                <img src="assets/icons/carrito-de-compras.png" alt="Ir al carrito" class="menu-perfil__icono-carrito">
-                <!-- El ícono de perfil aquí dentro también puede cerrar el menú si lo deseas -->
-                <img src="assets/icons/perfil.png" alt="Cerrar menú" class="menu-perfil__icono-perfil" id="boton-perfil-interno">
-            </div>
-            
-            <nav class="menu-perfil__navegacion">
-                <ul class="menu-perfil__lista">
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Perfil</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Biblioteca</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Recientes</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Amigos</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Configuración</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Notificaciones</a></li>
-                    <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Redes</a></li>
-                    <li class="menu-perfil__item menu-perfil__item--sin-borde">
-                        <a href="#" class="menu-perfil__enlace menu-perfil__enlace--cerrar">Cerrar sesión</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+  <!-- OVERLAY Y MENÚ PERFIL -->
+  <div class="overlay-perfil" id="overlay-perfil" aria-hidden="true"></div>
+  <aside class="menu-perfil" id="menu-perfil" aria-hidden="true">
+      <div class="menu-perfil__encabezado">
+          <img src="assets/icons/carrito-de-compras.png" alt="Ir al carrito" class="menu-perfil__icono-carrito">
+          <img src="assets/icons/perfil.png" alt="Cerrar menú" class="menu-perfil__icono-perfil" id="boton-perfil-interno">
+      </div>
+      
+      <nav class="menu-perfil__navegacion">
+          <ul class="menu-perfil__lista">
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Perfil</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Biblioteca</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Recientes</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Amigos</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Configuración</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Notificaciones</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Redes</a></li>
+              <li class="menu-perfil__item menu-perfil__item--sin-borde">
+                  <a href="#" class="menu-perfil__enlace menu-perfil__enlace--cerrar">Cerrar sesión</a>
+              </li>
+          </ul>
+      </nav>
+  </aside>
 
   <main>
+    <!-- CARRUSEL PRINCIPAL (SIN TÍTULO DE NUEVOS LANZAMIENTOS) -->
     <section class="carrusel" data-js="carrusel" aria-roledescription="carrusel" aria-label="Nuevos lanzamientos">
-      <h2 class="carrusel__titulo">Nuevos Lanzamientos</h2>
       <div class="carrusel__visor">
         <ul class="carrusel__diapositivas">
           <li class="carrusel__diapositiva carrusel__diapositiva--activa" aria-roledescription="diapositiva" aria-label="1 de 4">
             <article class="carrusel__juego">
               <a class="carrusel__enlace" href="juego.html">
-                <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+                <img class="carrusel__imagen" src="assets/img/gta6.png" alt="Portada de Grand Theft Auto 6">
                 <div class="carrusel__info">
                   <h3 class="carrusel__nombre">Grand Theft Auto 6</h3>
                   <p class="carrusel__precio">$99.99</p>
@@ -161,7 +118,7 @@
           <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="2 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
               <a class="carrusel__enlace" href="juego.html">
-                <img class="carrusel__imagen" src="assets/img/dota2.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+                <img class="carrusel__imagen" src="assets/img/dota2.png" alt="Portada de Dota 2">
                 <div class="carrusel__info">
                   <h3 class="carrusel__nombre">Dota 2</h3>
                   <p class="carrusel__precio">$29.99</p>
@@ -172,7 +129,7 @@
           <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="3 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
               <a class="carrusel__enlace" href="juego.html">
-                <img class="carrusel__imagen" src="assets/img/redDeadRedemption2.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+                <img class="carrusel__imagen" src="assets/img/redDeadRedemption2.png" alt="Portada de Red Dead Redemption 2">
                 <div class="carrusel__info">
                   <h3 class="carrusel__nombre">Red Dead Redemption 2</h3>
                   <p class="carrusel__precio">$69.99</p>
@@ -183,7 +140,7 @@
           <li class="carrusel__diapositiva" aria-roledescription="diapositiva" aria-label="4 de 4" aria-hidden="true" inert>
             <article class="carrusel__juego">
               <a class="carrusel__enlace" href="juego.html">
-                <img class="carrusel__imagen" src="assets/img/marvelRivals.png" alt="Portada de Grand Theft Auto 6: dos protagonistas armados frente a la costa de Vice City">
+                <img class="carrusel__imagen" src="assets/img/marvelRivals.png" alt="Portada de Marvel Rivals">
                 <div class="carrusel__info">
                   <h3 class="carrusel__nombre">Marvel Rivals</h3>
                   <p class="carrusel__precio">$29.99</p>
@@ -211,6 +168,7 @@
 
     <hr class="separador-home">
 
+    <!-- TENDENCIAS -->
     <section class="carrusel-secundario" data-js="carrusel-secundario" aria-roledescription="carrusel" aria-labelledby="titulo-tendencias">
       <div class="carrusel-secundario__encabezado">
         <h2 class="carrusel-secundario__titulo" id="titulo-tendencias">Tendencias</h2>
@@ -226,7 +184,7 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Portada de Uncharted 4: A Thief's End, con Nathan Drake de espaldas">
+                <img class="tarjeta-juego__imagen" src="assets/img/uncharted4.webp" alt="Uncharted 4">
                 <h3 class="tarjeta-juego__titulo">Uncharted 4</h3>
                 <p class="tarjeta-juego__categoria">Aventura</p>
                 <p class="tarjeta-juego__precio">$69.99</p>
@@ -237,7 +195,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2027%20portada.png" alt="Portada de EA Sports FC 27">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2027%20portada.png" alt="EA Sports FC 27">
                 <h3 class="tarjeta-juego__titulo">EA Sports FC 27</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$69.99</p>
@@ -248,7 +206,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/nba%202026.jpg" alt="Portada de NBA 2K26">
+                <img class="tarjeta-juego__imagen" src="assets/img/nba%202026.jpg" alt="NBA 2K26">
                 <h3 class="tarjeta-juego__titulo">NBA 2K26</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$59.99</p>
@@ -259,7 +217,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/f1-25-gx.png" alt="Portada de F1 25">
+                <img class="tarjeta-juego__imagen" src="assets/img/f1-25-gx.png" alt="F1 25">
                 <h3 class="tarjeta-juego__titulo">F1 25</h3>
                 <p class="tarjeta-juego__categoria">Autos</p>
                 <p class="tarjeta-juego__precio">$49.99</p>
@@ -270,7 +228,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa26.jpg" alt="Portada de EA Sports FC 26">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa26.jpg" alt="EA Sports FC 26">
                 <h3 class="tarjeta-juego__titulo">EA Sports FC 26</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$54.99</p>
@@ -281,10 +239,32 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/blackOps3.jpeg" alt="Portada de Call of Duty: Black Ops III">
-                <h3 class="tarjeta-juego__titulo">Call of Duty: Black Ops III</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/blackOps3.jpeg" alt="Black Ops III">
+                <h3 class="tarjeta-juego__titulo">Call of Duty: BO III</h3>
                 <p class="tarjeta-juego__categoria">Acción</p>
                 <p class="tarjeta-juego__precio">$39.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/icons/haloinifite.jpeg" alt="Halo Infinite">
+                <h3 class="tarjeta-juego__titulo">Halo Infinite</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$69.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/icons/RDD2.jpg" alt="Red Dead Redemption 2">
+                <h3 class="tarjeta-juego__titulo">RDR 2</h3>
+                <p class="tarjeta-juego__categoria">Aventura</p>
+                <p class="tarjeta-juego__precio">$69.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -301,6 +281,7 @@
 
     <hr class="separador-home">
 
+    <!-- PARA TI -->
     <section class="carrusel-secundario" data-js="carrusel-secundario" aria-roledescription="carrusel" aria-labelledby="titulo-para-ti">
       <div class="carrusel-secundario__encabezado">
         <h2 class="carrusel-secundario__titulo" id="titulo-para-ti">Para ti</h2>
@@ -316,7 +297,7 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/RedDeadRedemption.png" alt="Portada de Red Dead Redemption">
+                <img class="tarjeta-juego__imagen" src="assets/img/RedDeadRedemption.png" alt="Red Dead Redemption">
                 <h3 class="tarjeta-juego__titulo">Red Dead Redemption</h3>
                 <p class="tarjeta-juego__categoria">Acción</p>
                 <p class="tarjeta-juego__precio">$49.99</p>
@@ -327,7 +308,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa25.webp" alt="Portada de EA Sports FC 25">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa25.webp" alt="EA Sports FC 25">
                 <h3 class="tarjeta-juego__titulo">EA Sports FC 25</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$34.99</p>
@@ -338,7 +319,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2023.png" alt="Portada de FIFA 23">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2023.png" alt="FIFA 23">
                 <h3 class="tarjeta-juego__titulo">FIFA 23</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$24.99</p>
@@ -349,7 +330,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa18.png" alt="Portada de FIFA 18">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa18.png" alt="FIFA 18">
                 <h3 class="tarjeta-juego__titulo">FIFA 18</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$14.99</p>
@@ -360,7 +341,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa24.webp" alt="Portada de EA Sports FC 24">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa24.webp" alt="EA Sports FC 24">
                 <h3 class="tarjeta-juego__titulo">EA Sports FC 24</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$29.99</p>
@@ -371,10 +352,32 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2016.png" alt="Portada de FIFA 16">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa%2016.png" alt="FIFA 16">
                 <h3 class="tarjeta-juego__titulo">FIFA 16</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$7.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/icons/overwatch.jpeg" alt="Overwatch">
+                <h3 class="tarjeta-juego__titulo">Overwatch</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$59.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/icons/twd.jpg" alt="The Walking Dead">
+                <h3 class="tarjeta-juego__titulo">Walking Dead</h3>
+                <p class="tarjeta-juego__categoria">Supervivencia</p>
+                <p class="tarjeta-juego__precio">$49.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>
@@ -391,6 +394,7 @@
 
     <hr class="separador-home">
 
+    <!-- GRATUITOS -->
     <section class="carrusel-secundario" data-js="carrusel-secundario" aria-roledescription="carrusel" aria-labelledby="titulo-gratuitos">
       <div class="carrusel-secundario__encabezado">
         <h2 class="carrusel-secundario__titulo" id="titulo-gratuitos">Gratuitos</h2>
@@ -406,68 +410,66 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/cs2.png" alt="Portada de Counter-Strike 2">
+                <img class="tarjeta-juego__imagen" src="assets/img/cs2.png" alt="Counter-Strike 2">
                 <h3 class="tarjeta-juego__titulo">Counter-Strike 2</h3>
                 <p class="tarjeta-juego__categoria">Acción</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
               </article>
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/csgo.png" alt="Portada de Counter-Strike: Global Offensive">
-                <h3 class="tarjeta-juego__titulo">Counter-Strike: Global Offensive</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/csgo.png" alt="Counter-Strike: GO">
+                <h3 class="tarjeta-juego__titulo">CS: Global Offensive</h3>
                 <p class="tarjeta-juego__categoria">Acción</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
               </article>
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/pes2011.jpg" alt="Portada de Pro Evolution Soccer 2011">
-                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2011</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2011.jpg" alt="PES 2011">
+                <h3 class="tarjeta-juego__titulo">PES 2011</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
               </article>
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/pes2012.jpg" alt="Portada de Pro Evolution Soccer 2012">
-                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2012</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2012.jpg" alt="PES 2012">
+                <h3 class="tarjeta-juego__titulo">PES 2012</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
               </article>
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/pes2013.jpg" alt="Portada de Pro Evolution Soccer 2013">
-                <h3 class="tarjeta-juego__titulo">Pro Evolution Soccer 2013</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/pes2013.jpg" alt="PES 2013">
+                <h3 class="tarjeta-juego__titulo">PES 2013</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
               </article>
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa14.png" alt="Portada de FIFA 14">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa14.png" alt="FIFA 14">
                 <h3 class="tarjeta-juego__titulo">FIFA 14</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">Gratis</p>
-                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
-                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
-                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/icons/rocketleague.jpg" alt="Rocket League">
+                <h3 class="tarjeta-juego__titulo">Rocket League</h3>
+                <p class="tarjeta-juego__categoria">Autos</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/img/marvelRivals.png" alt="Marvel Rivals">
+                <h3 class="tarjeta-juego__titulo">Marvel Rivals</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">Gratis</p>
               </article>
             </li>
           </ul>
@@ -481,6 +483,7 @@
 
     <hr class="separador-home">
 
+    <!-- PAGOS -->
     <section class="carrusel-secundario" data-js="carrusel-secundario" aria-roledescription="carrusel" aria-labelledby="titulo-pagos">
       <div class="carrusel-secundario__encabezado">
         <h2 class="carrusel-secundario__titulo" id="titulo-pagos">Pagos</h2>
@@ -496,8 +499,8 @@
           <ul class="carrusel-secundario__fila" data-js="fila-secundaria">
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/call-of-duty-4-modern-warfare-pc-mac-juego-steam-cover.png" alt="Portada de Call of Duty 4: Modern Warfare">
-                <h3 class="tarjeta-juego__titulo">Call of Duty 4: Modern Warfare</h3>
+                <img class="tarjeta-juego__imagen" src="assets/img/call-of-duty-4-modern-warfare-pc-mac-juego-steam-cover.png" alt="COD 4 Modern Warfare">
+                <h3 class="tarjeta-juego__titulo">Call of Duty 4</h3>
                 <p class="tarjeta-juego__categoria">Acción</p>
                 <p class="tarjeta-juego__precio">$19.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
@@ -507,7 +510,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa22.webp" alt="Portada de FIFA 22">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa22.webp" alt="FIFA 22">
                 <h3 class="tarjeta-juego__titulo">FIFA 22</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$17.99</p>
@@ -518,7 +521,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa21.png.webp" alt="Portada de FIFA 21">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa21.png.webp" alt="FIFA 21">
                 <h3 class="tarjeta-juego__titulo">FIFA 21</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$12.99</p>
@@ -529,7 +532,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa19.jpeg" alt="Portada de FIFA 19">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa19.jpeg" alt="FIFA 19">
                 <h3 class="tarjeta-juego__titulo">FIFA 19</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$11.99</p>
@@ -540,7 +543,7 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa17.png" alt="Portada de FIFA 17">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa17.png" alt="FIFA 17">
                 <h3 class="tarjeta-juego__titulo">FIFA 17</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$9.99</p>
@@ -551,10 +554,32 @@
             </li>
             <li class="carrusel-secundario__item">
               <article class="tarjeta-juego">
-                <img class="tarjeta-juego__imagen" src="assets/img/fifa15.png" alt="Portada de FIFA 15">
+                <img class="tarjeta-juego__imagen" src="assets/img/fifa15.png" alt="FIFA 15">
                 <h3 class="tarjeta-juego__titulo">FIFA 15</h3>
                 <p class="tarjeta-juego__categoria">Deportes</p>
                 <p class="tarjeta-juego__precio">$5.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/img/gta6.png" alt="GTA 6">
+                <h3 class="tarjeta-juego__titulo">GTA 6</h3>
+                <p class="tarjeta-juego__categoria">Acción</p>
+                <p class="tarjeta-juego__precio">$99.99</p>
+                <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
+                  <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
+                </button>
+              </article>
+            </li>
+            <li class="carrusel-secundario__item">
+              <article class="tarjeta-juego">
+                <img class="tarjeta-juego__imagen" src="assets/img/dota2.png" alt="Dota 2">
+                <h3 class="tarjeta-juego__titulo">Dota 2 DLC</h3>
+                <p class="tarjeta-juego__categoria">Estrategia</p>
+                <p class="tarjeta-juego__precio">$29.99</p>
                 <button type="button" class="tarjeta-juego__carrito" aria-label="Agregar al carrito">
                   <img class="tarjeta-juego__icono-carrito" src="assets/icons/carrito-de-compras.png" alt="">
                 </button>

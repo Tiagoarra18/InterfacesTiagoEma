@@ -8,10 +8,9 @@ const MENSAJES_ERROR = {
 const PAGINA_INICIO = 'index.html';
 const DURACION_CARGA_MS = 5000;
 
-/* ---------- Mostrar / Ocultar contraseña (Compatible con Registro y Login) ---------- */
+/* ---------- Mostrar / Ocultar contraseña ---------- */
 
 function alternarVisibilidad(boton) {
-  // Busca el input asociado por el atributo aria-controls o dentro del contenedor padre
   const contenedor = boton.closest('.campo-formulario__contenedor-entrada, .campo');
   const input = contenedor ? contenedor.querySelector('input') : document.getElementById(boton.getAttribute('aria-controls'));
   if (!input) return;
@@ -150,7 +149,7 @@ function iniciarLogin() {
   });
 }
 
-/* ---------- Pantalla de Carga (Preloader) ---------- */
+/* ---------- Pantalla de Carga ---------- */
 
 function actualizarProgreso(barra, textoPorcentaje, porcentaje) {
   if (textoPorcentaje) textoPorcentaje.textContent = `${porcentaje}%`;
@@ -295,51 +294,42 @@ function iniciarCarrusel() {
   });
 }
 
-/* ---------- Carruseles secundarios ---------- */
+/* ---------- Carruseles secundarios (3 Estados: Inicio, Medio, Fin) ---------- */
 
 const DIRECCIONES_SECUNDARIAS = { 'secundario-anterior': -1, 'secundario-siguiente': 1 };
-
-function moverFilaSecundaria(fila, enFinal) {
-  fila.classList.toggle('carrusel-secundario__fila--final', enFinal);
-  fila.classList.add(enFinal ? 'carrusel-secundario__fila--moviendo-adelante' : 'carrusel-secundario__fila--moviendo-atras');
-}
-
-function actualizarFlechasSecundarias(anterior, siguiente, enFinal) {
-  anterior.hidden = !enFinal;
-  siguiente.hidden = enFinal;
-  (enFinal ? anterior : siguiente).focus();
-}
 
 function iniciarCarruselSecundario(carrusel) {
   const fila = carrusel.querySelector('[data-js="fila-secundaria"]');
   const anterior = carrusel.querySelector('[data-js="secundario-anterior"]');
   const siguiente = carrusel.querySelector('[data-js="secundario-siguiente"]');
-  const estado = { enFinal: false, animando: false };
+  
+  let estadoActual = 0; 
+  const maxEstado = 2; // 3 estados: 0 (Inicio), 1 (Medio), 2 (Fin)
+
+  function actualizarCarrusel(nuevoEstado) {
+    if (nuevoEstado < 0 || nuevoEstado > maxEstado) return;
+    
+    estadoActual = nuevoEstado;
+    
+    // Desplaza de a 2 tarjetas por cada estado
+    const pasoCards = estadoActual * 2; 
+    fila.style.transform = `translateX(calc(-${pasoCards} * (var(--ancho-card) + var(--separacion))))`;
+
+    // Visibilidad de flechas según el estado
+    if (anterior) anterior.hidden = (estadoActual === 0);
+    if (siguiente) siguiente.hidden = (estadoActual === maxEstado);
+
+    if (estadoActual === 0 && siguiente) siguiente.focus();
+    if (estadoActual === maxEstado && anterior) anterior.focus();
+  }
 
   carrusel.addEventListener('click', (evento) => {
     const control = evento.target.closest('[data-js]');
     const paso = control ? DIRECCIONES_SECUNDARIAS[control.dataset.js] : undefined;
-    if (paso === undefined || estado.animando) return;
+    if (paso === undefined) return;
 
-    const enFinal = paso > 0;
-    if (enFinal === estado.enFinal) return;
-
-    estado.animando = true;
-    estado.enFinal = enFinal;
-    moverFilaSecundaria(fila, enFinal);
-    actualizarFlechasSecundarias(anterior, siguiente, enFinal);
+    actualizarCarrusel(estadoActual + paso);
   });
-
-  function terminarMovimiento(evento) {
-    if (evento.target !== fila || evento.propertyName !== 'transform') return;
-
-    fila.classList.remove('carrusel-secundario__fila--moviendo-adelante', 'carrusel-secundario__fila--moviendo-atras');
-    estado.animando = false;
-  }
-
-  fila.addEventListener('transitionend', terminarMovimiento);
-  // Si se achica la pantalla a mobile en pleno movimiento, la transición se cancela sin transitionend
-  fila.addEventListener('transitioncancel', terminarMovimiento);
 }
 
 function iniciarCarruselesSecundarios() {
@@ -357,7 +347,6 @@ function iniciarMenuPerfil() {
   if (!botonAbrir || !menuPerfil || !overlay) return;
 
   function alternarMenu(evento) {
-    // Evitar que el clic se propague al overlay si están superpuestos
     if (evento) evento.stopPropagation(); 
     
     const estaAbierto = menuPerfil.classList.contains('menu-perfil--activo');
@@ -382,16 +371,12 @@ function iniciarMenuPerfil() {
     botonAbrir.setAttribute('aria-expanded', 'false');
   }
 
-  // Eventos de apertura/cierre
   botonAbrir.addEventListener('click', alternarMenu);
-  
-  // Cierre por clic afuera (overlay) o botón interno
   overlay.addEventListener('click', cerrarMenu);
   if (botonCerrarInterno) botonCerrarInterno.addEventListener('click', cerrarMenu);
 }
 
-
-/* ---------- Menú Lateral de Categorías (Izquierda) ---------- */
+/* ---------- Menú Lateral de Categorías ---------- */
 
 function iniciarMenuCategorias() {
   const botonAbrir = document.getElementById('boton-menu-categorias');
@@ -416,13 +401,11 @@ function iniciarMenuCategorias() {
     botonAbrir.setAttribute('aria-expanded', 'false');
   }
 
-  // Evento para abrir haciendo clic en el menú hamburguesa del header
   botonAbrir.addEventListener('click', abrirMenu);
-  
-  // Eventos para cerrar desde la X o el overlay
   botonCerrar.addEventListener('click', cerrarMenu);
   overlay.addEventListener('click', cerrarMenu);
 }
+
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();

@@ -86,17 +86,10 @@ body {
   font-weight: var(--peso-bold);
 }
 
-/* Carrusel principal */
-.carrusel__titulo {
-  display: flex;
-  align-items: center;
-  height: var(--alto-marco-titulo-carrusel);
-  margin: 0;
-  padding-inline-start: var(--espacio-lateral-carrusel);
-  background-color: var(--color-fondo);
-  font-size: var(--tamano-titulo-carrusel);
-  font-weight: var(--peso-bold);
-  line-height: 1;
+/* Carrusel principal pegado al header */
+.carrusel {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .carrusel__visor {
@@ -150,7 +143,6 @@ body {
   height: 100%;
 }
 
-/* Toda la diapositiva es un enlace a la página del juego */
 .carrusel__enlace {
   display: block;
   height: 100%;
@@ -158,7 +150,6 @@ body {
   text-decoration: none;
 }
 
-/* Offset negativo: el visor recorta lo que sobresale */
 .carrusel__enlace:focus-visible {
   outline: var(--borde-foco) solid var(--color-foco);
   outline-offset: calc(-1 * var(--borde-foco));
@@ -184,7 +175,6 @@ body {
   background-color: var(--color-info-carrusel);
 }
 
-/* Se engancha a --activa: la clase de entrada se quita antes de que termine esta animación */
 .carrusel__diapositiva--activa .carrusel__info {
   animation: aparecer-info var(--duracion-info-carrusel) var(--curva-carrusel) var(--retraso-info-carrusel) both;
 }
@@ -263,7 +253,6 @@ body {
   transition-timing-function: ease-in;
 }
 
-/* translateX va antes del rotate para que el corrimiento sea horizontal */
 .carrusel__flecha:focus-visible .carrusel__chevron--derecha {
   transform: translateX(var(--desplazamiento-flecha-carrusel)) rotate(45deg);
 }
@@ -272,7 +261,6 @@ body {
   transform: translateX(calc(-1 * var(--desplazamiento-flecha-carrusel))) rotate(-135deg);
 }
 
-/* Hover solo en dispositivos con puntero: en pantallas táctiles quedaría "pegado" */
 @media (hover: hover) {
   .carrusel__flecha:hover {
     transform: scale(var(--escala-hover));
@@ -394,9 +382,7 @@ body {
   border-top: var(--borde-fino) solid var(--color-borde);
 }
 
-/* Carruseles secundarios
-   Mobile y tablet: scroll horizontal nativo con snap, sin flechas.
-   Desktop: flechas, ventana recortada y desplazamiento animado (ver media query). */
+/* Carruseles secundarios */
 .carrusel-secundario {
   box-sizing: border-box;
   width: var(--ancho-carrusel-secundario);
@@ -439,7 +425,6 @@ body {
   margin-block-start: var(--espacio-encabezado-ventana);
 }
 
-/* Scroll táctil con la barra oculta: el desplazamiento sigue funcionando */
 .carrusel-secundario__ventana {
   margin-block: calc(-1 * var(--espacio-resplandor-card));
   overflow-x: auto;
@@ -453,7 +438,6 @@ body {
   display: none;
 }
 
-/* El padding alinea la primera card con el título y deja aire después de la última */
 .carrusel-secundario__fila {
   display: flex;
   gap: var(--separacion);
@@ -467,7 +451,6 @@ body {
   scroll-snap-align: start;
 }
 
-/* Flechas de los carruseles secundarios: solo en desktop */
 .carrusel-secundario__flecha {
   display: none;
   justify-content: center;
@@ -495,8 +478,6 @@ body {
   height: var(--tamano-chevron-secundario);
 }
 
-/* Desktop: el carrusel por estados. Los transform de --final y las inclinaciones
-   viven solo acá, así en mobile la fila nunca queda corrida */
 @media (min-width: 75rem) {
   .carrusel-secundario__cuerpo {
     display: grid;
@@ -504,8 +485,6 @@ body {
     align-items: center;
   }
 
-  /* clip en vez de hidden: la ventana no se puede desplazar al hacer foco en una card oculta.
-     Solo recorta en horizontal, así el resplandor del hover se ve arriba y abajo */
   .carrusel-secundario__ventana {
     grid-row: 1;
     grid-column: 2;
@@ -585,11 +564,18 @@ body {
   transition: border-color var(--duracion-hover) ease-out, box-shadow var(--duracion-hover) ease-out;
 }
 
-/* Trazo interior: el borde ya mide lo mismo en reposo, solo cambia el color */
 .tarjeta-juego:focus-within {
   border-color: var(--color-borde-hover);
   box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
   transition-timing-function: ease-in;
+}
+
+.tarjeta-juego__imagen {
+  display: block;
+  width: 100%;
+  height: var(--alto-imagen-card);
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
 }
 
 @media (hover: hover) {
@@ -598,13 +584,10 @@ body {
     box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
     transition-timing-function: ease-in;
   }
-}
 
-.tarjeta-juego__imagen {
-  display: block;
-  width: 100%;
-  height: var(--alto-imagen-card);
-  object-fit: cover;
+  .tarjeta-juego:hover .tarjeta-juego__imagen {
+    transform: scale(1.08);
+  }
 }
 
 .tarjeta-juego__titulo,
@@ -660,31 +643,26 @@ body {
   outline: var(--borde-foco) solid var(--color-foco);
 }
 
-/* El ícono disponible es blanco: brightness(0) lo pasa a negro conservando la transparencia */
 .tarjeta-juego__icono-carrito {
   width: var(--tamano-icono-carrito-card);
   height: var(--tamano-icono-carrito-card);
   filter: brightness(0);
 }
 
-/* ==========================================================================
-   MENÚ DESPLEGABLE DE PERFIL
-   ========================================================================== */
-/* Overlay invisible que cubre la pantalla para detectar el clic fuera */
+/* MENÚ DESPLEGABLE DE PERFIL */
 .overlay-perfil {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1050; /* Aumentado para estar por encima del header */
+    z-index: 1050;
     display: none;
 }
 .overlay-perfil--activo {
     display: block;
 }
 
-/* Contenedor del menú lateral */
 .menu-perfil {
     position: fixed;
     top: 0;
@@ -692,7 +670,7 @@ body {
     width: var(--ancho-menu-perfil);
     height: 100vh;
     background-color: var(--fondo-menu-perfil);
-    z-index: 1100; /* Le da máxima prioridad en pantalla */
+    z-index: 1100;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-sizing: border-box;
@@ -705,12 +683,11 @@ body {
     transform: translateX(0);
 }
 
-/* Encabezado e íconos */
 .menu-perfil__encabezado {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.6875rem; /* 27px de separación */
+    gap: 1.6875rem;
     margin-bottom: var(--espaciado-encabezado-lista);
 }
 .menu-perfil__icono-carrito {
@@ -725,7 +702,6 @@ body {
     cursor: pointer;
 }
 
-/* Lista de navegación y líneas divisorias */
 .menu-perfil__lista {
     list-style: none;
     padding: 0;
@@ -734,12 +710,10 @@ body {
     flex-direction: column;
 }
 .menu-perfil__item {
-    /* La línea blanca inferior */
     border-bottom: 1px solid var(--color-linea-menu-perfil);
-    padding-bottom: 0.375rem; /* Ajuste fino de la distancia de la línea al texto */
-    margin-bottom: var(--espaciado-menu-items); /* 65px hasta el siguiente bloque */
+    padding-bottom: 0.375rem;
+    margin-bottom: var(--espaciado-menu-items);
 }
-/* Al último elemento le quitamos el borde y el margen sobrante */
 .menu-perfil__item--sin-borde {
     border-bottom: none;
     margin-bottom: 0;
@@ -756,18 +730,14 @@ body {
     color: var(--color-texto-cerrar-sesion);
 }
 
-/* ==========================================================================
-   MENÚ LATERAL DE CATEGORÍAS (HAMBURGUESA)
-   ========================================================================== */
-
-/* Overlay de fondo */
+/* MENÚ LATERAL DE CATEGORÍAS */
 .overlay-categorias {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente opcional */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
     display: none;
 }
@@ -775,7 +745,6 @@ body {
     display: block;
 }
 
-/* Contenedor del menú */
 .menu-categorias {
     position: fixed;
     top: 0;
@@ -784,20 +753,18 @@ body {
     height: 100vh;
     background-color: var(--fondo-menu-categorias);
     z-index: 1000;
-    transform: translateX(-100%); /* Oculto hacia la izquierda por defecto */
+    transform: translateX(-100%);
     transition: transform 0.3s ease;
     overflow-y: auto;
     box-sizing: border-box;
-    /* Aplicamos el padding izquierdo global para alinear encabezado y lista */
     padding-left: var(--espaciado-left-encabezado);
     padding-top: var(--espaciado-top-encabezado);
     padding-bottom: 2rem;
 }
 .menu-categorias--activo {
-    transform: translateX(0); /* Se desliza hacia la vista */
+    transform: translateX(0);
 }
 
-/* Encabezado: Ícono 'X' y Logo */
 .menu-categorias__encabezado {
     display: flex;
     align-items: center;
@@ -816,6 +783,10 @@ body {
 .menu-categorias__icono-cerrar {
     width: var(--tamano-icono-cerrar);
     height: var(--tamano-icono-cerrar);
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 0.3rem;
+    border: 2px solid #000000;
 }
 .menu-categorias__logo {
     width: var(--tamano-logo-menu);
@@ -824,9 +795,7 @@ body {
     object-fit: cover;
 }
 
-/* Lista de navegación */
 .menu-categorias__navegacion {
-    /* Ajuste fino si se requiere alinear la lista con el botón 'X' */
     padding-left: 0.5rem; 
 }
 .menu-categorias__lista {
@@ -841,18 +810,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem; /* Podés agrandar o achicar este valor si querés el texto más lejos o cerca del ícono */
+    gap: 1rem;
 }
 .menu-categorias__icono-item {
-    width: 1.75rem; /* Ancho estrictamente fijo para todos los íconos */
-    height: 1.75rem; /* Alto estrictamente fijo */
+    width: 1.75rem;
+    height: 1.75rem;
     object-fit: contain;
-    object-position: center; /* Centra el ícono dentro de su caja */
-    flex-shrink: 0; /* Evita que flexbox aplaste o achique el ícono */
+    object-position: center;
+    flex-shrink: 0;
 }
 .menu-categorias__enlace {
     font-family: var(--fuente-roboto);
-    font-weight: var(--peso-audaz); /* Asumiendo que tenés bold (700) en esta variable */
+    font-weight: var(--peso-audaz);
     font-size: var(--tamano-texto-categorias);
     color: var(--color-texto-categorias);
     text-decoration: none;
@@ -860,15 +829,105 @@ body {
 }
 @media (hover: hover) {
     .menu-categorias__enlace:hover {
-        color: #14B8A6; /* Detalle opcional hover, mismo turquesa de cerrar sesión */
+        color: #14B8A6;
     }
 }
 
-.menu-categorias__icono-cerrar {
-    background-color: #ffffff; /* Aplica el fondo blanco */
-    border-radius: 50%; /* Convierte el fondo en un círculo perfecto */
-    padding: 0.3rem; /* Controla cuánto blanco se ve alrededor del ícono negro. Subí o bajá este número a gusto */
-    
-    /* Opcional: si querés que ese círculo blanco además tenga una línea de borde dibujada */
-    border: 2px solid #000000; 
+/* FOOTER UNIFICADO */
+.pie-pagina {
+  width: 100%;
+  height: auto;
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+  background-color: var(--color-footer-fondo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.pie-pagina__contenedor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-pagina__columnas {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: var(--espacio-footer-padding-x);
+  padding-right: var(--espacio-footer-padding-x);
+}
+
+.columna-pie {
+  display: flex;
+  flex-direction: column;
+}
+
+.columna-pie__titulo {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-bold);
+  font-size: var(--tamano-footer-titulo);
+  color: var(--color-footer-titulo);
+  margin-bottom: var(--espacio-columna-footer);
+}
+
+.columna-pie__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-columna-footer);
+}
+
+.columna-pie__enlace {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-footer-link);
+  color: var(--color-texto-gris);
+  text-decoration: none;
+}
+
+.pie-pagina__seccion-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-md);
+}
+
+.pie-pagina__logo {
+  width: var(--tamano-logo-footer);
+  height: var(--tamano-logo-footer);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.redes-pie {
+  display: flex;
+  gap: var(--espacio-lg);
+}
+
+.redes-pie__icono {
+  width: var(--tamano-redes-footer);
+  height: var(--tamano-redes-footer);
+}
+
+.pie-pagina__derechos {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.pie-pagina__texto-derechos {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-footer-copy);
+  color: var(--color-texto-blanco);
+}
+
+.pie-pagina__icono-copyright {
+  width: var(--tamano-copyright-icon-width);
+  height: var(--tamano-copyright-icon-height);
 }

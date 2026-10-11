@@ -16,7 +16,7 @@ body.pagina-juego {
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden; /* Corta cualquier desbordamiento accidental a lo ancho */
+  overflow-x: hidden;
 }
 
 .contenedor-global {
@@ -28,18 +28,15 @@ body.pagina-juego {
     box-sizing: border-box;
 }
 
-/* Este contenedor envuelve todo el contenido entre el header y el footer */
 .contenido-juego {
     width: 100%;
-    max-width: 90rem; /* 1440px de Figma */
-    margin: 0 auto;   /* Centra todo el contenido horizontalmente */
-    padding: 0 2rem;  /* Margen de seguridad para pantallas pequeñas */
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 2rem;
     box-sizing: border-box;
 }
 
-/* ==========================================================================
-   ENCABEZADO PRINCIPAL (HEADER)
-   ========================================================================== */
+/* Encabezado */
 .encabezado-principal {
     width: 100%;
     height: 5.625rem; 
@@ -64,7 +61,6 @@ body.pagina-juego {
     height: 2.5rem;
 }
 
-/* Envuelve al logo: flex evita el espacio extra que deja la línea de texto */
 .encabezado-principal__enlace-logo {
     display: flex;
     border-radius: 50%;
@@ -83,14 +79,12 @@ body.pagina-juego {
     border-radius: 50%;
 }
 
-/* ==========================================================================
-   BUSCADOR CON LUPA
-   ========================================================================== */
+/* Buscador */
 .buscador {
     position: relative;
     display: flex;
     align-items: center;
-    width: 29.3125rem; /* Ancho total de la barra de búsqueda */
+    width: 29.3125rem;
 }
 
 .buscador__input {
@@ -99,8 +93,8 @@ body.pagina-juego {
     background-color: var(--color-texto-secundario);
     border: none;
     border-radius: 6.1875rem;
-    padding-left: 1.5rem;   /* Espacio para el texto al escribir */
-    padding-right: 2.75rem; /* Espacio reservado a la derecha para la lupa */
+    padding-left: 1.5rem;
+    padding-right: 2.75rem;
     font-family: var(--fuente-roboto);
     font-weight: var(--peso-ligero);
     font-size: 1.25rem; 
@@ -108,22 +102,17 @@ body.pagina-juego {
     outline: none;
 }
 
-.buscador__input::placeholder {
-    color: #333;
-}
+.buscador__input::placeholder { color: #333; }
 
-/* Ícono de la lupa a la derecha dentro del buscador */
 .buscador__icono {
     position: absolute;
     right: 1.25rem;
     width: 1.25rem;
     height: 1.25rem;
-    pointer-events: none; /* Evita interferir al hacer clic en el campo de texto */
+    pointer-events: none;
 }
 
-/* ==========================================================================
-   NAVEGACIÓN MIGAS DE PAN
-   ========================================================================== */
+/* Migas de pan */
 .navegacion-migas {
     width: 100%;
     display: flex;
@@ -156,9 +145,7 @@ body.pagina-juego {
     text-decoration: none;
 }
 
-/* ==========================================================================
-   ÁREA JUEGO (HERO)
-   ========================================================================== */
+/* Área de juego */
 .area-juego {
     display: flex;
     justify-content: center;
@@ -166,26 +153,25 @@ body.pagina-juego {
     gap: 1.75rem; 
     width: 100%;
     margin-top: 1rem;
+    margin-bottom: 0;
 }
 
-/* La cancha de Peg Football */
 .area-juego__principal {
-    flex: 1;             /* Absorbe la diferencia de espacio sobrante */
-    min-width: 0;        /* Permite que flexbox reduzca el ancho sin desbordar */
-    max-width: 64.5rem;  /* Ancho máximo original de Figma (1032px) */
+    flex: 1;
+    min-width: 0;
+    max-width: 64.5rem;
 }
 
 .area-juego__imagen {
     width: 100%; 
     height: auto;
-    aspect-ratio: 1032 / 635; /* Mantiene la proporción de la cancha sin deformarla */
+    aspect-ratio: 1032 / 635;
     object-fit: cover;
     border-radius: 0.5rem;
 }
 
-/* El sidebar de Review del Juego */
 .revision-juego {
-    width: 19.9375rem;    /* 319px */
+    width: 19.9375rem;
     background-color: #0A0A0A;
     border-radius: 0.5rem;
     box-sizing: border-box;
@@ -218,24 +204,24 @@ body.pagina-juego {
     object-fit: cover;
 }
 
-/* ==========================================================================
-   FICHA TÉCNICA
-   ========================================================================== */
+/* Ficha técnica */
 .ficha-juego {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 2rem;
 }
 
+/* Espaciado simétrico respecto al título ("Peg Football") y los íconos */
 .ficha-juego__encabezado {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .ficha-juego__titulo {
-    font-size: 2.75rem; 
+    font-size: 2rem; 
     font-weight: var(--peso-audaz);
     margin: 0;
 }
@@ -287,9 +273,7 @@ body.pagina-juego {
     align-self: stretch;
 }
 
-.ficha-juego__controles {
-    flex: 1;
-}
+.ficha-juego__controles { flex: 1; }
 
 .lista-controles {
     list-style: none;
@@ -316,9 +300,7 @@ body.pagina-juego {
     font-weight: var(--peso-medio);
 }
 
-/* ==========================================================================
-   SECCIÓN COMENTARIOS
-   ========================================================================== */
+/* Comentarios */
 .seccion-comentarios {
     width: 100%;
     background-color: #0A0A0A;
@@ -335,9 +317,7 @@ body.pagina-juego {
     margin-bottom: 2rem;
 }
 
-.publicar-comentario {
-    margin-bottom: 2rem;
-}
+.publicar-comentario { margin-bottom: 2rem; }
 
 .publicar-comentario__titulo {
     font-size: 1.25rem; 
@@ -379,9 +359,7 @@ body.pagina-juego {
     outline: none;
 }
 
-.publicar-comentario__input::placeholder {
-    color: var(--color-texto-terciario);
-}
+.publicar-comentario__input::placeholder { color: var(--color-texto-terciario); }
 
 .publicar-comentario__boton {
     background: transparent;
@@ -393,7 +371,6 @@ body.pagina-juego {
     cursor: pointer;
 }
 
-/* LISTA DE COMENTARIOS PUBLICADOS */
 .lista-comentarios {
     display: flex;
     flex-direction: column;
@@ -501,13 +478,9 @@ body.pagina-juego {
     margin-top: 0.25rem;
 }
 
-.comentario__boton-responder:hover {
-    color: var(--color-texto-blanco);
-}
+.comentario__boton-responder:hover { color: var(--color-texto-blanco); }
 
-/* ==========================================================================
-   JUEGOS RECOMENDADOS
-   ========================================================================== */
+/* Juegos recomendados */
 .juegos-recomendados {
     width: 100%;
     max-width: 1374px;
@@ -547,20 +520,26 @@ body.pagina-juego {
     overflow: hidden;
     box-sizing: border-box;
     position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tarjeta-juego__imagen {
     width: 100%;
-    height: 150px; /* Cambiado de 170px a 150px */
+    height: 150px;
     object-fit: cover;
     flex-shrink: 0;
+    transition: transform 0.3s ease-out;
+}
+
+.tarjeta-juego:hover .tarjeta-juego__imagen {
+    transform: scale(1.08);
 }
 
 .tarjeta-juego__info {
     padding: 8px 10px 10px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Divide el espacio sobrante en 2 partes exactamente iguales */
+    justify-content: space-between;
     flex: 1;
     box-sizing: border-box;
     position: relative;
@@ -575,7 +554,7 @@ body.pagina-juego {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%; /* Aprovecha todo el ancho antes de poner los '...' */
+    max-width: 100%;
 }
 
 .tarjeta-juego__genero {
@@ -583,7 +562,7 @@ body.pagina-juego {
     font-weight: 400;
     font-size: 14px; 
     color: #969696;
-    margin: 0; /* Cambiado de 'auto 0' a 0 */
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -593,7 +572,7 @@ body.pagina-juego {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 0; /* Cambiado de 'auto' a 0 */
+    margin-top: 0;
 }
 
 .tarjeta-juego__precio {
@@ -601,10 +580,9 @@ body.pagina-juego {
     font-size: 15px; 
     font-weight: 400;
     color: #33FF00;
-    margin: 0; /* Remueve el margin-top: auto para permitir el centrado exacto */
+    margin: 0;
 }
 
-/* 3. Posicionamiento del botón del carrito con distancia simétrica (10px de la derecha y 10px del piso) */
 .tarjeta-juego__carrito {
     width: 35px;
     height: 35px;
@@ -617,26 +595,25 @@ body.pagina-juego {
     cursor: pointer;
     padding: 0;
     position: absolute;
-    bottom: 10px; /* Misma distancia hacia abajo */
-    right: 10px;  /* que hacia la derecha */
+    bottom: 10px;
+    right: 10px;
 }
 
-/* 4. Forzamos el icono a verse en negro y por encima del fondo */
 .tarjeta-juego__icono-carrito {
     width: 18px;
     height: 18px;
     object-fit: contain;
     position: relative;
     z-index: 2;
-    filter: brightness(0); /* Convierte cualquier PNG a color negro puro */
+    filter: brightness(0);
 }
 
-/* ==========================================================================
-   PIE DE PÁGINA (ANCHO COMPLETO 1440px)
-   ========================================================================== */
+/* FOOTER UNIFICADO */
 .pie-pagina {
     width: 100%;
-    height: var(--alto-footer); 
+    height: auto;
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
     background-color: var(--color-footer-fondo);
     display: flex;
     justify-content: center;
@@ -712,13 +689,6 @@ body.pagina-juego {
     height: var(--tamano-redes-footer);
 }
 
-.pie-pagina__icono-red--twitter {
-    border: 1.5px solid #FFFFFF; /* Borde blanco */
-    border-radius: 4px;          /* Esquinas levemente redondeadas (o 50% si lo quieres circular) */
-    padding: 2px;                /* Espacio interno entre el icono y el borde */
-    box-sizing: border-box;
-}
-
 .pie-pagina__derechos {
     display: flex;
     align-items: center;
@@ -737,9 +707,7 @@ body.pagina-juego {
     height: var(--tamano-copyright-icon-height);
 }
 
-/* ==========================================================================
-   BOTÓN PERFIL HEADER (Limpieza de estilos)
-   ========================================================================== */
+/* Modales / Menús desplegables */
 .encabezado-principal__boton-perfil {
     background: transparent;
     border: none;
@@ -748,10 +716,6 @@ body.pagina-juego {
     display: flex;
 }
 
-/* ==========================================================================
-   MENÚ DESPLEGABLE DE PERFIL
-   ========================================================================== */
-/* Overlay invisible que cubre la pantalla para detectar el clic fuera */
 .overlay-perfil {
     position: fixed;
     top: 0;
@@ -761,11 +725,8 @@ body.pagina-juego {
     z-index: 998;
     display: none;
 }
-.overlay-perfil--activo {
-    display: block;
-}
+.overlay-perfil--activo { display: block; }
 
-/* Contenedor del menú lateral */
 .menu-perfil {
     position: fixed;
     top: 0;
@@ -777,23 +738,18 @@ body.pagina-juego {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-sizing: border-box;
-    /* El padding lateral empuja el contenido hacia el centro. Así el border-bottom 
-       arranca exacto en la letra y respeta el margen a la derecha */
     padding: var(--padding-superior-menu) var(--padding-lateral-menu) 2rem var(--padding-lateral-menu);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
-.menu-perfil--activo {
-    transform: translateX(0);
-}
+.menu-perfil--activo { transform: translateX(0); }
 
-/* Encabezado e íconos */
 .menu-perfil__encabezado {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.6875rem; /* 27px de separación */
+    gap: 1.6875rem;
     margin-bottom: var(--espaciado-encabezado-lista);
 }
 .menu-perfil__icono-carrito {
@@ -808,7 +764,6 @@ body.pagina-juego {
     cursor: pointer;
 }
 
-/* Lista de navegación y líneas divisorias */
 .menu-perfil__lista {
     list-style: none;
     padding: 0;
@@ -817,12 +772,10 @@ body.pagina-juego {
     flex-direction: column;
 }
 .menu-perfil__item {
-    /* La línea blanca inferior */
     border-bottom: 1px solid var(--color-linea-menu-perfil);
-    padding-bottom: 0.375rem; /* Ajuste fino de la distancia de la línea al texto */
-    margin-bottom: var(--espaciado-menu-items); /* 65px hasta el siguiente bloque */
+    padding-bottom: 0.375rem;
+    margin-bottom: var(--espaciado-menu-items);
 }
-/* Al último elemento le quitamos el borde y el margen sobrante */
 .menu-perfil__item--sin-borde {
     border-bottom: none;
     margin-bottom: 0;
@@ -835,30 +788,20 @@ body.pagina-juego {
     text-decoration: none;
     display: block;
 }
-.menu-perfil__enlace--cerrar {
-    color: var(--color-texto-cerrar-sesion);
-}
+.menu-perfil__enlace--cerrar { color: var(--color-texto-cerrar-sesion); }
 
-/* ==========================================================================
-   MENÚ LATERAL DE CATEGORÍAS (HAMBURGUESA)
-   ========================================================================== */
-
-/* Overlay de fondo */
 .overlay-categorias {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente opcional */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
     display: none;
 }
-.overlay-categorias--activo {
-    display: block;
-}
+.overlay-categorias--activo { display: block; }
 
-/* Contenedor del menú */
 .menu-categorias {
     position: fixed;
     top: 0;
@@ -867,20 +810,16 @@ body.pagina-juego {
     height: 100vh;
     background-color: var(--fondo-menu-categorias);
     z-index: 1000;
-    transform: translateX(-100%); /* Oculto hacia la izquierda por defecto */
+    transform: translateX(-100%);
     transition: transform 0.3s ease;
     overflow-y: auto;
     box-sizing: border-box;
-    /* Aplicamos el padding izquierdo global para alinear encabezado y lista */
     padding-left: var(--espaciado-left-encabezado);
     padding-top: var(--espaciado-top-encabezado);
     padding-bottom: 2rem;
 }
-.menu-categorias--activo {
-    transform: translateX(0); /* Se desliza hacia la vista */
-}
+.menu-categorias--activo { transform: translateX(0); }
 
-/* Encabezado: Ícono 'X' y Logo */
 .menu-categorias__encabezado {
     display: flex;
     align-items: center;
@@ -899,6 +838,10 @@ body.pagina-juego {
 .menu-categorias__icono-cerrar {
     width: var(--tamano-icono-cerrar);
     height: var(--tamano-icono-cerrar);
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 0.3rem;
+    border: 2px solid #000000;
 }
 .menu-categorias__logo {
     width: var(--tamano-logo-menu);
@@ -907,11 +850,7 @@ body.pagina-juego {
     object-fit: cover;
 }
 
-/* Lista de navegación */
-.menu-categorias__navegacion {
-    /* Ajuste fino si se requiere alinear la lista con el botón 'X' */
-    padding-left: 0.5rem; 
-}
+.menu-categorias__navegacion { padding-left: 0.5rem; }
 .menu-categorias__lista {
     list-style: none;
     margin: 0;
@@ -924,27 +863,24 @@ body.pagina-juego {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem; /* Podés agrandar o achicar este valor si querés el texto más lejos o cerca del ícono */
+    gap: 1rem;
 }
 .menu-categorias__icono-item {
-    width: 1.75rem; /* Ancho estrictamente fijo para todos los íconos */
-    height: 1.75rem; /* Alto estrictamente fijo */
+    width: 1.75rem;
+    height: 1.75rem;
     object-fit: contain;
-    object-position: center; /* Centra el ícono dentro de su caja */
-    flex-shrink: 0; /* Evita que flexbox aplaste o achique el ícono */
+    object-position: center;
+    flex-shrink: 0;
 }
 .menu-categorias__enlace {
     font-family: var(--fuente-roboto);
-    font-weight: var(--peso-audaz); /* Asumiendo que tenés bold (700) en esta variable */
+    font-weight: var(--peso-audaz);
     font-size: var(--tamano-texto-categorias);
     color: var(--color-texto-categorias);
     text-decoration: none;
     line-height: 1;
 }
-.menu-categorias__enlace:hover {
-    color: #14B8A6; /* Detalle opcional hover, mismo turquesa de cerrar sesión */
-}
-
+.menu-categorias__enlace:hover { color: #14B8A6; }
 
 .encabezado-principal__boton-menu {
     background: transparent;
@@ -954,13 +890,4 @@ body.pagina-juego {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.menu-categorias__icono-cerrar {
-    background-color: #ffffff; /* Aplica el fondo blanco */
-    border-radius: 50%; /* Convierte el fondo en un círculo perfecto */
-    padding: 0.3rem; /* Controla cuánto blanco se ve alrededor del ícono negro. Subí o bajá este número a gusto */
-    
-    /* Opcional: si querés que ese círculo blanco además tenga una línea de borde dibujada */
-    border: 2px solid #000000; 
 }
