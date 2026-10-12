@@ -87,7 +87,7 @@ function manejarEnvioRegistro(evento, formulario, contrasena, repetir) {
   validarCoincidencia(contrasena, repetir);
 
   if (formulario.checkValidity()) {
-    mostrarExitoRegistro(formulario.querySelector('.btn--primario'));
+    mostrarExitoBoton(formulario.querySelector('.btn--primario'));
     return;
   }
 
@@ -125,7 +125,7 @@ function iniciarRegistro() {
 
 const PAUSA_TRAS_EXITO_MS = 500;
 
-function mostrarExitoRegistro(boton) {
+function mostrarExitoBoton(boton) {
   boton.classList.add('btn--exito');
 
   boton.addEventListener('animationend', (evento) => {
@@ -147,7 +147,8 @@ function iniciarLogin() {
     evento.preventDefault();
 
     if (formularioLogin.checkValidity()) {
-      window.location.href = PAGINA_INICIO;
+      mostrarExitoBoton(formularioLogin.querySelector('.btn--primario'));
+      return;
     } else {
       const invalidos = formularioLogin.querySelectorAll('input:invalid');
       invalidos.forEach(mostrarError);
@@ -311,39 +312,56 @@ function iniciarCarrusel() {
 /* ---------- Carruseles secundarios (3 Estados: Inicio, Medio, Fin) ---------- */
 
 const DIRECCIONES_SECUNDARIAS = { 'secundario-anterior': -1, 'secundario-siguiente': 1 };
+// Índice = estado (0: inicio, 1: medio, 2: fin). El inicio no lleva clase
+const CLASES_ESTADO_SECUNDARIO = [null, 'carrusel-secundario__fila--medio', 'carrusel-secundario__fila--fin'];
+const CLASES_MOVIMIENTO_SECUNDARIO = ['carrusel-secundario__fila--moviendo-adelante', 'carrusel-secundario__fila--moviendo-atras'];
+
+function moverFilaSecundaria(fila, estado, paso) {
+  CLASES_ESTADO_SECUNDARIO.forEach((clase, indice) => {
+    if (clase) fila.classList.toggle(clase, indice === estado);
+  });
+  fila.classList.add(CLASES_MOVIMIENTO_SECUNDARIO[paso > 0 ? 0 : 1]);
+}
+
+function actualizarFlechasSecundarias(anterior, siguiente, estado) {
+  const ultimo = CLASES_ESTADO_SECUNDARIO.length - 1;
+  anterior.hidden = estado === 0;
+  siguiente.hidden = estado === ultimo;
+  // Si la flecha presionada se ocultó, el foco pasa a la otra
+  if (estado === 0) siguiente.focus();
+  if (estado === ultimo) anterior.focus();
+}
 
 function iniciarCarruselSecundario(carrusel) {
   const fila = carrusel.querySelector('[data-js="fila-secundaria"]');
   const anterior = carrusel.querySelector('[data-js="secundario-anterior"]');
   const siguiente = carrusel.querySelector('[data-js="secundario-siguiente"]');
-  
-  let estadoActual = 0; 
-  const maxEstado = 2; // 3 estados: 0 (Inicio), 1 (Medio), 2 (Fin)
-
-  function actualizarCarrusel(nuevoEstado) {
-    if (nuevoEstado < 0 || nuevoEstado > maxEstado) return;
-    
-    estadoActual = nuevoEstado;
-    
-    // Desplaza de a 2 tarjetas por cada estado
-    const pasoCards = estadoActual * 2; 
-    fila.style.transform = `translateX(calc(-${pasoCards} * (var(--ancho-card) + var(--separacion))))`;
-
-    // Visibilidad de flechas según el estado
-    if (anterior) anterior.hidden = (estadoActual === 0);
-    if (siguiente) siguiente.hidden = (estadoActual === maxEstado);
-
-    if (estadoActual === 0 && siguiente) siguiente.focus();
-    if (estadoActual === maxEstado && anterior) anterior.focus();
-  }
+  const estado = { actual: 0, animando: false };
 
   carrusel.addEventListener('click', (evento) => {
     const control = evento.target.closest('[data-js]');
     const paso = control ? DIRECCIONES_SECUNDARIAS[control.dataset.js] : undefined;
-    if (paso === undefined) return;
+    if (paso === undefined || estado.animando) return;
 
-    actualizarCarrusel(estadoActual + paso);
+    const destino = estado.actual + paso;
+    if (destino < 0 || destino >= CLASES_ESTADO_SECUNDARIO.length) return;
+
+    estado.animando = true;
+    estado.actual = destino;
+    moverFilaSecundaria(fila, destino, paso);
+    actualizarFlechasSecundarias(anterior, siguiente, destino);
   });
+
+  function terminarMovimiento(evento) {
+    if (evento.target !== fila || evento.propertyName !== 'transform') return;
+
+    fila.classList.remove(...CLASES_MOVIMIENTO_SECUNDARIO);
+    estado.animando = false;
+  }
+
+  fila.addEventListener('transitionend', terminarMovimiento);
+  // Si se achica la pantalla a mobile en pleno movimiento, la transición se cancela sin transitionend
+  fila.addEventListener('transitioncancel', terminarMovimiento);
 }
 
 function iniciarCarruselesSecundarios() {

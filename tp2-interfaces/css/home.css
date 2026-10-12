@@ -530,8 +530,13 @@ body {
     transition: transform var(--duracion-carrusel-secundario) var(--curva-carrusel-secundario);
   }
 
-  .carrusel-secundario__fila--final {
-    transform: translateX(calc(-1 * (var(--ancho-card) + var(--separacion))));
+  /* 3 estados: inicio (sin clase), medio y fin. Cada uno corre la fila 2 cards */
+  .carrusel-secundario__fila--medio {
+    transform: translateX(calc(-2 * (var(--ancho-card) + var(--separacion))));
+  }
+
+  .carrusel-secundario__fila--fin {
+    transform: translateX(calc(-4 * (var(--ancho-card) + var(--separacion))));
   }
 
   .carrusel-secundario__fila--moviendo-adelante .tarjeta-juego {
