@@ -278,6 +278,45 @@ input {
   z-index: 1;
 }
 
+/* Éxito del registro: el botón se rellena de verde y aparece un tilde */
+.btn--primario::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-exito);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duracion-exito-relleno) ease-in-out;
+}
+
+.btn--exito::after {
+  transform: scaleX(1);
+}
+
+.btn--exito .btn__texto {
+  opacity: 0;
+  transition: opacity var(--duracion-exito-relleno) ease-in-out;
+}
+
+.btn__exito {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.btn--exito .btn__exito {
+  animation: aparecer-exito var(--duracion-exito-texto) ease-out var(--duracion-exito-relleno) both;
+}
+
+@keyframes aparecer-exito {
+  0%   { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 /* Crear con redes */
 .redes {
   display: flex;

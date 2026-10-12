@@ -37,6 +37,11 @@
   --color-spinner-pista: #4B5563;
   --color-barra-pista: #262626;
 
+  /* Animacion exito Login y Register */
+  --color-exito: #1f9d55;
+  --duracion-exito-relleno: 0.8s;
+  --duracion-exito-texto: 0.4s;
+
   /* Variables específicas para Login y Footer */
   --color-tarjeta-fondo: #10003E;
   --color-borde-tarjeta: #FFFFFF;

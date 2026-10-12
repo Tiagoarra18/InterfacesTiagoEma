@@ -87,7 +87,7 @@ function manejarEnvioRegistro(evento, formulario, contrasena, repetir) {
   validarCoincidencia(contrasena, repetir);
 
   if (formulario.checkValidity()) {
-    window.location.href = PAGINA_INICIO;
+    mostrarExitoRegistro(formulario.querySelector('.btn--primario'));
     return;
   }
 
@@ -120,6 +120,20 @@ function iniciarRegistro() {
   });
   formulario.addEventListener('input', (evento) => {
     corregirCampoRegistro(evento.target, contrasena, repetir);
+  });
+}
+
+const PAUSA_TRAS_EXITO_MS = 500;
+
+function mostrarExitoRegistro(boton) {
+  boton.classList.add('btn--exito');
+
+  boton.addEventListener('animationend', (evento) => {
+    if (evento.animationName === 'aparecer-exito') {
+      setTimeout(() => {
+        window.location.href = PAGINA_INICIO;
+      }, PAUSA_TRAS_EXITO_MS);
+    }
   });
 }
 
