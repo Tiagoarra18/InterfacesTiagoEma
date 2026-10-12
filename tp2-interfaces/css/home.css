@@ -536,7 +536,7 @@ body {
   }
 
   .carrusel-secundario__fila--fin {
-    transform: translateX(calc(-4 * (var(--ancho-card) + var(--separacion))));
+    transform: translateX(calc(-3 * (var(--ancho-card) + var(--separacion))));
   }
 
   .carrusel-secundario__fila--moviendo-adelante .tarjeta-juego {
