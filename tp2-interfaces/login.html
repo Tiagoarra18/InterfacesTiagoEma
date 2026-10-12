@@ -39,18 +39,26 @@
           <a href="#" class="campo-formulario__enlace-olvido">Olvidé mi contraseña</a>
         </div>
 
-        <a href="index.html" class="formulario-login__boton-submit">Iniciar Sesión</a>
+        <button class="btn btn--primario" type="submit">
+          <span class="btn__texto">Iniciar Sesión</span>
+        </button>
 
         <p class="formulario-login__texto-social">Iniciar con</p>
 
-        <div class="redes-sociales-login">
-          <a href="index.html" class="redes-sociales-login__enlace" aria-label="Iniciar sesión con Facebook">
-            <img src="assets/icons/facebook-logo-auth.png" alt="Facebook" class="redes-sociales-login__icono">
-          </a>
-          <a href="index.html" class="redes-sociales-login__enlace" aria-label="Iniciar sesión con Google">
-            <img src="assets/icons/logogoogle.png" alt="Google" class="redes-sociales-login__icono">
-          </a>
-        </div>
+        <section class="redes" aria-labelledby="redes-titulo">
+        <ul class="redes__lista">
+          <li>
+            <button class="redes__btn" type="button" aria-label="Crear cuenta con Facebook">
+              <img class="redes__icono" src="assets/icons/facebook-logo-auth.png" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="redes__btn" type="button" aria-label="Crear cuenta con Google">
+              <img class="redes__icono" src="assets/icons/logogoogle.png" alt="">
+            </button>
+          </li>
+        </ul>
+      </section>
 
         <p class="formulario-login__bloque-registro">
           ¿No tiene cuenta? <a href="registro.html" class="formulario-login__enlace-registro">Crear cuenta</a>

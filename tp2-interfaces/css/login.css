@@ -140,27 +140,49 @@ body.pagina-login {
 }
 
 /* Botón Iniciar Sesión */
-.formulario-login__boton-submit {
+.btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--primario {
+  align-self: center;
   width: var(--ancho-boton-login);
   height: var(--alto-boton-login);
-  background-color: var(--color-boton-login);
-  color: var(--color-texto-blanco);
+  background-color: var(--color-primario);
+  color: var(--color-texto);
   font-family: var(--fuente-principal);
   font-weight: var(--peso-semibold);
   font-size: var(--tamano-texto-boton);
   border-radius: var(--radio-pildora);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  align-self: center; /* Botón centrado en la tarjeta */
-  transition: background-color var(--duracion-transicion) ease;
 }
 
-.formulario-login__boton-submit:hover {
-  background-color: var(--color-boton-login-hover);
+.btn--primario::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primario-oscuro);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duracion-hover) ease-out;
+}
+
+.btn--primario:hover::before,
+.btn--primario:focus-visible::before {
+  transform: scaleX(1);
+  transition-timing-function: ease-in;
+}
+
+.btn--primario:focus-visible {
+  outline: var(--borde-foco) solid var(--color-foco);
+  outline-offset: var(--espacio-xxs);
+}
+
+.btn__texto {
+  position: relative;
+  z-index: 1;
 }
 
 .formulario-login__texto-social {
@@ -172,22 +194,58 @@ body.pagina-login {
   text-align: center;
 }
 
-.redes-sociales-login {
+/* Crear con redes */
+/* El formulario alinea a sus hijos a la izquierda: align-self centra solo este bloque */
+.redes {
+  align-self: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-sm);
+}
+
+.redes__titulo {
+  font-size: var(--tamano-subtitulo);
+  font-weight: var(--peso-bold);
+}
+
+.redes__lista {
+  display: flex;
   gap: var(--espacio-lg);
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.redes-sociales-login__enlace {
-  display: inline-flex;
-  width: var(--tamano-social-login);
-  height: var(--tamano-social-login);
+.redes__btn {
+  display: block;
+  padding: 0;
+  background-color: var(--color-transparente);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform var(--duracion-hover) ease-out;
 }
 
-.redes-sociales-login__icono {
-  width: var(--tamano-social-login);
-  height: var(--tamano-social-login);
+.redes__btn:hover,
+.redes__btn:focus-visible {
+  transform:rotate3d(0,1,2,360deg) scale(1.1);
+  box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
+}
+
+.redes__btn:focus-visible {
+  outline: var(--borde-foco) solid var(--color-foco);
+  outline-offset: var(--espacio-xxs);
+}
+
+.redes__icono {
+  display: block;
+  width: var(--tamano-icono-red);
+  transition: filter var(--duracion-hover) ease-out;
+}
+
+.redes__btn:hover .redes__icono {
+  filter: brightness(1.15);
 }
 
 .formulario-login__bloque-registro {

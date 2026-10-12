@@ -282,7 +282,7 @@
   --espacio-separador-home: 1rem;
 
   /* Animación */
-  --duracion-carrusel-secundario: 0.7s;
+  --duracion-carrusel-secundario: 0.8s;
   --curva-carrusel-secundario: cubic-bezier(0.34, 1.56, 0.64, 1);
   --inclinacion-card: 8deg;
 

@@ -306,14 +306,13 @@ input {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform var(--duracion-hover) ease-out, box-shadow var(--duracion-hover) ease-out;
+  transition: transform var(--duracion-hover) ease-out;
 }
 
 .redes__btn:hover,
 .redes__btn:focus-visible {
-  transform: translateY(var(--desplazamiento-hover)) scale(var(--escala-hover));
-  box-shadow: var(--sombra-glow) var(--color-glow);
-  transition-timing-function: ease-in;
+  transform:rotate3d(0,1,2,360deg) scale(1.1);
+  box-shadow: var(--sombra-hover-card) var(--color-resplandor-card);
 }
 
 .redes__btn:focus-visible {
@@ -324,4 +323,9 @@ input {
 .redes__icono {
   display: block;
   width: var(--tamano-icono-red);
+  transition: filter var(--duracion-hover) ease-out;
+}
+
+.redes__btn:hover .redes__icono {
+  filter: brightness(1.15);
 }
