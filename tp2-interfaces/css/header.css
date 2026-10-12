@@ -114,7 +114,7 @@
 }
 
 .buscador__input::placeholder {
-  color: var(--color-placeholder-buscador);
+  color: white; /* Color del placeholder */
 }
 
 /* Ícono de la lupa a la derecha dentro del buscador */

@@ -195,10 +195,9 @@ body.pagina-login {
 }
 
 /* Crear con redes */
-/* El formulario alinea a sus hijos a la izquierda: align-self centra solo este bloque */
 .redes {
-  align-self: center;
   display: flex;
+  align-self: center; /* Centrado horizontal en la tarjeta */
   flex-direction: column;
   align-items: center;
   gap: var(--espacio-sm);
