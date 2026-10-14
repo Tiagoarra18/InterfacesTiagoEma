@@ -438,6 +438,165 @@ function iniciarMenuCategorias() {
   overlay.addEventListener('click', cerrarMenu);
 }
 
+
+/* ---------- BLOCKA GAME LOGIC ---------- */
+function initBlocka() {
+    const tablero = document.getElementById('blocka-tablero');
+    // Si no estamos en la página del juego, no ejecutamos nada más
+    if (!tablero) return;
+
+    let timerInterval;
+    let tiempo = 0;
+    let nivel = 1;
+    const maxNivel = 3;
+    let jugando = false;
+    let piezasState = [];
+    
+    // Asegúrate de crear estas imágenes en tu proyecto
+    const imagenes = [
+        'assets/img/blocka/1.jpg',
+        'assets/img/blocka/2.jpg',
+        'assets/img/blocka/3.jpg',
+        'assets/img/blocka/4.jpg',
+        'assets/img/blocka/5.jpg',
+        'assets/img/blocka/6.jpg'
+    ];
+
+    const timerEl = document.getElementById('blocka-timer');
+    const recordEl = document.getElementById('blocka-record');
+    const nivelEl = document.getElementById('blocka-nivel-actual');
+    
+    function actualizarRecordUI() {
+        const r = localStorage.getItem('blocka_record_nivel_' + nivel);
+        recordEl.textContent = r ? formatTime(parseInt(r)) : '--:--';
+    }
+
+    function formatTime(secs) {
+        const m = Math.floor(secs / 60).toString().padStart(2, '0');
+        const s = (secs % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    function setupNivel() {
+        jugando = false;
+        tiempo = 0;
+        clearInterval(timerInterval);
+        timerEl.textContent = '00:00';
+        nivelEl.textContent = nivel;
+        actualizarRecordUI();
+        
+        tablero.innerHTML = '';
+        tablero.className = 'blocka-tablero blocka-tablero--nivel-' + nivel;
+        
+        const img = imagenes[Math.floor(Math.random() * imagenes.length)];
+        piezasState = [];
+
+        for (let i = 0; i < 4; i++) {
+            const pieza = document.createElement('div');
+            pieza.className = 'blocka-tablero__pieza';
+            pieza.style.backgroundImage = `url(${img})`;
+            
+            // Posicionamiento de la imagen de fondo para cortar en 2x2
+            const x = (i % 2) * 100;
+            const y = Math.floor(i / 2) * 100;
+            pieza.style.backgroundPosition = `${x}% ${y}%`;
+            
+            // Rotaciones iniciales aleatorias (desordenadas)
+            const rotations = [90, 180, 270];
+            const initialRot = rotations[Math.floor(Math.random() * rotations.length)];
+            piezasState.push(initialRot);
+            
+            pieza.style.transform = `rotate(${initialRot}deg)`;
+            pieza.dataset.index = i;
+            
+            pieza.addEventListener('click', () => rotarPieza(i, -90));
+            pieza.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                rotarPieza(i, 90);
+            });
+            
+            tablero.appendChild(pieza);
+        }
+    }
+
+    function rotarPieza(index, deg) {
+        if (!jugando) return;
+        
+        piezasState[index] = (piezasState[index] + deg + 360) % 360;
+        const pieza = tablero.children[index];
+        const currentRot = parseInt(pieza.dataset.totalRot || (piezasState[index] - deg));
+        const newRot = currentRot + deg;
+        pieza.dataset.totalRot = newRot;
+        pieza.style.transform = `rotate(${newRot}deg)`;
+        
+        checkWin();
+    }
+
+    function checkWin() {
+        const won = piezasState.every(r => r === 0);
+        if (won) {
+            jugando = false;
+            clearInterval(timerInterval);
+            tablero.classList.remove('blocka-tablero--nivel-1', 'blocka-tablero--nivel-2', 'blocka-tablero--nivel-3');
+            tablero.classList.add('blocka-tablero--completado');
+            
+            const recordActual = localStorage.getItem('blocka_record_nivel_' + nivel);
+            let batiRecord = false;
+            if (!recordActual || tiempo < parseInt(recordActual)) {
+                localStorage.setItem('blocka_record_nivel_' + nivel, tiempo);
+                batiRecord = true;
+            }
+            
+            setTimeout(() => {
+                const modal = document.getElementById('modal-nivel');
+                document.getElementById('modal-tiempo').textContent = formatTime(tiempo);
+                document.getElementById('modal-record-msg').textContent = batiRecord ? '¡Nuevo Récord!' : '';
+                
+                const btnSiguiente = document.getElementById('btn-siguiente-nivel');
+                if (nivel < maxNivel) {
+                    btnSiguiente.style.display = 'inline-block';
+                    btnSiguiente.onclick = () => {
+                        nivel++;
+                        modal.setAttribute('aria-hidden', 'true');
+                        setupNivel();
+                    };
+                } else {
+                    btnSiguiente.style.display = 'none';
+                    document.getElementById('modal-record-msg').textContent += ' ¡Juego Completado!';
+                }
+                
+                modal.setAttribute('aria-hidden', 'false');
+            }, 500);
+        }
+    }
+
+    document.getElementById('btn-blocka-comenzar').addEventListener('click', () => {
+        if (!jugando) {
+            jugando = true;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                tiempo++;
+                timerEl.textContent = formatTime(tiempo);
+            }, 1000);
+        }
+    });
+
+    document.getElementById('btn-blocka-reiniciar').addEventListener('click', setupNivel);
+
+    const modalInstrucciones = document.getElementById('modal-instrucciones');
+    document.getElementById('btn-blocka-instrucciones').addEventListener('click', () => {
+        modalInstrucciones.setAttribute('aria-hidden', 'false');
+    });
+    document.getElementById('btn-cerrar-instrucciones').addEventListener('click', () => {
+        modalInstrucciones.setAttribute('aria-hidden', 'true');
+    });
+
+    // Iniciar el tablero al cargar
+    setupNivel();
+}
+
+// Ejecutar cuando se carga el DOM
+document.addEventListener('DOMContentLoaded', initBlocka);
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();
@@ -448,3 +607,4 @@ iniciarCarrusel();
 iniciarCarruselesSecundarios();
 iniciarMenuPerfil();
 iniciarMenuCategorias();
+initBlocka();

@@ -510,6 +510,35 @@
   }
 }
 
+/* ==========================================================================
+   NUEVAS VARIABLES PARA BLOCKA
+   ========================================================================== */
+:root {
+  --color-tablero-blocka: #1E1E1E;
+  --color-borde-tablero: #33FF00;
+  --tamano-tablero-blocka: 20rem; /* mobile */
+  --tamano-pieza-blocka: 10rem;
+  --espacio-panel-blocka: 1.5rem;
+  --tamano-texto-temporizador: 1.5rem;
+  --color-modal-fondo: rgba(0, 0, 0, 0.85);
+  --color-modal-cuerpo: #10003E;
+  --z-modal-blocka: 2000;
+  --radio-modal: 1rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --tamano-tablero-blocka: 30rem;
+    --tamano-pieza-blocka: 15rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  :root {
+    --tamano-tablero-blocka: 40rem;
+    --tamano-pieza-blocka: 20rem;
+  }
+}
 
 
   html {

@@ -1,0 +1,124 @@
+/* 1. RESET GLOBAL (Quita el borde blanco de los costados y arriba) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. FONDO Y FUENTE (Arregla el color y la tipografía) */
+body {
+    background-color: var(--fondo-oscuro, #0f0f0f); /* Ajusta si tu variable se llama distinto */
+    font-family: var(--fuente-roboto, 'Roboto', sans-serif);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. ESTRUCTURA (Empuja el footer al fondo de la pantalla) */
+main {
+    flex-grow: 1;
+}
+
+.blocka-main {
+    max-width: var(--ancho-carrusel-secundario, 1200px);
+    margin: 0 auto;
+    padding: var(--espacio-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-lg);
+    color: var(--color-texto);
+}
+
+.migas-pan {
+    align-self: flex-start;
+    font-size: var(--tamano-texto-categorias);
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--espacio-lg);
+}
+.migas-pan__enlace {
+    color: var(--color-link-cyan);
+    text-decoration: none;
+}
+.migas-pan__actual {
+    color: var(--color-texto);
+    font-weight: var(--peso-bold);
+}
+
+.blocka-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-panel-blocka);
+    background-color: var(--color-tarjeta-fondo);
+    padding: var(--espacio-lg);
+    border-radius: var(--radio-tarjeta-login);
+    border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
+}
+.blocka-panel__estado {
+    display: flex;
+    gap: var(--espacio-xl);
+    font-size: var(--tamano-texto-temporizador);
+    font-weight: var(--peso-bold);
+}
+.blocka-panel__controles {
+    display: flex;
+    gap: var(--espacio-md);
+}
+
+.blocka-tablero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--espacio-lg);
+}
+
+.blocka-tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: var(--tamano-tablero-blocka);
+    height: var(--tamano-tablero-blocka);
+    border: var(--borde-grueso) solid var(--color-borde-tablero);
+    background-color: var(--color-tablero-blocka);
+    gap: 0;
+}
+
+.blocka-tablero__pieza {
+    width: var(--tamano-pieza-blocka);
+    height: var(--tamano-pieza-blocka);
+    background-size: var(--tamano-tablero-blocka) var(--tamano-tablero-blocka);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Niveles y Filtros */
+.blocka-tablero--nivel-1 .blocka-tablero__pieza { filter: grayscale(100%); }
+.blocka-tablero--nivel-2 .blocka-tablero__pieza { filter: brightness(30%); }
+.blocka-tablero--nivel-3 .blocka-tablero__pieza { filter: invert(100%); }
+.blocka-tablero--completado .blocka-tablero__pieza { filter: none; }
+
+.blocka-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-modal-fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-modal-blocka);
+}
+.blocka-modal[aria-hidden="true"] { display: none; }
+.blocka-modal__cuerpo {
+    background-color: var(--color-modal-cuerpo);
+    padding: var(--espacio-xxl);
+    border-radius: var(--radio-modal);
+    border: var(--borde-grueso) solid var(--color-borde);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+}
