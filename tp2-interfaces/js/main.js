@@ -452,6 +452,15 @@ function initBlocka() {
     let jugando = false;
     let juegoTerminado = false;
     let piezasState = [];
+    let piezas = 4; // Dificultad elegida en el menú: 4, 9 o 16 piezas
+    const dificultades = [4, 9, 16];
+    const pantalla = document.querySelector('.pantalla-blocka');
+    let partidaIniciada = false; // Comenzar ya se usó en esta partida
+    let ayudaUsada = false;      // Ayudita ya se usó en la imagen actual
+    const piezasConAyudita = 16;
+    const segundosAyudita = 5;
+    const btnComenzar = document.getElementById('btn-blocka-comenzar');
+    const btnAyudita = document.getElementById('btn-blocka-ayudita');
     
     // Asegúrate de crear estas imágenes en tu proyecto
     const imagenes = [
@@ -467,16 +476,35 @@ function initBlocka() {
     const recordEl = document.getElementById('blocka-record');
     const nivelEl = document.getElementById('blocka-nivel-actual');
     
-    // El récord es el tiempo total de los 3 niveles
+    // Cada dificultad guarda su récord: el tiempo total de sus 3 niveles
+    function claveRecord(cantidad) {
+        return 'blocka_record_' + cantidad;
+    }
+
+    function textoRecord(cantidad) {
+        const r = localStorage.getItem(claveRecord(cantidad));
+        return r ? formatTime(parseInt(r)) : '-';
+    }
+
+    // Récord de la dificultad actual en el panel y los 3 récords en el menú
     function actualizarRecordUI() {
-        const r = localStorage.getItem('blocka_record');
-        recordEl.textContent = r ? formatTime(parseInt(r)) : '--:--';
+        recordEl.textContent = textoRecord(piezas);
+        dificultades.forEach((cantidad) => {
+            document.getElementById('blocka-record-' + cantidad).textContent = textoRecord(cantidad);
+        });
     }
 
     function formatTime(secs) {
         const m = Math.floor(secs / 60).toString().padStart(2, '0');
         const s = (secs % 60).toString().padStart(2, '0');
         return `${m}:${s}`;
+    }
+
+    // Comenzar se anula durante la partida; Ayudita solo existe en 16 piezas y se usa una vez por imagen
+    function actualizarBotones() {
+        btnComenzar.disabled = partidaIniciada;
+        btnAyudita.classList.toggle('btn--oculto', !(piezas === piezasConAyudita && partidaIniciada));
+        btnAyudita.disabled = ayudaUsada || !jugando;
     }
 
     function detenerTemporizador() {
@@ -488,6 +516,7 @@ function initBlocka() {
     function reiniciarJuego() {
         jugando = false;
         juegoTerminado = false;
+        partidaIniciada = false;
         detenerTemporizador();
         tiempo = 0;
         nivel = 1;
@@ -499,21 +528,23 @@ function initBlocka() {
     // Arma el tablero del nivel actual (no toca el temporizador)
     function setupNivel() {
         nivelEl.textContent = nivel;
+        ayudaUsada = false;
         
         tablero.innerHTML = '';
-        tablero.className = 'blocka-tablero blocka-tablero--nivel-' + nivel;
+        tablero.className = 'blocka-tablero blocka-tablero--' + piezas + '-piezas blocka-tablero--nivel-' + nivel;
         
         const img = imagenes[Math.floor(Math.random() * imagenes.length)];
+        const lado = Math.sqrt(piezas);
         piezasState = [];
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < piezas; i++) {
             const pieza = document.createElement('div');
             pieza.className = 'blocka-tablero__pieza';
             pieza.style.backgroundImage = `url(${img})`;
             
-            // Posicionamiento de la imagen de fondo para cortar en 2x2
-            const x = (i % 2) * 100;
-            const y = Math.floor(i / 2) * 100;
+            // Posicionamiento de la imagen de fondo para cortar en lado x lado
+            const x = ((i % lado) / (lado - 1)) * 100;
+            const y = (Math.floor(i / lado) / (lado - 1)) * 100;
             pieza.style.backgroundPosition = `${x}% ${y}%`;
             
             // Rotaciones iniciales aleatorias (desordenadas)
@@ -522,6 +553,7 @@ function initBlocka() {
             piezasState.push(initialRot);
             
             pieza.style.transform = `rotate(${initialRot}deg)`;
+            pieza.dataset.totalRot = initialRot; // Ángulo acumulado que se ve en pantalla
             pieza.dataset.index = i;
             
             pieza.addEventListener('click', () => rotarPieza(i, -90));
@@ -532,15 +564,17 @@ function initBlocka() {
             
             tablero.appendChild(pieza);
         }
+        actualizarBotones();
     }
 
     function rotarPieza(index, deg) {
-        if (!jugando) return;
+        const pieza = tablero.children[index];
+        // Las piezas que acomodó la Ayudita quedan fijas
+        if (!jugando || pieza.dataset.fija === 'true') return;
         
         piezasState[index] = (piezasState[index] + deg + 360) % 360;
-        const pieza = tablero.children[index];
-        const currentRot = parseInt(pieza.dataset.totalRot || (piezasState[index] - deg));
-        const newRot = currentRot + deg;
+        // Se suma al ángulo acumulado (no al normalizado) para que cada clic gire solo 90°
+        const newRot = Number(pieza.dataset.totalRot) + deg;
         pieza.dataset.totalRot = newRot;
         pieza.style.transform = `rotate(${newRot}deg)`;
         
@@ -551,6 +585,7 @@ function initBlocka() {
         const won = piezasState.every(r => r === 0);
         if (won) {
             jugando = false;
+            actualizarBotones();
             tablero.classList.remove('blocka-tablero--nivel-1', 'blocka-tablero--nivel-2', 'blocka-tablero--nivel-3');
             tablero.classList.add('blocka-tablero--completado');
 
@@ -559,9 +594,9 @@ function initBlocka() {
             if (nivel === maxNivel) {
                 juegoTerminado = true;
                 detenerTemporizador();
-                const recordActual = localStorage.getItem('blocka_record');
+                const recordActual = localStorage.getItem(claveRecord(piezas));
                 if (!recordActual || tiempo < parseInt(recordActual)) {
-                    localStorage.setItem('blocka_record', tiempo);
+                    localStorage.setItem(claveRecord(piezas), tiempo);
                     batiRecord = true;
                     actualizarRecordUI();
                 }
@@ -593,6 +628,8 @@ function initBlocka() {
         if (jugando) return;
         if (juegoTerminado) reiniciarJuego();
         jugando = true;
+        partidaIniciada = true;
+        actualizarBotones();
         if (timerInterval) return;
         timerInterval = setInterval(() => {
             tiempo++;
@@ -600,7 +637,55 @@ function initBlocka() {
         }, 1000);
     }
 
-    document.getElementById('btn-blocka-comenzar').addEventListener('click', iniciarJuego);
+    // Vuelve al menú de Blocka: frena la partida y muestra los récords actualizados
+    function mostrarMenu() {
+        jugando = false;
+        partidaIniciada = false;
+        detenerTemporizador();
+        pantalla.classList.remove('pantalla-blocka--jugando');
+        actualizarRecordUI();
+    }
+
+    // Abre el juego con la dificultad elegida, en el nivel 1 y esperando Comenzar
+    function elegirDificultad(cantidad) {
+        piezas = cantidad;
+        pantalla.classList.add('pantalla-blocka--jugando');
+        reiniciarJuego();
+    }
+
+    document.querySelector('.menu-blocka__opciones').addEventListener('click', (evento) => {
+        const opcion = evento.target.closest('[data-piezas]');
+        if (opcion) elegirDificultad(Number(opcion.dataset.piezas));
+    });
+
+    document.getElementById('btn-blocka-menu').addEventListener('click', mostrarMenu);
+
+    // Acomoda una pieza mal ubicada al azar y la deja fija, a cambio de sumar segundos al reloj
+    function usarAyudita() {
+        if (!jugando || ayudaUsada) return;
+        const malUbicadas = piezasState
+            .map((rotacion, indice) => (rotacion !== 0 ? indice : -1))
+            .filter((indice) => indice !== -1);
+        if (malUbicadas.length === 0) return;
+
+        const indice = malUbicadas[Math.floor(Math.random() * malUbicadas.length)];
+        const pieza = tablero.children[indice];
+        // Gira hasta la vuelta completa más cercana: el recorrido mínimo hasta quedar derecha
+        const rotacionCorrecta = Math.round(Number(pieza.dataset.totalRot) / 360) * 360;
+        piezasState[indice] = 0;
+        pieza.dataset.totalRot = rotacionCorrecta;
+        pieza.dataset.fija = 'true';
+        pieza.style.transform = `rotate(${rotacionCorrecta}deg)`;
+
+        tiempo += segundosAyudita;
+        timerEl.textContent = formatTime(tiempo);
+        ayudaUsada = true;
+        actualizarBotones();
+        checkWin();
+    }
+
+    btnComenzar.addEventListener('click', iniciarJuego);
+    btnAyudita.addEventListener('click', usarAyudita);
 
     // Al pasar de nivel el juego sigue solo: no hace falta volver a apretar Comenzar
     document.getElementById('btn-siguiente-nivel').addEventListener('click', () => {
@@ -612,10 +697,10 @@ function initBlocka() {
 
     document.getElementById('btn-blocka-reiniciar').addEventListener('click', reiniciarJuego);
 
-    // Salir entre niveles: cierra el cartel y deja el juego reiniciado, esperando Comenzar
+    // Salir entre niveles: cierra el cartel y vuelve al menú de Blocka
     document.getElementById('btn-salir-nivel').addEventListener('click', () => {
         document.getElementById('modal-nivel').setAttribute('aria-hidden', 'true');
-        reiniciarJuego();
+        mostrarMenu();
     });
 
     // Desde el cartel final: arranca una partida nueva sin tener que apretar Comenzar
@@ -633,8 +718,8 @@ function initBlocka() {
         modalInstrucciones.setAttribute('aria-hidden', 'true');
     });
 
-    // Iniciar el tablero al cargar
-    reiniciarJuego();
+    // Al entrar a la página se muestra el menú de Blocka
+    mostrarMenu();
 }
 
 /* ---------- Inicialización Global ---------- */

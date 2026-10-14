@@ -3,14 +3,13 @@
    (el resto de la página usa juego.css)
    ========================================================================== */
 
-/* Pantalla: panel a la izquierda y tablero a la derecha */
+/* Pantalla: primero muestra el menú de Blocka; al elegir una dificultad, el juego */
 .pantalla-blocka {
     width: 100%;
     aspect-ratio: var(--proporcion-pantalla-juego);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--espacio-pantalla-blocka);
     background-color: var(--color-pantalla-blocka);
     /* Capa oscura encima de la imagen: oscurece solo el fondo, no el panel ni el tablero */
     background-image:
@@ -19,6 +18,88 @@
     background-size: cover;
     background-position: center;
     border-radius: var(--radio-pantalla-blocka);
+}
+
+/* El JS alterna entre el menú y el juego con la clase --jugando */
+.pantalla-blocka__juego {
+    display: none;
+}
+
+.pantalla-blocka--jugando .menu-blocka {
+    display: none;
+}
+
+/* Juego: panel a la izquierda y tablero a la derecha */
+.pantalla-blocka--jugando .pantalla-blocka__juego {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-pantalla-blocka);
+}
+
+/* Menú de Blocka: récords arriba y las 3 opciones de dificultad abajo */
+.menu-blocka {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-menu-blocka);
+    font-size: var(--tamano-texto-menu-blocka);
+}
+
+.menu-blocka__titulo {
+    font-weight: var(--peso-bold);
+}
+
+.menu-blocka__records,
+.menu-blocka__opciones {
+    display: flex;
+    list-style: none;
+}
+
+/* Título "Récords" con la lista de los 3 tiempos debajo */
+.menu-blocka__seccion-records {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-md);
+}
+
+.menu-blocka__records {
+    gap: var(--espacio-xxl);
+}
+
+.menu-blocka__valor {
+    font-weight: var(--peso-bold);
+}
+
+.menu-blocka__opciones {
+    gap: var(--espacio-opciones-blocka);
+}
+
+.menu-blocka__opcion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--tamano-opcion-blocka);
+    height: var(--tamano-opcion-blocka);
+    background-color: var(--color-tarjeta-fondo);
+    border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
+    border-radius: var(--radio-tarjeta-login);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    font-size: var(--tamano-texto-menu-blocka);
+    cursor: pointer;
+}
+
+.menu-blocka__opcion:focus-visible {
+    outline: var(--borde-foco) solid var(--color-foco);
+    outline-offset: var(--espacio-xxs);
+}
+
+.menu-blocka__numero {
+    font-size: var(--tamano-numero-opcion-blocka);
+    font-weight: var(--peso-bold);
+    line-height: 1;
 }
 
 /* Panel con tiempo, récord, nivel y botones */
@@ -108,16 +189,25 @@
     z-index: 1;
 }
 
+/* Botón anulado (Comenzar durante la partida, Ayudita ya usada): gris y sin hover */
+.btn:disabled {
+    background-color: var(--color-boton-deshabilitado);
+    color: var(--color-texto-deshabilitado);
+    cursor: default;
+}
+
+.btn--primario:disabled::before {
+    display: none;
+}
+
 /* Botones del cartel de nivel que se muestran según el momento del juego */
 .btn--oculto {
     display: none;
 }
 
-/* Tablero 2x2: el borde queda por fuera de las piezas */
+/* Tablero: la grilla (2x2, 3x3 o 4x4) la define el modificador de cada dificultad */
 .blocka-tablero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     flex-shrink: 0;
     width: var(--tamano-tablero-blocka);
     height: var(--tamano-tablero-blocka);
@@ -125,13 +215,37 @@
     background-color: var(--color-tablero-blocka);
 }
 
-/* Cada pieza muestra su cuarto de la imagen (el JS fija la posición del fondo) */
+/* Cada pieza llena su celda y muestra su parte de la imagen (el JS fija la posición del fondo) */
 .blocka-tablero__pieza {
-    width: var(--tamano-pieza-blocka);
-    height: var(--tamano-pieza-blocka);
-    background-size: calc(2 * var(--tamano-pieza-blocka)) calc(2 * var(--tamano-pieza-blocka));
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     transition: transform var(--duracion-hover) ease;
+}
+
+/* Dificultades: la imagen de fondo mide lo mismo que el tablero (lado x 100% de cada pieza) */
+.blocka-tablero--4-piezas {
+    grid-template-columns: repeat(var(--lado-blocka-4), 1fr);
+    grid-template-rows: repeat(var(--lado-blocka-4), 1fr);
+}
+.blocka-tablero--4-piezas .blocka-tablero__pieza {
+    background-size: calc(var(--lado-blocka-4) * 100%) calc(var(--lado-blocka-4) * 100%);
+}
+
+.blocka-tablero--9-piezas {
+    grid-template-columns: repeat(var(--lado-blocka-9), 1fr);
+    grid-template-rows: repeat(var(--lado-blocka-9), 1fr);
+}
+.blocka-tablero--9-piezas .blocka-tablero__pieza {
+    background-size: calc(var(--lado-blocka-9) * 100%) calc(var(--lado-blocka-9) * 100%);
+}
+
+.blocka-tablero--16-piezas {
+    grid-template-columns: repeat(var(--lado-blocka-16), 1fr);
+    grid-template-rows: repeat(var(--lado-blocka-16), 1fr);
+}
+.blocka-tablero--16-piezas .blocka-tablero__pieza {
+    background-size: calc(var(--lado-blocka-16) * 100%) calc(var(--lado-blocka-16) * 100%);
 }
 
 /* Niveles y Filtros */

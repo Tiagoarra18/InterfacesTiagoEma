@@ -113,19 +113,39 @@
             <section class="area-juego">
                 <div class="area-juego__principal">
                     <div class="pantalla-blocka">
-                        <div class="blocka-panel">
-                            <div class="blocka-panel__estado">
-                                <p class="blocka-panel__texto">Tiempo: <span id="blocka-timer" class="blocka-panel__valor">00:00</span></p>
-                                <p class="blocka-panel__texto">Récord: <span id="blocka-record" class="blocka-panel__valor">--:--</span></p>
-                                <p class="blocka-panel__texto">Nivel: <span id="blocka-nivel-actual" class="blocka-panel__valor">1</span></p>
+                        <div class="menu-blocka">
+                            <div class="menu-blocka__seccion-records">
+                                <p class="menu-blocka__titulo">Récords</p>
+                                <ul class="menu-blocka__records">
+                                    <li class="menu-blocka__record">4 piezas: <span id="blocka-record-4" class="menu-blocka__valor">-</span></li>
+                                    <li class="menu-blocka__record">9 piezas: <span id="blocka-record-9" class="menu-blocka__valor">-</span></li>
+                                    <li class="menu-blocka__record">16 piezas: <span id="blocka-record-16" class="menu-blocka__valor">-</span></li>
+                                </ul>
                             </div>
-                            <div class="blocka-panel__controles">
-                                <button type="button" id="btn-blocka-comenzar" class="btn btn--primario"><span class="btn__texto">Comenzar</span></button>
-                                <button type="button" id="btn-blocka-reiniciar" class="btn btn--primario"><span class="btn__texto">Reiniciar</span></button>
-                                <button type="button" id="btn-blocka-instrucciones" class="btn btn--secundario"><span class="btn__texto">Instrucciones</span></button>
-                            </div>
+                            <ul class="menu-blocka__opciones">
+                                <li><button type="button" class="menu-blocka__opcion" data-piezas="4"><span class="menu-blocka__numero">4</span><span class="menu-blocka__texto">piezas</span></button></li>
+                                <li><button type="button" class="menu-blocka__opcion" data-piezas="9"><span class="menu-blocka__numero">9</span><span class="menu-blocka__texto">piezas</span></button></li>
+                                <li><button type="button" class="menu-blocka__opcion" data-piezas="16"><span class="menu-blocka__numero">16</span><span class="menu-blocka__texto">piezas</span></button></li>
+                            </ul>
                         </div>
-                        <div id="blocka-tablero" class="blocka-tablero"></div>
+
+                        <div class="pantalla-blocka__juego">
+                            <div class="blocka-panel">
+                                <div class="blocka-panel__estado">
+                                    <p class="blocka-panel__texto">Tiempo: <span id="blocka-timer" class="blocka-panel__valor">00:00</span></p>
+                                    <p class="blocka-panel__texto">Récord: <span id="blocka-record" class="blocka-panel__valor">-</span></p>
+                                    <p class="blocka-panel__texto">Nivel: <span id="blocka-nivel-actual" class="blocka-panel__valor">1</span></p>
+                                </div>
+                                <div class="blocka-panel__controles">
+                                    <button type="button" id="btn-blocka-comenzar" class="btn btn--primario"><span class="btn__texto">Comenzar</span></button>
+                                    <button type="button" id="btn-blocka-ayudita" class="btn btn--primario btn--oculto"><span class="btn__texto">Ayudita</span></button>
+                                    <button type="button" id="btn-blocka-reiniciar" class="btn btn--primario"><span class="btn__texto">Reiniciar</span></button>
+                                    <button type="button" id="btn-blocka-instrucciones" class="btn btn--secundario"><span class="btn__texto">Instrucciones</span></button>
+                                    <button type="button" id="btn-blocka-menu" class="btn btn--secundario"><span class="btn__texto">Menú</span></button>
+                                </div>
+                            </div>
+                            <div id="blocka-tablero" class="blocka-tablero"></div>
+                        </div>
                     </div>
                 </div>
 
