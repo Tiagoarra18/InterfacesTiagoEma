@@ -299,34 +299,41 @@
   /* ==========================================================================
      VARIABLES PARA EL MENÚ DESPLEGABLE DE PERFIL
      ========================================================================== */
-  --ancho-menu-perfil: 16.375rem;          /* 262px */
+  /* Valores mobile: el menú ocupa media pantalla. Desde 48rem vuelven las medidas de desktop */
+  --ancho-menu-perfil: 50vw;
   --fondo-menu-perfil: #0A0A0A;
   --color-texto-menu-perfil: #FFFFFF;
   --color-texto-cerrar-sesion: #14B8A6;     /* Turquesa / Teal */
   --color-linea-menu-perfil: #FFFFFF;
   
-  --tamano-icono-carrito-menu: 2.5rem;      /* 40px */
-  --tamano-icono-perfil-menu: 2.875rem;     /* 46px */
+  --tamano-icono-carrito-menu: 1.75rem;
+  --tamano-icono-perfil-menu: 2rem;
+  --espacio-iconos-menu-perfil: 0.75rem;
   
   --fuente-tamano-menu-item: 1.6875rem;     /* 27px */
   --espaciado-menu-items: 2.9375rem;        /* 65px entre opciones */
   --padding-superior-menu: 2.5rem;          /* 40px */
-  --padding-lateral-menu: 1.75rem;          /* Espaciado interno simétrico lateral */
+  --padding-lateral-menu: 0.75rem;          /* Espaciado interno simétrico lateral */
   --espaciado-encabezado-lista: 2.5rem;     /* 40px de separación entre íconos y la palabra 'Perfil' */
 
   /* ==========================================================================
      VARIABLES PARA EL MENÚ LATERAL DE CATEGORÍAS
      ========================================================================== */
-  --ancho-menu-categorias: 16rem; /* Aumentamos el ancho (256px aprox) */
+  /* Valores mobile: el menú ocupa media pantalla. Desde 48rem vuelven las medidas de desktop */
+  --ancho-menu-categorias: 50vw;
   --fondo-menu-categorias: #0A0A0A;
   --espaciado-top-encabezado: 1.875rem;      /* 30px */
-  --espaciado-left-encabezado: 1.25rem;      /* 20px */
-  --tamano-icono-cerrar: 3.125rem;           /* 50px */
-  --tamano-logo-menu: 3.75rem;               /* 60px */
-  --espaciado-iconos-encabezado: 2.1875rem;  /* 35px */
+  --espaciado-left-encabezado: 0.75rem;
+  --tamano-icono-cerrar: 2.25rem;
+  --tamano-logo-menu: 2.75rem;
+  --espaciado-iconos-encabezado: 0.75rem;
+  --tamano-icono-item-menu: 1.25rem;
+  --espacio-icono-item-menu: 0.5rem;
   --espaciado-items-lista: 2.9375rem;        /* 47px */
   --tamano-texto-categorias: 1.25rem;        /* 20px */
   --color-texto-categorias: #FFFFFF;
+  /* Mismo tamaño de texto para las opciones de ambos menús (categorías y perfil) */
+  --tamano-texto-menus: 0.875rem;
 
   /* ==========================================================================
      ENCABEZADO PRINCIPAL Y BUSCADOR (HOME)
@@ -374,6 +381,21 @@
    ========================================================================== */
 @media (min-width: 48rem) {
   :root {
+    /* Menús de categorías y perfil: medidas de desktop */
+    --ancho-menu-perfil: 16.375rem;
+    --tamano-icono-carrito-menu: 2.5rem;
+    --tamano-icono-perfil-menu: 2.875rem;
+    --espacio-iconos-menu-perfil: 1.6875rem;
+    --padding-lateral-menu: 1.75rem;
+    --ancho-menu-categorias: 16rem;
+    --espaciado-left-encabezado: 1.25rem;
+    --tamano-icono-cerrar: 3.125rem;
+    --tamano-logo-menu: 3.75rem;
+    --espaciado-iconos-encabezado: 2.1875rem;
+    --tamano-icono-item-menu: 1.75rem;
+    --espacio-icono-item-menu: 1rem;
+    --tamano-texto-menus: 1.25rem;
+
     /* Encabezado: una sola fila */
     --alto-encabezado: 5.625rem;
     --tamano-icono-encabezado: 2.5rem;
@@ -501,9 +523,9 @@
     --alto-linea-card: 1.4375rem;
     --espacio-separador-home: 1.5625rem;
 
-    /* Footer: mismas medidas que el de login */
-    --alto-pie-pagina: var(--alto-footer);
-    --espacio-pie-pagina-y: 0rem;
+    /* Footer: medidas del de login, con alto según contenido y aire arriba y abajo */
+    --alto-pie-pagina: auto;
+    --espacio-pie-pagina-y: 2.25rem;
     --espacio-pie-pagina-x: var(--espacio-footer-padding-x);
     --tamano-logo-pie-pagina: var(--tamano-logo-footer);
     --tamano-derechos-pie-pagina: var(--tamano-footer-copy);
