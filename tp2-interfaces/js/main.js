@@ -445,29 +445,31 @@ function initBlocka() {
     // Si no estamos en la página del juego, no ejecutamos nada más
     if (!tablero) return;
 
-    let timerInterval;
+    let timerInterval = null;
     let tiempo = 0;
     let nivel = 1;
     const maxNivel = 3;
     let jugando = false;
+    let juegoTerminado = false;
     let piezasState = [];
     
     // Asegúrate de crear estas imágenes en tu proyecto
     const imagenes = [
-        'assets/img/blocka/1.jpg',
-        'assets/img/blocka/2.jpg',
-        'assets/img/blocka/3.jpg',
-        'assets/img/blocka/4.jpg',
-        'assets/img/blocka/5.jpg',
-        'assets/img/blocka/6.jpg'
+        'assets/img/blocka/1.webp',
+        'assets/img/blocka/2.webp',
+        'assets/img/blocka/3.webp',
+        'assets/img/blocka/4.webp',
+        'assets/img/blocka/5.webp',
+        'assets/img/blocka/6.webp'
     ];
 
     const timerEl = document.getElementById('blocka-timer');
     const recordEl = document.getElementById('blocka-record');
     const nivelEl = document.getElementById('blocka-nivel-actual');
     
+    // El récord es el tiempo total de los 3 niveles
     function actualizarRecordUI() {
-        const r = localStorage.getItem('blocka_record_nivel_' + nivel);
+        const r = localStorage.getItem('blocka_record');
         recordEl.textContent = r ? formatTime(parseInt(r)) : '--:--';
     }
 
@@ -477,13 +479,26 @@ function initBlocka() {
         return `${m}:${s}`;
     }
 
-    function setupNivel() {
-        jugando = false;
-        tiempo = 0;
+    function detenerTemporizador() {
         clearInterval(timerInterval);
-        timerEl.textContent = '00:00';
-        nivelEl.textContent = nivel;
+        timerInterval = null;
+    }
+
+    // Vuelve al nivel 1 con el tiempo en cero, esperando que se apriete Comenzar
+    function reiniciarJuego() {
+        jugando = false;
+        juegoTerminado = false;
+        detenerTemporizador();
+        tiempo = 0;
+        nivel = 1;
+        timerEl.textContent = formatTime(tiempo);
         actualizarRecordUI();
+        setupNivel();
+    }
+
+    // Arma el tablero del nivel actual (no toca el temporizador)
+    function setupNivel() {
+        nivelEl.textContent = nivel;
         
         tablero.innerHTML = '';
         tablero.className = 'blocka-tablero blocka-tablero--nivel-' + nivel;
@@ -536,15 +551,20 @@ function initBlocka() {
         const won = piezasState.every(r => r === 0);
         if (won) {
             jugando = false;
-            clearInterval(timerInterval);
             tablero.classList.remove('blocka-tablero--nivel-1', 'blocka-tablero--nivel-2', 'blocka-tablero--nivel-3');
             tablero.classList.add('blocka-tablero--completado');
-            
-            const recordActual = localStorage.getItem('blocka_record_nivel_' + nivel);
+
+            // El temporizador sigue corriendo entre niveles y se detiene recién al terminar el juego
             let batiRecord = false;
-            if (!recordActual || tiempo < parseInt(recordActual)) {
-                localStorage.setItem('blocka_record_nivel_' + nivel, tiempo);
-                batiRecord = true;
+            if (nivel === maxNivel) {
+                juegoTerminado = true;
+                detenerTemporizador();
+                const recordActual = localStorage.getItem('blocka_record');
+                if (!recordActual || tiempo < parseInt(recordActual)) {
+                    localStorage.setItem('blocka_record', tiempo);
+                    batiRecord = true;
+                    actualizarRecordUI();
+                }
             }
             
             setTimeout(() => {
@@ -552,16 +572,13 @@ function initBlocka() {
                 document.getElementById('modal-tiempo').textContent = formatTime(tiempo);
                 document.getElementById('modal-record-msg').textContent = batiRecord ? '¡Nuevo Récord!' : '';
                 
-                const btnSiguiente = document.getElementById('btn-siguiente-nivel');
-                if (nivel < maxNivel) {
-                    btnSiguiente.style.display = 'inline-block';
-                    btnSiguiente.onclick = () => {
-                        nivel++;
-                        modal.setAttribute('aria-hidden', 'true');
-                        setupNivel();
-                    };
-                } else {
-                    btnSiguiente.style.display = 'none';
+                // Entre niveles: Siguiente nivel o Salir. Al terminar el juego: Jugar de nuevo o Menú principal
+                const esUltimoNivel = nivel === maxNivel;
+                document.getElementById('btn-siguiente-nivel').classList.toggle('btn--oculto', esUltimoNivel);
+                document.getElementById('btn-salir-nivel').classList.toggle('btn--oculto', esUltimoNivel);
+                document.getElementById('btn-jugar-de-nuevo').classList.toggle('btn--oculto', !esUltimoNivel);
+                document.getElementById('btn-menu-principal').classList.toggle('btn--oculto', !esUltimoNivel);
+                if (esUltimoNivel) {
                     document.getElementById('modal-record-msg').textContent += ' ¡Juego Completado!';
                 }
                 
@@ -570,18 +587,43 @@ function initBlocka() {
         }
     }
 
-    document.getElementById('btn-blocka-comenzar').addEventListener('click', () => {
-        if (!jugando) {
-            jugando = true;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                tiempo++;
-                timerEl.textContent = formatTime(tiempo);
-            }, 1000);
-        }
+    // Habilita las piezas y arranca el temporizador si todavía no corre.
+    // Si el juego ya terminó, Comenzar empieza uno nuevo.
+    function iniciarJuego() {
+        if (jugando) return;
+        if (juegoTerminado) reiniciarJuego();
+        jugando = true;
+        if (timerInterval) return;
+        timerInterval = setInterval(() => {
+            tiempo++;
+            timerEl.textContent = formatTime(tiempo);
+        }, 1000);
+    }
+
+    document.getElementById('btn-blocka-comenzar').addEventListener('click', iniciarJuego);
+
+    // Al pasar de nivel el juego sigue solo: no hace falta volver a apretar Comenzar
+    document.getElementById('btn-siguiente-nivel').addEventListener('click', () => {
+        nivel++;
+        document.getElementById('modal-nivel').setAttribute('aria-hidden', 'true');
+        setupNivel();
+        iniciarJuego();
     });
 
-    document.getElementById('btn-blocka-reiniciar').addEventListener('click', setupNivel);
+    document.getElementById('btn-blocka-reiniciar').addEventListener('click', reiniciarJuego);
+
+    // Salir entre niveles: cierra el cartel y deja el juego reiniciado, esperando Comenzar
+    document.getElementById('btn-salir-nivel').addEventListener('click', () => {
+        document.getElementById('modal-nivel').setAttribute('aria-hidden', 'true');
+        reiniciarJuego();
+    });
+
+    // Desde el cartel final: arranca una partida nueva sin tener que apretar Comenzar
+    document.getElementById('btn-jugar-de-nuevo').addEventListener('click', () => {
+        document.getElementById('modal-nivel').setAttribute('aria-hidden', 'true');
+        reiniciarJuego();
+        iniciarJuego();
+    });
 
     const modalInstrucciones = document.getElementById('modal-instrucciones');
     document.getElementById('btn-blocka-instrucciones').addEventListener('click', () => {
@@ -592,11 +634,9 @@ function initBlocka() {
     });
 
     // Iniciar el tablero al cargar
-    setupNivel();
+    reiniciarJuego();
 }
 
-// Ejecutar cuando se carga el DOM
-document.addEventListener('DOMContentLoaded', initBlocka);
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();

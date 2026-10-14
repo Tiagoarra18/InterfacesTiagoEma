@@ -538,28 +538,25 @@
 :root {
   --color-tablero-blocka: #1E1E1E;
   --color-borde-tablero: #33FF00;
-  --tamano-tablero-blocka: 20rem; /* mobile */
-  --tamano-pieza-blocka: 10rem;
+  /* Pantalla del juego: mismo tamaño y radio que la imagen de juego.html */
+  --proporcion-pantalla-juego: 1032 / 635;
+  --color-pantalla-blocka: #0A0A0A;
+  --imagen-fondo-pantalla-blocka: url("../assets/img/blocka/fondo.webp");
+  --oscurecer-fondo-pantalla-blocka: rgba(0, 0, 0, 0.55); /* Capa sobre el fondo para bajar el contraste */
+  --radio-pantalla-blocka: 0.5rem;
+  --espacio-pantalla-blocka: 3rem;           /* Entre el panel y el tablero */
+  /* Tablero 2x2: el borde va por fuera de las piezas para que el corte de la imagen coincida */
+  --tamano-pieza-blocka: 17.375rem;
+  --tamano-tablero-blocka: calc(2 * var(--tamano-pieza-blocka) + 2 * var(--borde-grueso));
+  --ancho-panel-blocka: 17rem;
   --espacio-panel-blocka: 1.5rem;
+  --espacio-estado-blocka: 1rem;
   --tamano-texto-temporizador: 1.5rem;
+  --alto-boton-blocka: 3.125rem;
   --color-modal-fondo: rgba(0, 0, 0, 0.85);
   --color-modal-cuerpo: #10003E;
   --z-modal-blocka: 2000;
   --radio-modal: 1rem;
-}
-
-@media (min-width: 48rem) {
-  :root {
-    --tamano-tablero-blocka: 30rem;
-    --tamano-pieza-blocka: 15rem;
-  }
-}
-
-@media (min-width: 75rem) {
-  :root {
-    --tamano-tablero-blocka: 40rem;
-    --tamano-pieza-blocka: 20rem;
-  }
 }
 
 

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOCKA - Juego</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/blocka.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body class="pagina-juego">
+  <header class="encabezado-principal">
+      <div class="encabezado-principal__izquierda">
+          <button type="button" class="encabezado-principal__boton-menu" id="boton-menu-categorias" aria-label="Abrir menú de categorías" aria-expanded="false" aria-controls="menu-categorias">
+               <img src="assets/icons/menu-hamburguesa.png" alt="" class="encabezado-principal__icono-menu">
+          </button>
+          <a href="index.html" class="encabezado-principal__enlace-logo" aria-label="Ir al inicio">
+              <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la Plataforma" class="encabezado-principal__logo">
+          </a>
+      </div>
+      <div class="encabezado-principal__buscador buscador">
+          <input type="text" class="buscador__input" placeholder="Buscar">
+          <img src="assets/icons/lupa.png" alt="Buscar" class="buscador__icono">
+      </div>
+      <div class="encabezado-principal__derecha">
+          <img src="assets/icons/carrito-de-compras.png" alt="Carrito de compras" class="encabezado-principal__icono-carrito">
+          <button class="encabezado-principal__boton-perfil" id="boton-perfil-header" aria-label="Alternar menú de perfil">
+              <img src="assets/icons/perfil.png" alt="Perfil de usuario" class="encabezado-principal__icono-perfil">
+          </button>
+      </div>
+  </header>
+
+  <div class="overlay-categorias" id="overlay-categorias" aria-hidden="true"></div>
+  <aside class="menu-categorias" id="menu-categorias" aria-hidden="true">
+      <div class="menu-categorias__encabezado">
+          <button type="button" class="menu-categorias__boton-cerrar" id="boton-cerrar-categorias" aria-label="Cerrar menú">
+              <img src="assets/icons/cerrarmenu.png" alt="Cerrar" class="menu-categorias__icono-cerrar">
+          </button>
+          <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo Plataforma" class="menu-categorias__logo">
+      </div>
+
+      <nav class="menu-categorias__navegacion">
+          <ul class="menu-categorias__lista">
+              <li class="menu-categorias__item"><img src="assets/icons/casa.png" alt="" class="menu-categorias__icono-item"><a href="index.html" class="menu-categorias__enlace">Inicio</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/flama-de-fuego (1).png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Tendencias</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/idea.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Sugerencias</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/flecha-hacia-abajo (1).png" alt="" class="menu-categorias__icono-item" style="transform: rotate(180deg);"><a href="#" class="menu-categorias__enlace">Nuevos</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/montanas.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Aventura</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/coche (1).png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Autos</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/pelota-de-baloncesto.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Deportes</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/mano.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Terror</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/espada.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Acción</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/globo.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Mundo Abierto</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/excavador.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Simulación</a></li>
+              <li class="menu-categorias__item"><img src="assets/icons/carpa-para-camping.png" alt="" class="menu-categorias__icono-item"><a href="#" class="menu-categorias__enlace">Supervivencia</a></li>
+          </ul>
+      </nav>
+  </aside>
+
+  <div class="overlay-perfil" id="overlay-perfil" aria-hidden="true"></div>
+ <aside class="menu-perfil" id="menu-perfil" aria-hidden="true">
+      <div class="menu-perfil__encabezado">
+          <img src="assets/icons/carrito-de-compras.png" alt="Ir al carrito" class="menu-perfil__icono-carrito">
+          <img src="assets/icons/perfil.png" alt="Cerrar menú" class="menu-perfil__icono-perfil" id="boton-perfil-interno">
+      </div>
+      
+      <nav class="menu-perfil__navegacion">
+          <ul class="menu-perfil__lista">
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Perfil</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Biblioteca</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Recientes</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Amigos</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Configuración</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Notificaciones</a></li>
+              <li class="menu-perfil__item"><a href="#" class="menu-perfil__enlace">Redes</a></li>
+              <li class="menu-perfil__item menu-perfil__item--sin-borde">
+                  <a href="login.html" class="menu-perfil__enlace menu-perfil__enlace--cerrar">Cerrar sesión</a>
+              </li>
+          </ul>
+      </nav>
+  </aside>
+
+  <main class="blocka-main">
+    <nav class="migas-pan" aria-label="Navegación">
+        <a href="index.html" class="migas-pan__enlace">Inicio</a> &gt; 
+        <a href="#" class="migas-pan__enlace">Juegos</a> &gt; 
+        <span class="migas-pan__actual">Blocka</span>
+    </nav>
+
+    <section class="blocka-panel">
+        <div class="blocka-panel__estado">
+            <p class="blocka-panel__texto">Tiempo: <span id="blocka-timer" class="blocka-panel__valor">00:00</span></p>
+            <p class="blocka-panel__texto">Récord: <span id="blocka-record" class="blocka-panel__valor">--:--</span></p>
+            <p class="blocka-panel__texto">Nivel: <span id="blocka-nivel-actual" class="blocka-panel__valor">1</span></p>
+        </div>
+        <div class="blocka-panel__controles">
+            <button id="btn-blocka-comenzar" class="btn btn--primario"><span class="btn__texto">Comenzar</span></button>
+            <button id="btn-blocka-reiniciar" class="btn btn--primario"><span class="btn__texto">Reiniciar</span></button>
+            <button id="btn-blocka-instrucciones" class="btn btn--secundario"><span class="btn__texto">Instrucciones</span></button>
+        </div>
+    </section>
+
+    <section class="blocka-tablero-container">
+        <div id="blocka-tablero" class="blocka-tablero">
+            <!-- Piezas generadas por JS -->
+        </div>
+    </section>
+  </main>
+
+  <div id="modal-instrucciones" class="blocka-modal" aria-hidden="true">
+      <div class="blocka-modal__cuerpo">
+          <h2 class="blocka-modal__titulo">Instrucciones</h2>
+          <p class="blocka-modal__texto">Arma la imagen girando las piezas.</p>
+          <p class="blocka-modal__texto">- Clic Izquierdo: Gira -90°</p>
+          <p class="blocka-modal__texto">- Clic Derecho: Gira +90°</p>
+          <button id="btn-cerrar-instrucciones" class="btn btn--primario"><span class="btn__texto">Cerrar</span></button>
+      </div>
+  </div>
+
+  <div id="modal-nivel" class="blocka-modal" aria-hidden="true">
+      <div class="blocka-modal__cuerpo">
+          <h2 class="blocka-modal__titulo">¡Nivel Completado!</h2>
+          <p class="blocka-modal__texto">Tiempo: <span id="modal-tiempo"></span></p>
+          <p class="blocka-modal__texto" id="modal-record-msg"></p>
+          <div class="blocka-modal__acciones">
+              <button id="btn-siguiente-nivel" class="btn btn--primario"><span class="btn__texto">Siguiente Nivel</span></button>
+              <a href="index.html" class="btn btn--secundario" style="text-decoration:none; display:inline-block; text-align:center; padding:10px;"><span class="btn__texto">Menú Principal</span></a>
+          </div>
+      </div>
+  </div>
+
+  <footer class="pie-pagina">
+    <div class="pie-pagina__contenedor">
+      <div class="pie-pagina__columnas">
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Navegación</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Inicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Categorías</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sugerencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Gratuitos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Juegos de pago</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tendencias</a></li>
+            <li><a href="#" class="columna-pie__enlace">Próximos lanzamientos</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Privacidad</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Política de privacidad</a></li>
+            <li><a href="#" class="columna-pie__enlace">Cookies</a></li>
+            <li><a href="#" class="columna-pie__enlace">Términos de servicio</a></li>
+            <li><a href="#" class="columna-pie__enlace">Política de reembolsos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Control parental</a></li>
+            <li><a href="#" class="columna-pie__enlace">Código de conducta</a></li>
+            <li><a href="#" class="columna-pie__enlace">Licencias y DMFA</a></li>
+          </ul>
+        </div>
+
+        <div class="pie-pagina__seccion-central">
+          <img src="assets/icons/consola-ninja-diseno-logotipos-juegos_100735-52.jpg" alt="Logo de la plataforma" class="pie-pagina__logo">
+          <div class="redes-pie">
+            <a href="#" aria-label="Instagram"><img src="assets/icons/logoig.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="X"><img src="assets/icons/logox.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="YouTube"><img src="assets/icons/logoyt.png" alt="" class="redes-pie__icono"></a>
+            <a href="#" aria-label="Facebook"><img src="assets/icons/logofbcuadrado.png" alt="" class="redes-pie__icono"></a>
+          </div>
+          <div class="pie-pagina__derechos">
+            <span class="pie-pagina__texto-derechos">Todos los derechos reservados</span>
+            <img src="assets/icons/Copyright-Logo.png" alt="Copyright" class="pie-pagina__icono-copyright">
+          </div>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Acerca de nosotros</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Quiénes somos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Equipo</a></li>
+            <li><a href="#" class="columna-pie__enlace">Sedes</a></li>
+            <li><a href="#" class="columna-pie__enlace">Premios</a></li>
+            <li><a href="#" class="columna-pie__enlace">Contacto</a></li>
+            <li><a href="#" class="columna-pie__enlace">Créditos</a></li>
+            <li><a href="#" class="columna-pie__enlace">Blog/Noticias</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h2 class="columna-pie__titulo">Ayuda</h2>
+          <ul class="columna-pie__lista">
+            <li><a href="#" class="columna-pie__enlace">Errores frecuentes</a></li>
+            <li><a href="#" class="columna-pie__enlace">No encuentro un juego</a></li>
+            <li><a href="#" class="columna-pie__enlace">Reportar bugs</a></li>
+            <li><a href="#" class="columna-pie__enlace">Tutoriales</a></li>
+            <li><a href="#" class="columna-pie__enlace">Soporte</a></li>
+            <li><a href="#" class="columna-pie__enlace">Estado del servidor</a></li>
+            <li><a href="#" class="columna-pie__enlace">Requisitos del sistema</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

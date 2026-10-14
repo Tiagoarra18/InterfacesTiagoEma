@@ -1,96 +1,137 @@
-/* 1. RESET GLOBAL (Quita el borde blanco de los costados y arriba) */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ==========================================================================
+   BLOCKA - El juego ocupa la pantalla horizontal de la página del juego
+   (el resto de la página usa juego.css)
+   ========================================================================== */
 
-/* 2. FONDO Y FUENTE (Arregla el color y la tipografía) */
-body {
-    background-color: var(--fondo-oscuro, #0f0f0f); /* Ajusta si tu variable se llama distinto */
-    font-family: var(--fuente-roboto, 'Roboto', sans-serif);
-    color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 3. ESTRUCTURA (Empuja el footer al fondo de la pantalla) */
-main {
-    flex-grow: 1;
-}
-
-.blocka-main {
-    max-width: var(--ancho-carrusel-secundario, 1200px);
-    margin: 0 auto;
-    padding: var(--espacio-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espacio-lg);
-    color: var(--color-texto);
-}
-
-.migas-pan {
-    align-self: flex-start;
-    font-size: var(--tamano-texto-categorias);
-    color: var(--color-texto-secundario);
-    margin-bottom: var(--espacio-lg);
-}
-.migas-pan__enlace {
-    color: var(--color-link-cyan);
-    text-decoration: none;
-}
-.migas-pan__actual {
-    color: var(--color-texto);
-    font-weight: var(--peso-bold);
-}
-
-.blocka-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espacio-panel-blocka);
-    background-color: var(--color-tarjeta-fondo);
-    padding: var(--espacio-lg);
-    border-radius: var(--radio-tarjeta-login);
-    border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
-}
-.blocka-panel__estado {
-    display: flex;
-    gap: var(--espacio-xl);
-    font-size: var(--tamano-texto-temporizador);
-    font-weight: var(--peso-bold);
-}
-.blocka-panel__controles {
-    display: flex;
-    gap: var(--espacio-md);
-}
-
-.blocka-tablero-container {
+/* Pantalla: panel a la izquierda y tablero a la derecha */
+.pantalla-blocka {
+    width: 100%;
+    aspect-ratio: var(--proporcion-pantalla-juego);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: var(--espacio-lg);
+    gap: var(--espacio-pantalla-blocka);
+    background-color: var(--color-pantalla-blocka);
+    /* Capa oscura encima de la imagen: oscurece solo el fondo, no el panel ni el tablero */
+    background-image:
+        linear-gradient(var(--oscurecer-fondo-pantalla-blocka), var(--oscurecer-fondo-pantalla-blocka)),
+        var(--imagen-fondo-pantalla-blocka);
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radio-pantalla-blocka);
 }
 
+/* Panel con tiempo, récord, nivel y botones */
+.blocka-panel {
+    width: var(--ancho-panel-blocka);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-panel-blocka);
+    padding: var(--espacio-xxl) var(--espacio-xl);
+    background-color: var(--color-tarjeta-fondo);
+    border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
+    border-radius: var(--radio-tarjeta-login);
+}
+
+.blocka-panel__estado {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-estado-blocka);
+    font-size: var(--tamano-texto-temporizador);
+    font-weight: var(--peso-bold);
+}
+
+.blocka-panel__controles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+}
+
+/* Botones del juego */
+.btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--alto-boton-blocka);
+    border-radius: var(--radio-pildora);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    font-weight: var(--peso-semibold);
+    font-size: var(--tamano-texto-boton);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:focus-visible {
+    outline: var(--borde-foco) solid var(--color-foco);
+    outline-offset: var(--espacio-xxs);
+}
+
+.btn--primario {
+    border: none;
+    background-color: var(--color-primario);
+}
+
+/* Relleno más oscuro de izquierda a derecha, igual que en login */
+.btn--primario::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-primario-oscuro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duracion-hover) ease-out;
+}
+
+.btn--primario:focus-visible::before {
+    transform: scaleX(1);
+    transition-timing-function: ease-in;
+}
+
+@media (hover: hover) {
+    .btn--primario:hover::before {
+        transform: scaleX(1);
+        transition-timing-function: ease-in;
+    }
+}
+
+.btn--secundario {
+    border: var(--borde-grueso) solid var(--color-borde);
+    background-color: transparent;
+}
+
+.btn__texto {
+    position: relative;
+    z-index: 1;
+}
+
+/* Botones del cartel de nivel que se muestran según el momento del juego */
+.btn--oculto {
+    display: none;
+}
+
+/* Tablero 2x2: el borde queda por fuera de las piezas */
 .blocka-tablero {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    flex-shrink: 0;
     width: var(--tamano-tablero-blocka);
     height: var(--tamano-tablero-blocka);
     border: var(--borde-grueso) solid var(--color-borde-tablero);
     background-color: var(--color-tablero-blocka);
-    gap: 0;
 }
 
+/* Cada pieza muestra su cuarto de la imagen (el JS fija la posición del fondo) */
 .blocka-tablero__pieza {
     width: var(--tamano-pieza-blocka);
     height: var(--tamano-pieza-blocka);
-    background-size: var(--tamano-tablero-blocka) var(--tamano-tablero-blocka);
+    background-size: calc(2 * var(--tamano-pieza-blocka)) calc(2 * var(--tamano-pieza-blocka));
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform var(--duracion-hover) ease;
 }
 
 /* Niveles y Filtros */
@@ -99,6 +140,7 @@ main {
 .blocka-tablero--nivel-3 .blocka-tablero__pieza { filter: invert(100%); }
 .blocka-tablero--completado .blocka-tablero__pieza { filter: none; }
 
+/* Modales de instrucciones y de nivel completado */
 .blocka-modal {
     position: fixed;
     top: 0;
@@ -121,4 +163,10 @@ main {
     display: flex;
     flex-direction: column;
     gap: var(--espacio-lg);
+}
+
+.blocka-modal__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
 }
