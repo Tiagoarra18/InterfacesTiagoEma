@@ -532,44 +532,6 @@
   }
 }
 
-/* ==========================================================================
-   NUEVAS VARIABLES PARA BLOCKA
-   ========================================================================== */
-:root {
-  --color-tablero-blocka: #1E1E1E;
-  --color-borde-tablero: #33FF00;
-  /* Pantalla del juego: mismo tamaño y radio que la imagen de juego.html */
-  --proporcion-pantalla-juego: 1032 / 635;
-  --color-pantalla-blocka: #0A0A0A;
-  --imagen-fondo-pantalla-blocka: url("../assets/img/blocka/fondo.webp");
-  --oscurecer-fondo-pantalla-blocka: rgba(0, 0, 0, 0.55); /* Capa sobre el fondo para bajar el contraste */
-  --radio-pantalla-blocka: 0.5rem;
-  --espacio-pantalla-blocka: 3rem;           /* Entre el panel y el tablero */
-  /* Tablero: tamaño total con el borde incluido; las piezas se reparten la grilla */
-  --tamano-tablero-blocka: 35rem;
-  /* Piezas por lado de cada dificultad (4, 9 y 16 piezas) */
-  --lado-blocka-4: 2;
-  --lado-blocka-9: 3;
-  --lado-blocka-16: 4;
-  /* Menú de Blocka: récords y las 3 opciones de dificultad */
-  --tamano-opcion-blocka: 12rem;
-  --espacio-opciones-blocka: 3rem;
-  --tamano-numero-opcion-blocka: 4rem;
-  --tamano-texto-menu-blocka: 1.5rem;
-  --espacio-menu-blocka: 2.5rem;
-  --ancho-panel-blocka: 17rem;
-  --espacio-panel-blocka: 1.5rem;
-  --espacio-estado-blocka: 1rem;
-  --tamano-texto-temporizador: 1.5rem;
-  --alto-boton-blocka: 3.125rem;
-  --color-boton-deshabilitado: #6B7280;      /* Comenzar ya usado, Ayudita agotada */
-  --color-texto-deshabilitado: #D1D5DB;
-  --color-modal-fondo: rgba(0, 0, 0, 0.85);
-  --color-modal-cuerpo: #10003E;
-  --z-modal-blocka: 2000;
-  --radio-modal: 1rem;
-}
-
 
   html {
   scrollbar-gutter: stable;
