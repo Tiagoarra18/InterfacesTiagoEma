@@ -1,0 +1,578 @@
+/* ==========================================================================
+   BREAKPOINTS (Home, Mobile First: solo media queries con min-width)
+   - Base:    mobile, desde 320px (fuera de media queries)
+   - Tablet:  @media (min-width: 48rem)  -> 768px
+   - Desktop: @media (min-width: 75rem)  -> 1200px
+   Las variables del Home tienen su valor mobile en :root y se redefinen
+   en los bloques de tablet y desktop al final de este archivo.
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     COLORES BASE Y GLOBALES
+     ========================================================================== */
+  --color-fondo: #000000;
+  --color-formulario: #10003E;
+  --color-primario: #2563EB;
+  --color-primario-oscuro: #1D4ED8;
+  --color-footer: #0A0A0A;
+  --color-footer-titulo: #8B5CF6;
+  --color-texto: #FFFFFF;
+  --color-borde: #FFFFFF;
+  --color-label: #A3A3A3;
+  --color-error: #FF0000;
+  --color-link: #22D3EE;
+  --color-input: #FFFFFF;
+  --color-input-texto: #000000;
+  --color-captcha-fondo: #F9F9F9;
+  --color-captcha-borde: #D3D3D3;
+  --color-captcha-texto: #555555;
+  --color-captcha-check: #009E55;
+  --color-captcha-sombra: rgba(0, 0, 0, 0.3);
+  --color-glow: rgba(139, 92, 246, 0.8);
+  --color-ojo-hover: rgba(0, 0, 0, 0.12);
+  --color-carga: rgba(255, 255, 255, 0.35);
+  --color-foco: #22D3EE;
+  --color-transparente: transparent;
+  --color-spinner-pista: #4B5563;
+  --color-barra-pista: #262626;
+
+  /* Animacion exito Login y Register */
+  --color-exito: #1f9d55;
+  --duracion-exito-relleno: 0.8s;
+  --duracion-exito-texto: 0.4s;
+
+  /* Variables específicas para Login y Footer */
+  --color-tarjeta-fondo: #10003E;
+  --color-borde-tarjeta: #FFFFFF;
+  --color-sombra-tarjeta: #000000;
+  --color-texto-blanco: #FFFFFF;
+  --color-label-login: #969696;
+  --color-texto-gris: #FFFFFF;
+  --color-asterisco: #FF070B;
+  --color-link-cyan: #00F0FF;
+  --color-boton-login: #2563EB;
+  --color-boton-login-hover: #1E3A8A;
+  --color-leyenda: #A3A0CC;
+  --color-footer-fondo: #0A0A0A;
+  --color-input-fondo: #FFFFFF;
+
+  /* ==========================================================================
+     TIPOGRAFÍA Y PESOS
+     ========================================================================== */
+  --fuente-principal: 'Roboto', sans-serif;
+  --fuente-inter: 'Inter', sans-serif;
+
+  --peso-regular: 400;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  /* Tamaños base originales */
+  --tamano-base: 1rem;
+  --tamano-titulo: 1.75rem;
+  --tamano-boton: 1.25rem;
+  --tamano-subtitulo: 1.25rem;
+  --tamano-label: 0.8125rem;
+  --tamano-chico: 0.75rem;
+  --tamano-codigo: 1.25rem;
+  --espaciado-codigo: 0.25rem;
+
+  /* Tamaños Login y Footer */
+  --tamano-titulo-login: 2.35rem;     
+  --tamano-label-login: 1.0768rem;   
+  --tamano-asterisco: 1.2312rem;     
+  --tamano-link-cyan: 1.0768rem;     
+  --tamano-texto-boton: 1.35rem; 
+  --tamano-iniciar-con: 1.5rem;      
+  --tamano-footer-titulo: 1.25rem;   
+  --tamano-footer-link: 1rem;        
+  --tamano-footer-copy: 1.25rem;     
+
+  /* ==========================================================================
+     DIMENSIONES Y TAMAÑOS
+     ========================================================================== */
+  --ancho-formulario: 21.875rem;
+  --alto-formulario: 39.31rem;
+  --ancho-boton: 12rem;
+  --alto-boton: 2.25rem;
+  --alto-input: 1.875rem;
+  --ancho-captcha: 11rem;
+  --alto-captcha: 2.25rem;
+  --tamano-check: 1.125rem;
+  --tamano-icono-ojo: 1.5rem;
+  --tamano-boton-ojo: 2rem;
+  --tamano-icono-red: 2.25rem;
+  --ancho-cartel: 12rem;
+  --borde-fino: 0.0625rem;
+  --borde-grueso: 0.125rem;
+  --borde-foco: 0.125rem;
+  --radio-formulario: 1.5rem;
+  --radio-input: 0.375rem;
+  --radio-chico: 0.1875rem;
+  --radio-pildora: 999rem;
+  --tamano-spinner: clamp(3rem, 15vw, 4rem);
+  --borde-spinner: 0.375rem;
+  --ancho-barra-carga: min(18rem, 80vw);
+  --alto-barra-carga: 0.5rem;
+  --tamano-texto-carga: clamp(0.875rem, 0.75rem + 0.5vw, 1rem);
+
+  /* Tarjeta Login y Footer */
+  --ancho-tarjeta-login: 23.75rem;       
+  --alto-tarjeta-login: 34.375rem;       
+  --radio-tarjeta-login: 2.2rem;         
+  --borde-tarjeta-peso: 0.205rem;        
+  --sombra-tarjeta-desenfoque: 0.205rem; 
+
+  --ancho-input-login: 25.8125rem;      
+  --alto-input-login: 3.125rem;          
+  --radio-input-login: 0.75rem;         
+
+  --ancho-boton-login: 18.3125rem;      
+  --alto-boton-login: 3.125rem;          
+
+  --tamano-social-login: 3rem;           
+  --ancho-footer: 90rem;                 
+  --alto-footer: 19.3125rem;             
+  --tamano-logo-footer: 6.25rem;        
+  --tamano-redes-footer: 2.125rem;    
+  --tamano-copyright-icon-width: 3.150rem;
+  --tamano-copyright-icon-height: 2rem;    
+
+  /* ==========================================================================
+     ESPACIADOS
+     ========================================================================== */
+  --espacio-cero: 0rem;
+  --espacio-xxs: 0.125rem;
+  --espacio-xs: 0.25rem;
+  --espacio-sm: 0.5rem;
+  --espacio-md: 0.75rem;
+  --espacio-lg: 1rem;
+  --espacio-xl: 1.25rem;
+  --espacio-xxl: 2.5rem;
+  --espacio-formulario: 2rem;
+
+  --espacio-label-input: 0.25rem;       
+  --espacio-titulo-input: 1.5rem;        
+  --espacio-columna-footer: 0.9375rem;   
+  --espacio-tarjeta-padding: 1.5rem;    
+  --espacio-tarjeta-padding-y: 1.5rem;   
+  --espacio-tarjeta-padding-x: 2rem;     
+  --espacio-footer-padding-x: 4rem; 
+
+  /* ==========================================================================
+     EFECTOS Y TRANSICIONES
+     ========================================================================== */
+  --duracion-hover: 0.3s;
+  --duracion-transicion: 0.3s;
+  --duracion-carga: 5s;
+  --desplazamiento-hover: -0.25rem;
+  --escala-hover: 1.1;
+  --opacidad-deshabilitado: 0.5;
+  --sombra-glow: 0 0 1rem;
+  --sombra-captcha: 0 0 0.25rem;
+  --duracion-giro: 1s;
+  --duracion-desvanecer: 0.5s;
+  --z-pantalla-carga: 1000;
+
+  /* ==========================================================================
+     NUEVAS VARIABLES PARA LA VISTA "JUEGO"
+     ========================================================================== */
+  
+  /* Colores */
+  --color-fondo-panel: #0A0A0A; 
+  --color-fondo-comentarios: #323232;
+  --color-texto-blanco: #FFFFFF;
+  --color-texto-secundario: #969696;
+  --color-texto-terciario: #B9B9B9;
+  --color-texto-miga: #2DD4BF;
+  --color-tarjeta-fondo: #10003E;
+  --color-tarjeta-borde: #93C5FD;
+  --color-tarjeta-precio: #33FF00;
+  --color-borde-boton-carrito: #000005;
+
+  /* Tipografías y Pesos */
+  --fuente-roboto: 'Roboto', sans-serif;
+  --fuente-inter: 'Inter', sans-serif;
+  
+  --peso-ligero: 300;
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-audaz: 700;
+
+  /* ==========================================================================
+     CARRUSEL PRINCIPAL (HOME)
+     ========================================================================== */
+
+  /* Colores */
+  --color-info-carrusel: rgba(0, 0, 0, 0.8);
+  --color-flecha-carrusel: rgba(50, 50, 50, 0.7);
+  --color-flecha-carrusel-hover: rgba(50, 50, 50, 0.95);
+
+  /* Tipografía (mobile) */
+  --tamano-titulo-carrusel: clamp(1.375rem, 1.125rem + 1.5vw, 1.75rem);
+  --tamano-nombre-carrusel: clamp(1.125rem, 1rem + 1vw, 1.375rem);
+  --tamano-precio-carrusel: clamp(0.9375rem, 0.875rem + 0.5vw, 1.125rem);
+
+  /* Dimensiones (mobile) */
+  --alto-marco-titulo-carrusel: 2.75rem;
+  --alto-marco-info-carrusel: 2.25rem;
+  --proporcion-carrusel: 16 / 9;
+  --tamano-flecha-carrusel: 2.75rem;
+  --tamano-chevron-carrusel: 0.75rem;
+  --borde-chevron-carrusel: 0.1875rem;
+  --ancho-indicador: 2.125rem;
+  --alto-indicador: 0.375rem;
+
+  /* Espaciados (mobile) */
+  --espacio-lateral-carrusel: 1rem;
+  --espacio-flecha-carrusel: 0.5rem;
+  --espacio-info-carrusel: 1rem;
+  --espacio-nombre-precio: 0.75rem;
+  --espacio-indicadores: 1.75rem;
+  --espacio-bloque-indicadores: 3.25rem;
+
+  /* Efectos y animación */
+  --desplazamiento-flecha-carrusel: 0.125rem;
+  --escala-indicador-activo: 1.3;
+  --duracion-carrusel: 0.8s;
+  --curva-carrusel: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --duracion-info-carrusel: 0.5s;
+  --retraso-info-carrusel: 0.4s;
+  --z-diapositiva-entrante: 1;
+  --z-controles-carrusel: 2;
+
+  /* ==========================================================================
+     CARRUSELES SECUNDARIOS (HOME)
+     ========================================================================== */
+
+  /* Colores */
+  --color-fondo-carrusel-secundario: #0E0E0E;
+  --color-borde-flecha-secundaria: #62D6E4;
+  --color-borde-hover: #00D0FF;
+  --color-resplandor-card: rgba(0, 208, 255, 0.4);
+  --color-fondo-flecha-secundaria: #100D1A;
+
+  /* Tipografía (mobile) */
+  --tamano-titulo-secundario: clamp(1.125rem, 1rem + 0.75vw, 1.375rem);
+  --tamano-ver-todos: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+  --tamano-titulo-card: clamp(0.75rem, 0.625rem + 0.5vw, 0.875rem);
+  --tamano-texto-card: clamp(0.6875rem, 0.5625rem + 0.5vw, 0.8125rem);
+
+  /* Dimensiones (mobile) */
+  --ancho-carrusel-secundario: calc(100% - 2rem);
+  --alto-carrusel-secundario: auto;
+  --radio-carrusel-secundario: 1.5rem;
+  /* 2 cards completas y el 40% de la 3ª: (pantalla - márgenes - padding - 2 separaciones) / 2.4 */
+  --ancho-card: clamp(6.5rem, (100vw - 5rem) / 2.4, 12rem);
+  --alto-card: calc(var(--ancho-card) + var(--espacio-titulo-card) + 3 * var(--alto-linea-card) + var(--espacio-sm));
+  --radio-card: 0.5rem;
+  --borde-card: 0.2125rem; /* 3.4px: mismo grosor en reposo y en hover */
+  --alto-imagen-card: calc(var(--ancho-card) - 2 * var(--borde-card));
+  --tamano-carrito-card: 1.75rem;
+  --tamano-icono-carrito-card: 0.875rem;
+  --tamano-flecha-secundaria: 3.7044rem;
+  --tamano-chevron-secundario: 1rem;
+
+  /* Espaciados (mobile) */
+  --separacion: 1rem;
+  --ancho-ventana-secundaria: calc(5 * var(--ancho-card) + 4 * var(--separacion));
+  --espacio-carrusel-secundario-arriba: 1rem;
+  --espacio-carrusel-secundario-abajo: 1rem;
+  --espacio-titulo-secundario: 1rem;
+  --espacio-ver-todos: 1rem;
+  --espacio-encabezado-ventana: 0.75rem;
+  --espacio-texto-card: 0.5rem;
+  --espacio-titulo-card: 0.25rem;
+  --alto-linea-card: 1.125rem;
+  --espacio-separador-home: 1rem;
+
+  /* Animación */
+  --duracion-carrusel-secundario: 0.8s;
+  --curva-carrusel-secundario: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --inclinacion-card: 8deg;
+
+  /* Hover de las cards */
+  --sombra-hover-card: 0 0 1.25rem;
+  /* Lugar para que el resplandor no se recorte en la ventana con scroll (mobile y tablet) */
+  --espacio-resplandor-card: 0.75rem;
+
+  /* ==========================================================================
+     VARIABLES PARA EL MENÚ DESPLEGABLE DE PERFIL
+     ========================================================================== */
+  /* Valores mobile: el menú ocupa media pantalla. Desde 48rem vuelven las medidas de desktop */
+  --ancho-menu-perfil: 50vw;
+  --fondo-menu-perfil: #0A0A0A;
+  --color-texto-menu-perfil: #FFFFFF;
+  --color-texto-cerrar-sesion: #14B8A6;     /* Turquesa / Teal */
+  --color-linea-menu-perfil: #FFFFFF;
+  
+  --tamano-icono-carrito-menu: 1.75rem;
+  --tamano-icono-perfil-menu: 2rem;
+  --espacio-iconos-menu-perfil: 0.75rem;
+  
+  --fuente-tamano-menu-item: 1.6875rem;     /* 27px */
+  --espaciado-menu-items: 2.9375rem;        /* 65px entre opciones */
+  --padding-superior-menu: 2.5rem;          /* 40px */
+  --padding-lateral-menu: 0.75rem;          /* Espaciado interno simétrico lateral */
+  --espaciado-encabezado-lista: 2.5rem;     /* 40px de separación entre íconos y la palabra 'Perfil' */
+
+  /* ==========================================================================
+     VARIABLES PARA EL MENÚ LATERAL DE CATEGORÍAS
+     ========================================================================== */
+  /* Valores mobile: el menú ocupa media pantalla. Desde 48rem vuelven las medidas de desktop */
+  --ancho-menu-categorias: 50vw;
+  --fondo-menu-categorias: #0A0A0A;
+  --espaciado-top-encabezado: 1.875rem;      /* 30px */
+  --espaciado-left-encabezado: 0.75rem;
+  --tamano-icono-cerrar: 2.25rem;
+  --tamano-logo-menu: 2.75rem;
+  --espaciado-iconos-encabezado: 0.75rem;
+  --tamano-icono-item-menu: 1.25rem;
+  --espacio-icono-item-menu: 0.5rem;
+  --espaciado-items-lista: 2.9375rem;        /* 47px */
+  --tamano-texto-categorias: 1.25rem;        /* 20px */
+  --color-texto-categorias: #FFFFFF;
+  /* Mismo tamaño de texto para las opciones de ambos menús (categorías y perfil) */
+  --tamano-texto-menus: 0.875rem;
+
+  /* ==========================================================================
+     ENCABEZADO PRINCIPAL Y BUSCADOR (HOME)
+     ========================================================================== */
+  --color-fondo-encabezado: #0A0A0A;
+  --color-texto-buscador: #000000;
+  --color-placeholder-buscador: #333333;
+  --z-encabezado: 100;
+
+  /* Dimensiones (mobile) */
+  --alto-encabezado: auto;
+  --tamano-icono-encabezado: 2rem;
+  --tamano-perfil-encabezado: 2rem;
+  --tamano-logo-encabezado: 2.75rem;
+  --area-tactil-encabezado: 2.75rem;
+  --ancho-buscador: 100%;
+  --alto-buscador: 2.5rem;
+  --radio-buscador: 6.1875rem;
+  --tamano-texto-buscador: 1rem;
+  --tamano-lupa: 1.25rem;
+
+  /* Espaciados (mobile) */
+  --espacio-vertical-encabezado: 0.75rem;
+  --espacio-lateral-encabezado: 1rem;
+  --espacio-filas-encabezado: 0.75rem;
+  --espacio-iconos-encabezado: 0.75rem;
+  --relleno-buscador-izquierda: 1rem;
+  --relleno-buscador-derecha: 2.5rem;
+  --espacio-lupa: 1rem;
+
+  /* ==========================================================================
+     FOOTER RESPONSIVE (en desktop toma las variables del footer de login)
+     ========================================================================== */
+  --alto-pie-pagina: auto;
+  --espacio-pie-pagina-y: 2rem;
+  --espacio-pie-pagina-x: 1rem;
+  --espacio-filas-pie-pagina: 2rem;
+  --espacio-columnas-pie-pagina: 1rem;
+  --tamano-logo-pie-pagina: 4.5rem;
+  --tamano-derechos-pie-pagina: 1rem;
+}
+
+/* ==========================================================================
+   TABLET (min-width: 48rem -> 768px)
+   ========================================================================== */
+@media (min-width: 48rem) {
+  :root {
+    /* Menús de categorías y perfil: medidas de desktop */
+    --ancho-menu-perfil: 16.375rem;
+    --tamano-icono-carrito-menu: 2.5rem;
+    --tamano-icono-perfil-menu: 2.875rem;
+    --espacio-iconos-menu-perfil: 1.6875rem;
+    --padding-lateral-menu: 1.75rem;
+    --ancho-menu-categorias: 16rem;
+    --espaciado-left-encabezado: 1.25rem;
+    --tamano-icono-cerrar: 3.125rem;
+    --tamano-logo-menu: 3.75rem;
+    --espaciado-iconos-encabezado: 2.1875rem;
+    --tamano-icono-item-menu: 1.75rem;
+    --espacio-icono-item-menu: 1rem;
+    --tamano-texto-menus: 1.25rem;
+
+    /* Encabezado: una sola fila */
+    --alto-encabezado: 5.625rem;
+    --tamano-icono-encabezado: 2.5rem;
+    --tamano-perfil-encabezado: 2.875rem;
+    --tamano-logo-encabezado: 3.75rem;
+    --ancho-buscador: min(29.3rem, 40vw);
+    --tamano-texto-buscador: 1.25rem;
+    --espacio-vertical-encabezado: 0rem;
+    --espacio-lateral-encabezado: 2rem;
+    --espacio-iconos-encabezado: 1.5rem;
+    --relleno-buscador-izquierda: 1.5rem;
+    --relleno-buscador-derecha: 2.75rem;
+    --espacio-lupa: 1.25rem;
+
+    /* Carrusel principal */
+    --tamano-titulo-carrusel: clamp(1.75rem, 0.5rem + 2.5vw, 2.5rem);
+    --tamano-nombre-carrusel: clamp(1.5rem, 0.75rem + 1.5vw, 2rem);
+    --tamano-precio-carrusel: clamp(1.125rem, 0.5rem + 1.25vw, 1.5rem);
+    --alto-marco-titulo-carrusel: 3.25rem;
+    --alto-marco-info-carrusel: 2.875rem;
+    --proporcion-carrusel: 21 / 9;
+    --tamano-flecha-carrusel: 3.75rem;
+    --tamano-chevron-carrusel: 1.125rem;
+    --borde-chevron-carrusel: 0.25rem;
+    --espacio-lateral-carrusel: 1.375rem;
+    --espacio-flecha-carrusel: 1rem;
+    --espacio-info-carrusel: 1.5rem;
+    --espacio-nombre-precio: 1.25rem;
+    --desplazamiento-flecha-carrusel: 0.25rem;
+
+    /* Carruseles secundarios: unas 3 cards y media */
+    --tamano-titulo-secundario: clamp(1.5rem, 1rem + 1vw, 1.75rem);
+    --tamano-ver-todos: 1.125rem;
+    --tamano-titulo-card: 0.875rem;
+    --tamano-texto-card: 0.8125rem;
+    --ancho-carrusel-secundario: calc(100% - 3rem);
+    --radio-carrusel-secundario: 2.25rem;
+    --ancho-card: clamp(10rem, (100vw - 8.25rem) / 3.5, 16rem);
+    --radio-card: 0.625rem;
+    --tamano-carrito-card: 2rem;
+    --tamano-icono-carrito-card: 1rem;
+    --separacion: 1.25rem;
+    --espacio-carrusel-secundario-arriba: 1.25rem;
+    --espacio-carrusel-secundario-abajo: 1.25rem;
+    --espacio-titulo-secundario: 1.5rem;
+    --espacio-ver-todos: 1.5rem;
+    --espacio-encabezado-ventana: 1rem;
+    --espacio-texto-card: 0.75rem;
+    --espacio-titulo-card: 0.375rem;
+    --alto-linea-card: 1.25rem;
+    --espacio-separador-home: 1.25rem;
+
+    /* Footer */
+    --espacio-pie-pagina-y: 2.5rem;
+    --espacio-pie-pagina-x: 2rem;
+    --espacio-columnas-pie-pagina: 1.5rem;
+    --tamano-logo-pie-pagina: 5rem;
+    --tamano-derechos-pie-pagina: 1.125rem;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP (min-width: 75rem -> 1200px): los valores originales del diseño
+   ========================================================================== */
+@media (min-width: 75rem) {
+  :root {
+    /* Pantalla de carga */
+    --tamano-spinner: 4rem;
+    --ancho-barra-carga: 18rem;
+    --tamano-texto-carga: 1rem;
+
+    /* Encabezado */
+    --alto-encabezado: 5.625rem;
+    --tamano-icono-encabezado: 2.5rem;
+    --tamano-perfil-encabezado: 2.875rem;
+    --tamano-logo-encabezado: 3.75rem;
+    --area-tactil-encabezado: 0rem;
+    --ancho-buscador: 29.3125rem;
+    --tamano-texto-buscador: 1.25rem;
+    --espacio-vertical-encabezado: 0rem;
+    --espacio-lateral-encabezado: 2rem;
+    --espacio-iconos-encabezado: 1.5rem;
+    --relleno-buscador-izquierda: 1.5rem;
+    --relleno-buscador-derecha: 2.75rem;
+    --espacio-lupa: 1.25rem;
+
+    /* Carrusel principal */
+    --tamano-titulo-carrusel: 2.9031rem;
+    --tamano-nombre-carrusel: 2.3225rem;
+    --tamano-precio-carrusel: 1.7419rem;
+    --alto-marco-titulo-carrusel: 3.7738rem;
+    --alto-marco-info-carrusel: 3.5375rem;
+    --proporcion-carrusel: 1440 / 528.39;
+    --tamano-flecha-carrusel: 5.0806rem;
+    --tamano-chevron-carrusel: 1.5rem;
+    --borde-chevron-carrusel: 0.25rem;
+    --espacio-lateral-carrusel: 1.375rem;
+    --espacio-flecha-carrusel: 1.375rem;
+    --espacio-info-carrusel: 2.375rem;
+    --espacio-nombre-precio: 1.75rem;
+    --desplazamiento-flecha-carrusel: 0.25rem;
+
+    /* Carruseles secundarios */
+    --tamano-titulo-secundario: 1.9756rem;
+    --tamano-ver-todos: 1.375rem;
+    --tamano-titulo-card: 0.9881rem;
+    --tamano-texto-card: 0.9263rem;
+    --ancho-carrusel-secundario: 72.25rem;
+    --alto-carrusel-secundario: 21.625rem;
+    --radio-carrusel-secundario: 3.125rem;
+    --ancho-card: 10.4956rem;
+    --alto-card: 15.6756rem;
+    --radio-card: 0.7406rem;
+    --alto-imagen-card: 10.5006rem;
+    --tamano-carrito-card: 2.1606rem;
+    --tamano-icono-carrito-card: 1.125rem;
+    --separacion: 2.3125rem;
+    --espacio-carrusel-secundario-arriba: 0.625rem;
+    --espacio-carrusel-secundario-abajo: 0rem;
+    --espacio-titulo-secundario: 2.4375rem;
+    --espacio-ver-todos: 6.4375rem;
+    --espacio-encabezado-ventana: 1.6875rem;
+    --espacio-texto-card: 1rem;
+    --espacio-titulo-card: 0.375rem;
+    --alto-linea-card: 1.4375rem;
+    --espacio-separador-home: 1.5625rem;
+
+    /* Footer: medidas del de login, con alto según contenido y aire arriba y abajo */
+    --alto-pie-pagina: auto;
+    --espacio-pie-pagina-y: 2.25rem;
+    --espacio-pie-pagina-x: var(--espacio-footer-padding-x);
+    --tamano-logo-pie-pagina: var(--tamano-logo-footer);
+    --tamano-derechos-pie-pagina: var(--tamano-footer-copy);
+  }
+}
+
+/* ==========================================================================
+   NUEVAS VARIABLES PARA BLOCKA
+   ========================================================================== */
+:root {
+  --color-tablero-blocka: #1E1E1E;
+  --color-borde-tablero: #33FF00;
+  /* Pantalla del juego: mismo tamaño y radio que la imagen de juego.html */
+  --proporcion-pantalla-juego: 1032 / 635;
+  --color-pantalla-blocka: #0A0A0A;
+  --imagen-fondo-pantalla-blocka: url("../assets/img/blocka/fondo.webp");
+  --oscurecer-fondo-pantalla-blocka: rgba(0, 0, 0, 0.55); /* Capa sobre el fondo para bajar el contraste */
+  --radio-pantalla-blocka: 0.5rem;
+  --espacio-pantalla-blocka: 3rem;           /* Entre el panel y el tablero */
+  /* Tablero: tamaño total con el borde incluido; las piezas se reparten la grilla */
+  --tamano-tablero-blocka: 35rem;
+  /* Piezas por lado de cada dificultad (4, 9 y 16 piezas) */
+  --lado-blocka-4: 2;
+  --lado-blocka-9: 3;
+  --lado-blocka-16: 4;
+  /* Menú de Blocka: récords y las 3 opciones de dificultad */
+  --tamano-opcion-blocka: 12rem;
+  --espacio-opciones-blocka: 3rem;
+  --tamano-numero-opcion-blocka: 4rem;
+  --tamano-texto-menu-blocka: 1.5rem;
+  --espacio-menu-blocka: 2.5rem;
+  --ancho-panel-blocka: 17rem;
+  --espacio-panel-blocka: 1.5rem;
+  --espacio-estado-blocka: 1rem;
+  --tamano-texto-temporizador: 1.5rem;
+  --alto-boton-blocka: 3.125rem;
+  --color-boton-deshabilitado: #6B7280;      /* Comenzar ya usado, Ayudita agotada */
+  --color-texto-deshabilitado: #D1D5DB;
+  --color-modal-fondo: rgba(0, 0, 0, 0.85);
+  --color-modal-cuerpo: #10003E;
+  --z-modal-blocka: 2000;
+  --radio-modal: 1rem;
+}
+
+
+  html {
+  scrollbar-gutter: stable;
+}
+
+
