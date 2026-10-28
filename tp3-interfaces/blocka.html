@@ -113,6 +113,7 @@
             <section class="area-juego">
                 <div class="area-juego__principal">
                     <div class="pantalla-blocka">
+                        
                         <div class="menu-blocka">
                             <div class="menu-blocka__seccion-records">
                                 <p class="menu-blocka__titulo">Récords</p>
@@ -145,8 +146,21 @@
                                 </div>
                             </div>
                             <div id="blocka-tablero" class="blocka-tablero"></div>
+                            <div id="modal-nivel" class="blocka-modal" aria-hidden="true">
+                    <div class="blocka-modal__cuerpo">
+                        <h2 class="blocka-modal__titulo">¡Nivel Completado!</h2>
+                        <p class="blocka-modal__texto">Tiempo: <span id="modal-tiempo"></span></p>
+                        <p class="blocka-modal__texto" id="modal-record-msg"></p>
+                        <div class="blocka-modal__acciones">
+                            <button type="button" id="btn-siguiente-nivel" class="btn btn--primario"><span class="btn__texto">Siguiente Nivel</span></button>
+                            <button type="button" id="btn-jugar-de-nuevo" class="btn btn--primario btn--oculto"><span class="btn__texto">Jugar de nuevo</span></button>
+                            <button type="button" id="btn-salir-nivel" class="btn btn--secundario"><span class="btn__texto">Salir</span></button>
+                            <a href="index.html" id="btn-menu-principal" class="btn btn--secundario btn--oculto"><span class="btn__texto">Menú Principal</span></a>
                         </div>
                     </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
 
                 <aside class="revision-juego">
@@ -367,20 +381,6 @@
                 <p class="blocka-modal__texto">- Clic Izquierdo: Gira -90°</p>
                 <p class="blocka-modal__texto">- Clic Derecho: Gira +90°</p>
                 <button type="button" id="btn-cerrar-instrucciones" class="btn btn--primario"><span class="btn__texto">Cerrar</span></button>
-            </div>
-        </div>
-
-        <div id="modal-nivel" class="blocka-modal" aria-hidden="true">
-            <div class="blocka-modal__cuerpo">
-                <h2 class="blocka-modal__titulo">¡Nivel Completado!</h2>
-                <p class="blocka-modal__texto">Tiempo: <span id="modal-tiempo"></span></p>
-                <p class="blocka-modal__texto" id="modal-record-msg"></p>
-                <div class="blocka-modal__acciones">
-                    <button type="button" id="btn-siguiente-nivel" class="btn btn--primario"><span class="btn__texto">Siguiente Nivel</span></button>
-                    <button type="button" id="btn-jugar-de-nuevo" class="btn btn--primario btn--oculto"><span class="btn__texto">Jugar de nuevo</span></button>
-                    <button type="button" id="btn-salir-nivel" class="btn btn--secundario"><span class="btn__texto">Salir</span></button>
-                    <a href="index.html" id="btn-menu-principal" class="btn btn--secundario btn--oculto"><span class="btn__texto">Menú Principal</span></a>
-                </div>
             </div>
         </div>
 

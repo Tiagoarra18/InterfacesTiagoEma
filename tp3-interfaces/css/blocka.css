@@ -249,23 +249,21 @@
 }
 
 /* Niveles y Filtros */
-.blocka-tablero--nivel-1 .blocka-tablero__pieza { filter: grayscale(100%); }
-.blocka-tablero--nivel-2 .blocka-tablero__pieza { filter: brightness(30%); }
-.blocka-tablero--nivel-3 .blocka-tablero__pieza { filter: invert(100%); }
+.blocka-tablero--nivel-0 .blocka-tablero__pieza { filter: grayscale(100%); }
+.blocka-tablero--nivel-1 .blocka-tablero__pieza { filter: brightness(30%); }
+.blocka-tablero--nivel-2 .blocka-tablero__pieza { filter: invert(100%); }
+.blocka-tablero--nivel-3 .blocka-tablero__pieza { filter: blur(2px); }
 .blocka-tablero--completado .blocka-tablero__pieza { filter: none; }
 
 /* Modales de instrucciones y de nivel completado */
 .blocka-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-modal-fondo);
+    position : absolute;
+    width: 900px;
+    height: 635px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: var(--z-modal-blocka);
+    z-index: 1;
 }
 .blocka-modal[aria-hidden="true"] { display: none; }
 .blocka-modal__cuerpo {

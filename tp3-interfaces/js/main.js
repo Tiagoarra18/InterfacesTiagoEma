@@ -461,8 +461,6 @@ function initBlocka() {
     const segundosAyudita = 5;
     const btnComenzar = document.getElementById('btn-blocka-comenzar');
     const btnAyudita = document.getElementById('btn-blocka-ayudita');
-    
-    // Asegúrate de crear estas imágenes en tu proyecto
     const imagenes = [
         'assets/img/blocka/1.webp',
         'assets/img/blocka/2.webp',
@@ -529,7 +527,7 @@ function initBlocka() {
     function setupNivel() {
         nivelEl.textContent = nivel;
         ayudaUsada = false;
-        
+      
         tablero.innerHTML = '';
         tablero.className = 'blocka-tablero blocka-tablero--' + piezas + '-piezas blocka-tablero--nivel-' + nivel;
         
@@ -541,6 +539,9 @@ function initBlocka() {
             const pieza = document.createElement('div');
             pieza.className = 'blocka-tablero__pieza';
             pieza.style.backgroundImage = `url(${img})`;
+              const f = Math.floor(Math.random() * 4);
+              pieza.classList.add('.blocka-tablero--nivel-' + f + '.blocka-tablero__pieza');
+              
             
             // Posicionamiento de la imagen de fondo para cortar en lado x lado
             const x = ((i % lado) / (lado - 1)) * 100;
@@ -556,10 +557,10 @@ function initBlocka() {
             pieza.dataset.totalRot = initialRot; // Ángulo acumulado que se ve en pantalla
             pieza.dataset.index = i;
             
-            pieza.addEventListener('click', () => rotarPieza(i, -90));
+            pieza.addEventListener('click', () => rotarPieza(i, -45));
             pieza.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
-                rotarPieza(i, 90);
+                rotarPieza(i, 45);
             });
             
             tablero.appendChild(pieza);
@@ -585,9 +586,11 @@ function initBlocka() {
         const won = piezasState.every(r => r === 0);
         if (won) {
             jugando = false;
+            detenerTemporizador();  
             actualizarBotones();
-            tablero.classList.remove('blocka-tablero--nivel-1', 'blocka-tablero--nivel-2', 'blocka-tablero--nivel-3');
-            tablero.classList.add('blocka-tablero--completado');
+            tablero.classList.remove('blocka-tablero--nivel-1', 'blocka-tablero--nivel-2', 'blocka-tablero--nivel-3', 'blocka-tablero--nivel-4');
+            section = document.querySelector('.area-juego');
+            section.classList.add('blocka-tablero--completado');
 
             // El temporizador sigue corriendo entre niveles y se detiene recién al terminar el juego
             let batiRecord = false;
