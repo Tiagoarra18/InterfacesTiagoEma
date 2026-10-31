@@ -679,8 +679,8 @@ function initBlocka() {
                 );
             });
 
-            const section = document.querySelector('.pantalla-blocka__juego');
-            if (section) section.classList.add('blocka-tablero--completado');
+          // Por esta única línea:
+              tablero.classList.add('blocka-tablero--completado');
 
             let batiRecord = false;
             if (nivel === maxNivel) {
