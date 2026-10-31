@@ -219,10 +219,10 @@
 .blocka-tablero__pieza {
     width: 100%;
     height: 100%;
+    display: block;
     cursor: pointer;
     transition: transform var(--duracion-hover) ease;
 }
-
 /* Dificultades: la imagen de fondo mide lo mismo que el tablero (lado x 100% de cada pieza) */
 .blocka-tablero--4-piezas {
     grid-template-columns: repeat(var(--lado-blocka-4), 1fr);
