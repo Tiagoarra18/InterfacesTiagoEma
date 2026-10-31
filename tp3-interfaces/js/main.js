@@ -576,7 +576,7 @@ function initBlocka() {
         actualizarBotones();
       
         tablero.innerHTML = '';
-        tablero.className = 'blocka-tablero blocka-tablero--' + piezas + '-piezas';
+        tablero.className = `blocka-tablero blocka-tablero--${piezas}-piezas blocka-tablero--nivel-${nivel}`;
         
         const imgPath = imagenes[Math.floor(Math.random() * imagenes.length)];
         const img = new Image();
