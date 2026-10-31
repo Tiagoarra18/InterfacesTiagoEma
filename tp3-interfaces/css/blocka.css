@@ -215,7 +215,7 @@
     background-color: var(--color-tablero-blocka);
 }
 
-/* Cada pieza llena su celda y muestra su parte de la imagen (el JS fija la posición del fondo) */
+/* Cada pieza es un canvas que llena su celda con su porción de la imagen filtrada */
 .blocka-tablero__pieza {
     width: 100%;
     height: 100%;
@@ -223,37 +223,19 @@
     cursor: pointer;
     transition: transform var(--duracion-hover) ease;
 }
-/* Dificultades: la imagen de fondo mide lo mismo que el tablero (lado x 100% de cada pieza) */
+/* Dificultades: grilla de lado x lado celdas cuadradas */
 .blocka-tablero--4-piezas {
-    grid-template-columns: repeat(var(--lado-blocka-4), 1fr);
-    grid-template-rows: repeat(var(--lado-blocka-4), 1fr);
+    grid-template-columns: repeat(var(--lado-blocka-4), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--lado-blocka-4), minmax(0, 1fr));
 }
-.blocka-tablero--4-piezas .blocka-tablero__pieza {
-    background-size: calc(var(--lado-blocka-4) * 100%) calc(var(--lado-blocka-4) * 100%);
-}
-
 .blocka-tablero--9-piezas {
-    grid-template-columns: repeat(var(--lado-blocka-9), 1fr);
-    grid-template-rows: repeat(var(--lado-blocka-9), 1fr);
+    grid-template-columns: repeat(var(--lado-blocka-9), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--lado-blocka-9), minmax(0, 1fr));
 }
-.blocka-tablero--9-piezas .blocka-tablero__pieza {
-    background-size: calc(var(--lado-blocka-9) * 100%) calc(var(--lado-blocka-9) * 100%);
-}
-
 .blocka-tablero--16-piezas {
-    grid-template-columns: repeat(var(--lado-blocka-16), 1fr);
-    grid-template-rows: repeat(var(--lado-blocka-16), 1fr);
+    grid-template-columns: repeat(var(--lado-blocka-16), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--lado-blocka-16), minmax(0, 1fr));
 }
-.blocka-tablero--16-piezas .blocka-tablero__pieza {
-    background-size: calc(var(--lado-blocka-16) * 100%) calc(var(--lado-blocka-16) * 100%);
-}
-
-/* Niveles y Filtros */
-.blocka-tablero--nivel-0 .blocka-tablero__pieza { filter: grayscale(100%); }
-.blocka-tablero--nivel-1 .blocka-tablero__pieza { filter: brightness(30%); }
-.blocka-tablero--nivel-2 .blocka-tablero__pieza { filter: invert(100%); }
-.blocka-tablero--nivel-3 .blocka-tablero__pieza { filter: blur(2px); }
-.blocka-tablero--completado .blocka-tablero__pieza { filter: none; }
 
 /* Modales de instrucciones y de nivel completado */
 .blocka-modal {

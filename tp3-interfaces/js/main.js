@@ -6,6 +6,7 @@ const MENSAJES_ERROR = {
 };
 
 const PAGINA_INICIO = 'index.html';
+const FACTOR_BRILLO = 1.3;
 const DURACION_CARGA_MS = 5000;
 
 /* ---------- Mostrar / Ocultar contraseña ---------- */
@@ -457,7 +458,7 @@ function initBlocka() {
     let partidaIniciada = false;
     let ayudaUsada = false;
     let cargandoNivel = false; // Bloquea Comenzar mientras carga la imagen
-    let imagenOriginalActual = null; // Guarda la imagen para el final
+    let idCarga = 0; // Identifica la última carga pedida para descartar las anteriores
     
     const piezasConAyudita = 16;
     const segundosAyudita = 5;
@@ -478,7 +479,6 @@ function initBlocka() {
     const nivelEl = document.getElementById('blocka-nivel-actual');
     
     // --- FILTROS CANVAS (Técnica de las slides) ---
-    const FACTOR_BRILLO = 1.3;
 
     function aplicarFiltroGrises(imageData) {
         const data = imageData.data;
@@ -521,6 +521,30 @@ function initBlocka() {
                 data[i+2] = 255 - data[i+2];
             }
         }
+    }
+
+    function aplicarFiltroDelNivel(imageData) {
+        if (nivel === 1) aplicarFiltroGrises(imageData);
+        else if (nivel === 2) aplicarFiltroBrillo(imageData);
+        else aplicarFiltroNegativo(imageData);
+    }
+
+    // Dibuja el centro cuadrado de la imagen al tamaño del tablero y le aplica el filtro del nivel
+    function crearImagenFiltrada(img, tamano) {
+        const canvasImg = document.createElement('canvas');
+        canvasImg.width = tamano;
+        canvasImg.height = tamano;
+        const ctxImg = canvasImg.getContext('2d');
+
+        const ladoRecorte = Math.min(img.width, img.height);
+        const origenX = (img.width - ladoRecorte) / 2;
+        const origenY = (img.height - ladoRecorte) / 2;
+        ctxImg.drawImage(img, origenX, origenY, ladoRecorte, ladoRecorte, 0, 0, tamano, tamano);
+
+        const imageData = ctxImg.getImageData(0, 0, tamano, tamano);
+        aplicarFiltroDelNivel(imageData);
+        ctxImg.putImageData(imageData, 0, 0);
+        return canvasImg;
     }
 
     function claveRecord(cantidad) {
@@ -580,31 +604,21 @@ function initBlocka() {
         
         const imgPath = imagenes[Math.floor(Math.random() * imagenes.length)];
         const img = new Image();
-        img.src = imgPath;
-        
+        const cargaActual = ++idCarga;
         img.onload = () => {
-            imagenOriginalActual = img;
+            // Si mientras cargaba se pidió otro nivel o se volvió al menú, esta carga se descarta
+            if (cargaActual !== idCarga) return;
+
             const lado = Math.sqrt(piezas);
             piezasState = [];
 
-            // 1. Dibujar imagen completa en un canvas en memoria
-            const canvasImg = document.createElement('canvas');
-            canvasImg.width = img.width;
-            canvasImg.height = img.height;
-            const ctxImg = canvasImg.getContext('2d');
-            ctxImg.drawImage(img, 0, 0);
+            const tamano = tablero.clientWidth;
+            const canvasImg = crearImagenFiltrada(img, tamano);
+            // Las piezas son cuadradas: cada una ocupa una celda del tablero
+            const pieceWidth = tamano / lado;
+            const pieceHeight = tamano / lado;
 
-            // 2. Leer píxeles, aplicar el filtro correspondiente y reescribir
-            const imageData = ctxImg.getImageData(0, 0, canvasImg.width, canvasImg.height);
-            if (nivel === 1) aplicarFiltroGrises(imageData);
-            else if (nivel === 2) aplicarFiltroBrillo(imageData);
-            else if (nivel === 3) aplicarFiltroNegativo(imageData);
-            ctxImg.putImageData(imageData, 0, 0);
-
-            const pieceWidth = img.width / lado;
-            const pieceHeight = img.height / lado;
-
-            // 3. Crear el tablero
+            // Una pieza canvas por celda
             for (let i = 0; i < piezas; i++) {
                 const pieza = document.createElement('canvas');
                 pieza.className = 'blocka-tablero__pieza';
@@ -630,10 +644,10 @@ function initBlocka() {
                 pieza.dataset.totalRot = initialRot;
                 pieza.dataset.index = i;
                 
-                pieza.addEventListener('click', () => rotarPieza(i, -45));
+                pieza.addEventListener('click', () => rotarPieza(i, -90));
                 pieza.addEventListener('contextmenu', (e) => {
                     e.preventDefault();
-                    rotarPieza(i, 45);
+                    rotarPieza(i, 90);
                 });
                 
                 tablero.appendChild(pieza);
@@ -642,6 +656,7 @@ function initBlocka() {
             cargandoNivel = false;
             actualizarBotones();
         };
+        img.src = imgPath;
     }
 
     function rotarPieza(index, deg) {
@@ -663,24 +678,7 @@ function initBlocka() {
             detenerTemporizador();  
             actualizarBotones();
             
-            // 4. Redibujar la imagen original sin filtro para festejar
-            const lado = Math.sqrt(piezas);
-            const pieceWidth = imagenOriginalActual.width / lado;
-            const pieceHeight = imagenOriginalActual.height / lado;
-
-            Array.from(tablero.children).forEach((pieza, i) => {
-                const ctxPieza = pieza.getContext('2d');
-                const columna = i % lado;
-                const fila = Math.floor(i / lado);
-                ctxPieza.drawImage(
-                    imagenOriginalActual,
-                    columna * pieceWidth, fila * pieceHeight, pieceWidth, pieceHeight,
-                    0, 0, pieceWidth, pieceHeight
-                );
-            });
-
-          // Por esta única línea:
-              tablero.classList.add('blocka-tablero--completado');
+            tablero.classList.add('blocka-tablero--completado');
 
             let batiRecord = false;
             if (nivel === maxNivel) {
@@ -729,6 +727,7 @@ function initBlocka() {
     function mostrarMenu() {
         jugando = false;
         partidaIniciada = false;
+        idCarga++;
         detenerTemporizador();
         pantalla.classList.remove('pantalla-blocka--jugando');
         actualizarRecordUI();
