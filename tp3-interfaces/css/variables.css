@@ -536,7 +536,7 @@
    NUEVAS VARIABLES PARA BLOCKA
    ========================================================================== */
 :root {
-  --color-tablero-blocka: #1E1E1E;
+  --color-tablero-blocka: #ffffff;
   --color-borde-tablero: #33FF00;
   /* Pantalla del juego: mismo tamaño y radio que la imagen de juego.html */
   --proporcion-pantalla-juego: 1032 / 635;
@@ -547,6 +547,7 @@
   --espacio-pantalla-blocka: 3rem;           /* Entre el panel y el tablero */
   /* Tablero: tamaño total con el borde incluido; las piezas se reparten la grilla */
   --tamano-tablero-blocka: 35rem;
+  --solape-pieza-blocka: 0.0625rem;          /* 1px: coincide con SOLAPE_PIEZA de main.js */
   /* Piezas por lado de cada dificultad (4, 9 y 16 piezas) */
   --lado-blocka-4: 2;
   --lado-blocka-9: 3;

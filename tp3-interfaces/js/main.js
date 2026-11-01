@@ -6,7 +6,17 @@ const MENSAJES_ERROR = {
 };
 
 const PAGINA_INICIO = 'index.html';
-const FACTOR_BRILLO = 1.3;
+const FACTOR_BRILLO = 0.3;
+// Filtros que puede sortear cada pieza según el nivel de Blocka
+const FILTROS_POR_NIVEL = {
+    1: ['grises', 'brillo', 'negativo'],
+    2: ['grises', 'brillo', 'negativo'],
+    3: ['grises', 'brillo', 'negativo']
+};
+// Máximo de Ayuditas por nivel (cantidad de piezas), compartido entre todas sus imágenes
+const AYUDAS_POR_NIVEL = { 9: 2, 16: 5 };
+// Ayuditas gastadas por nivel; se reinicia solo al recargar la página
+const ayudasUsadasPorNivel = { 9: 0, 16: 0 };
 const DURACION_CARGA_MS = 5000;
 
 /* ---------- Mostrar / Ocultar contraseña ---------- */
@@ -456,14 +466,15 @@ function initBlocka() {
     const dificultades = [4, 9, 16];
     const pantalla = document.querySelector('.pantalla-blocka');
     let partidaIniciada = false;
-    let ayudaUsada = false;
     let cargandoNivel = false; // Bloquea Comenzar mientras carga la imagen
     let idCarga = 0; // Identifica la última carga pedida para descartar las anteriores
     
-    const piezasConAyudita = 16;
     const segundosAyudita = 5;
+    // Píxeles de imagen extra por lado de cada pieza; debe coincidir con --solape-pieza-blocka
+    const SOLAPE_PIEZA = 1;
     const btnComenzar = document.getElementById('btn-blocka-comenzar');
     const btnAyudita = document.getElementById('btn-blocka-ayudita');
+    const textoAyudita = btnAyudita.querySelector('.btn__texto');
     
     const imagenes = [
         'assets/img/blocka/1.webp',
@@ -523,14 +534,26 @@ function initBlocka() {
         }
     }
 
-    function aplicarFiltroDelNivel(imageData) {
-        if (nivel === 1) aplicarFiltroGrises(imageData);
-        else if (nivel === 2) aplicarFiltroBrillo(imageData);
-        else aplicarFiltroNegativo(imageData);
+    const FUNCIONES_FILTRO = {
+        grises: aplicarFiltroGrises,
+        brillo: aplicarFiltroBrillo,
+        negativo: aplicarFiltroNegativo
+    };
+
+    function sortearFiltro() {
+        const disponibles = FILTROS_POR_NIVEL[nivel];
+        return disponibles[Math.floor(Math.random() * disponibles.length)];
     }
 
-    // Dibuja el centro cuadrado de la imagen al tamaño del tablero y le aplica el filtro del nivel
-    function crearImagenFiltrada(img, tamano) {
+    // Lee los píxeles de la pieza, les aplica su único filtro y los vuelve a escribir
+    function filtrarPieza(ctxPieza, ancho, alto, filtro) {
+        const imageData = ctxPieza.getImageData(0, 0, ancho, alto);
+        FUNCIONES_FILTRO[filtro](imageData);
+        ctxPieza.putImageData(imageData, 0, 0);
+    }
+
+    // Dibuja el centro cuadrado de la imagen original (sin filtro) al tamaño del tablero
+    function crearImagenRecortada(img, tamano) {
         const canvasImg = document.createElement('canvas');
         canvasImg.width = tamano;
         canvasImg.height = tamano;
@@ -540,10 +563,6 @@ function initBlocka() {
         const origenX = (img.width - ladoRecorte) / 2;
         const origenY = (img.height - ladoRecorte) / 2;
         ctxImg.drawImage(img, origenX, origenY, ladoRecorte, ladoRecorte, 0, 0, tamano, tamano);
-
-        const imageData = ctxImg.getImageData(0, 0, tamano, tamano);
-        aplicarFiltroDelNivel(imageData);
-        ctxImg.putImageData(imageData, 0, 0);
         return canvasImg;
     }
 
@@ -569,11 +588,26 @@ function initBlocka() {
         return `${m}:${s}`;
     }
 
+    function ayudasRestantes() {
+        return AYUDAS_POR_NIVEL[piezas] - ayudasUsadasPorNivel[piezas];
+    }
+
+    // Muestra las Ayuditas que le quedan al nivel actual y lo marca agotado al llegar a 0
+    function actualizarBotonAyudita() {
+        const tieneAyudita = piezas in AYUDAS_POR_NIVEL;
+        btnAyudita.classList.toggle('btn--oculto', !(tieneAyudita && partidaIniciada));
+        if (!tieneAyudita) return;
+
+        const restantes = ayudasRestantes();
+        textoAyudita.textContent = `Ayudita (${restantes})`;
+        btnAyudita.classList.toggle('btn--agotado', restantes === 0);
+        btnAyudita.disabled = restantes === 0 || !jugando;
+    }
+
     function actualizarBotones() {
         // Bloquear Comenzar si ya empezó o si la imagen todavía está cargando
         btnComenzar.disabled = partidaIniciada || cargandoNivel;
-        btnAyudita.classList.toggle('btn--oculto', !(piezas === piezasConAyudita && partidaIniciada));
-        btnAyudita.disabled = ayudaUsada || !jugando;
+        actualizarBotonAyudita();
     }
 
     function detenerTemporizador() {
@@ -595,12 +629,11 @@ function initBlocka() {
 
     function setupNivel() {
         nivelEl.textContent = nivel;
-        ayudaUsada = false;
         cargandoNivel = true;
         actualizarBotones();
       
         tablero.innerHTML = '';
-        tablero.className = `blocka-tablero blocka-tablero--${piezas}-piezas blocka-tablero--nivel-${nivel}`;
+        tablero.className = `blocka-tablero blocka-tablero--${piezas}-piezas`;
         
         const imgPath = imagenes[Math.floor(Math.random() * imagenes.length)];
         const img = new Image();
@@ -612,29 +645,33 @@ function initBlocka() {
             const lado = Math.sqrt(piezas);
             piezasState = [];
 
-            const tamano = tablero.clientWidth;
-            const canvasImg = crearImagenFiltrada(img, tamano);
-            // Las piezas son cuadradas: cada una ocupa una celda del tablero
-            const pieceWidth = tamano / lado;
-            const pieceHeight = tamano / lado;
+            // Lado entero en píxeles para que los cortes no caigan en medio de un píxel
+            const ladoPieza = Math.ceil(tablero.clientWidth / lado);
+            const canvasImg = crearImagenRecortada(img, ladoPieza * lado);
+            // Cada pieza sortea un solo filtro entre los de su nivel
+            const filtrosPieza = Array.from({ length: piezas }, sortearFiltro);
+            // Cada pieza toma también el borde de sus vecinas para pisarlas y tapar las rendijas
+            const ladoCanvas = ladoPieza + SOLAPE_PIEZA * 2;
 
             // Una pieza canvas por celda
             for (let i = 0; i < piezas; i++) {
                 const pieza = document.createElement('canvas');
                 pieza.className = 'blocka-tablero__pieza';
-                pieza.width = pieceWidth;
-                pieza.height = pieceHeight;
+                pieza.width = ladoCanvas;
+                pieza.height = ladoCanvas;
                 
                 const ctxPieza = pieza.getContext('2d');
                 const columna = i % lado;
                 const fila = Math.floor(i / lado);
                 
-                // Dibujar solo la porción filtrada correspondiente a esta pieza
+                // Dibujar la porción original de esta pieza (con el solape) y aplicarle su filtro
                 ctxPieza.drawImage(
                     canvasImg,
-                    columna * pieceWidth, fila * pieceHeight, pieceWidth, pieceHeight,
-                    0, 0, pieceWidth, pieceHeight
+                    columna * ladoPieza - SOLAPE_PIEZA, fila * ladoPieza - SOLAPE_PIEZA, ladoCanvas, ladoCanvas,
+                    0, 0, ladoCanvas, ladoCanvas
                 );
+                filtrarPieza(ctxPieza, pieza.width, pieza.height, filtrosPieza[i]);
+                pieza.dataset.filtro = filtrosPieza[i];
                 
                 const rotations = [90, 180, 270];
                 const initialRot = rotations[Math.floor(Math.random() * rotations.length)];
@@ -747,7 +784,7 @@ function initBlocka() {
     document.getElementById('btn-blocka-menu').addEventListener('click', mostrarMenu);
 
     function usarAyudita() {
-        if (!jugando || ayudaUsada) return;
+        if (!jugando || !(piezas in AYUDAS_POR_NIVEL) || ayudasRestantes() === 0) return;
         const malUbicadas = piezasState
             .map((rotacion, indice) => (rotacion !== 0 ? indice : -1))
             .filter((indice) => indice !== -1);
@@ -764,7 +801,8 @@ function initBlocka() {
 
         tiempo += segundosAyudita;
         timerEl.textContent = formatTime(tiempo);
-        ayudaUsada = true;
+        // Solo se cuenta el uso si la ayuda acomodó una pieza
+        ayudasUsadasPorNivel[piezas]++;
         actualizarBotones();
         checkWin();
     }
