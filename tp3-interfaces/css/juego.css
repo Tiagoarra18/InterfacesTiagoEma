@@ -162,12 +162,110 @@ body.pagina-juego {
     max-width: 64.5rem;
 }
 
-.area-juego__imagen {
-    width: 100%; 
-    height: auto;
-    aspect-ratio: 1032 / 635;
+/* Peg Football: ocupa la misma caja que tenía la imagen del juego */
+.peg {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--proporcion-pantalla-juego);
+    border-radius: var(--radio-pantalla-blocka);
+    overflow: hidden;
+}
+
+/* El JS muestra y oculta cada capa con el atributo hidden */
+.peg [hidden] {
+    display: none;
+}
+
+/* Canvas del tablero: llena el contenedor; su tamaño interno lo iguala el JS */
+.peg__canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Cursores según lo que hay debajo del mouse */
+.peg__canvas--agarrar {
+    cursor: grab;
+}
+
+.peg__canvas--agarrando {
+    cursor: grabbing;
+}
+
+.peg__canvas--bloqueado {
+    cursor: not-allowed;
+}
+
+/* Pantalla de inicio: imagen de portada con el botón Jugar centrado */
+.peg__inicio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.peg__imagen-inicio {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 0.5rem;
+}
+
+.peg__boton-jugar {
+    width: var(--ancho-boton-jugar-peg);
+}
+
+/* Panel izquierdo: ocupa solo su zona, así el resto del canvas recibe el mouse */
+.peg__panel {
+    position: absolute;
+    top: 50%;
+    left: var(--margen-panel-peg);
+    width: var(--ancho-panel-peg);
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-panel-peg);
+    padding: var(--espacio-xl);
+    background-color: var(--color-tarjeta-fondo);
+    border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
+    border-radius: var(--radio-modal);
+}
+
+.peg__timer {
+    font-size: var(--tamano-texto-temporizador);
+    font-weight: var(--peso-bold);
+    text-align: center;
+}
+
+.peg__contador {
+    font-size: var(--tamano-texto-contador-peg);
+    text-align: center;
+}
+
+/* Cartel de fin de partida, centrado sobre el tablero */
+.peg__cartel {
+    position: absolute;
+    inset: 0;
+    width: var(--ancho-cartel-peg);
+    height: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+    padding: var(--espacio-xxl);
+    background-color: var(--color-modal-cuerpo);
+    border: var(--borde-grueso) solid var(--color-borde);
+    border-radius: var(--radio-modal);
+    text-align: center;
+}
+
+.peg__titulo-cartel {
+    font-size: var(--tamano-titulo-cartel-peg);
+    font-weight: var(--peso-bold);
 }
 
 .revision-juego {

@@ -841,6 +841,14 @@ function initBlocka() {
     mostrarMenu();
 }
 
+/* ---------- Peg Football (las clases están en js/juego/) ---------- */
+
+function iniciarPegFootball() {
+    const contenedor = document.querySelector('.peg');
+    if (!contenedor) return;
+    new Juego(contenedor);
+}
+
 /* ---------- Inicialización Global ---------- */
 
 iniciarOjos();
@@ -852,3 +860,4 @@ iniciarCarruselesSecundarios();
 iniciarMenuPerfil();
 iniciarMenuCategorias();
 initBlocka();
+iniciarPegFootball();

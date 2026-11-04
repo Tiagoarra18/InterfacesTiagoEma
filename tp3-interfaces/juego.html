@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/juego.css">
+    <!-- Estilos de los botones .btn compartidos con Blocka -->
+    <link rel="stylesheet" href="css/blocka.css">
 </head>
 <body class="pagina-juego">
 
@@ -111,7 +113,39 @@
             <!-- ÁREA PRINCIPAL DEL JUEGO Y REVIEW -->
             <section class="area-juego">
                 <div class="area-juego__principal">
-                    <img src="assets/img/pegPrincipal.webp" alt="Peg Football Canvas" class="area-juego__imagen">
+                    <!-- Juego Peg Football: canvas con el tablero y capas HTML superpuestas -->
+                    <div class="peg">
+                        <canvas class="peg__canvas" hidden>Tablero de Peg Football</canvas>
+
+                        <div class="peg__inicio">
+                            <img src="assets/img/pegPrincipal.webp" alt="Portada de Peg Football" class="peg__imagen-inicio">
+                            <button type="button" class="btn btn--primario peg__boton-jugar" disabled>
+                                <span class="btn__texto">Jugar</span>
+                            </button>
+                        </div>
+
+                        <aside class="peg__panel" hidden>
+                            <p class="peg__timer"><time class="peg__tiempo">02:00</time></p>
+                            <p class="peg__contador">Fichas para ganar: <span class="peg__fichas-restantes">31</span></p>
+                            <button type="button" class="btn btn--primario peg__boton-iniciar">
+                                <span class="btn__texto peg__texto-iniciar">Iniciar</span>
+                            </button>
+                            <button type="button" class="btn btn--secundario peg__boton-salir">
+                                <span class="btn__texto">Salir</span>
+                            </button>
+                        </aside>
+
+                        <section class="peg__cartel" role="dialog" aria-labelledby="peg-titulo-cartel" hidden>
+                            <h2 class="peg__titulo-cartel" id="peg-titulo-cartel"></h2>
+                            <p class="peg__texto-cartel"></p>
+                            <button type="button" class="btn btn--primario peg__boton-seguir">
+                                <span class="btn__texto">Seguir jugando</span>
+                            </button>
+                            <button type="button" class="btn btn--secundario peg__boton-salir-cartel">
+                                <span class="btn__texto">Salir</span>
+                            </button>
+                        </section>
+                    </div>
                 </div>
 
                 <aside class="revision-juego">
@@ -149,7 +183,17 @@
                             movimientos en diagonal.
                         </p>
                         <p class="ficha-juego__texto">
-                            <strong>Objetivo:</strong> terminar el juego con una única pelota en el tablero.
+                            <strong>Objetivo:</strong> terminar el juego con una única pelota en el tablero
+                            antes de que pasen los 2 minutos del timer.
+                        </p>
+                        <p class="ficha-juego__texto">
+                            <strong>Resultados:</strong> si queda una sola pelota en el agujero central es una
+                            victoria perfecta; si queda una sola en otro agujero, una victoria. Si no quedan
+                            movimientos con más de una pelota, o se termina el tiempo, es una derrota.
+                        </p>
+                        <p class="ficha-juego__texto">
+                            <strong>Tipos de pelota:</strong> en cada partida las pelotas se reparten al azar
+                            entre clásicas, doradas, rojas y celestes. El tipo es solo visual: todas se mueven igual.
                         </p>
                     </article>
 
@@ -160,7 +204,7 @@
                         <ul class="lista-controles">
                             <li class="lista-controles__item">
                                 <img src="assets/icons/click-izquierdo.png" alt="Clic Izquierdo" class="lista-controles__icono">
-                                <span class="lista-controles__texto"><strong>Clic Izquierdo:</strong> seleccionar una pelota y realizar un movimiento.</span>
+                                <span class="lista-controles__texto"><strong>Arrastrar y soltar:</strong> mantené el clic izquierdo sobre una pelota, arrastrala y soltala en un agujero marcado con la flecha.</span>
                             </li>
                             <li class="lista-controles__item">
                                 <img src="assets/icons/mover-el-boton.png" alt="Movimiento" class="lista-controles__icono">
@@ -168,7 +212,7 @@
                             </li>
                             <li class="lista-controles__item">
                                 <img src="assets/icons/reiniciar.png" alt="Reiniciar" class="lista-controles__icono">
-                                <span class="lista-controles__texto"><strong>Reiniciar:</strong> vuelve el tablero a su estado inicial.</span>
+                                <span class="lista-controles__texto"><strong>Iniciar / Reiniciar:</strong> Iniciar arranca el timer de 2 minutos; Reiniciar vuelve el tablero y el timer a su estado inicial.</span>
                             </li>
                         </ul>
                     </article>
@@ -406,6 +450,13 @@
         </footer>
 
     </div>
-    <script src="js/main.js"></script>
+    <!-- Clases del juego en orden de dependencia; main.js también con defer para ejecutarse después -->
+    <script src="js/juego/figura.js" defer></script>
+    <script src="js/juego/ficha.js" defer></script>
+    <script src="js/juego/casillero.js" defer></script>
+    <script src="js/juego/tablero.js" defer></script>
+    <script src="js/juego/hint.js" defer></script>
+    <script src="js/juego/juego.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html> 
