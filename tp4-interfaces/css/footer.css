@@ -1,0 +1,132 @@
+/* Mobile First: en mobile y tablet el bloque central va arriba y las columnas en grilla.
+   Desde 75rem (desktop) queda igual al footer de login. */
+
+/* Mismo reseteo que aplica login.css con *, acotado al footer: así se ve igual en todas las páginas */
+.pie-pagina,
+.pie-pagina * {
+  box-sizing: border-box;
+  margin: var(--espacio-cero);
+  padding: var(--espacio-cero);
+}
+
+.pie-pagina {
+  width: 100%;
+  height: var(--alto-pie-pagina);
+  padding-block: var(--espacio-pie-pagina-y);
+  background-color: var(--color-footer-fondo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pie-pagina__contenedor {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-pagina__columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-filas-pie-pagina) var(--espacio-columnas-pie-pagina);
+  padding-left: var(--espacio-pie-pagina-x);
+  padding-right: var(--espacio-pie-pagina-x);
+}
+
+.columna-pie {
+  display: flex;
+  flex-direction: column;
+}
+
+.columna-pie__titulo {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-bold);
+  font-size: var(--tamano-footer-titulo);
+  color: var(--color-footer-titulo);
+  margin-bottom: var(--espacio-columna-footer);
+}
+
+.columna-pie__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-columna-footer);
+}
+
+.columna-pie__enlace {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-footer-link);
+  color: var(--color-texto-gris);
+  text-decoration: none;
+}
+
+.pie-pagina__seccion-central {
+  grid-column: 1 / -1;
+  order: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-md);
+  text-align: center;
+}
+
+.pie-pagina__logo {
+  width: var(--tamano-logo-pie-pagina);
+  height: var(--tamano-logo-pie-pagina);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.redes-pie {
+  display: flex;
+  gap: var(--espacio-lg);
+}
+
+.redes-pie__icono {
+  width: var(--tamano-redes-footer);
+  height: var(--tamano-redes-footer);
+}
+
+.pie-pagina__derechos {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.pie-pagina__texto-derechos {
+  font-family: var(--fuente-principal);
+  font-weight: var(--peso-regular);
+  font-size: var(--tamano-derechos-pie-pagina);
+  color: var(--color-texto-blanco);
+}
+
+.pie-pagina__icono-copyright {
+  width: var(--tamano-copyright-icon-width);
+  height: var(--tamano-copyright-icon-height);
+}
+
+/* Tablet: las 4 columnas en una fila, debajo del bloque central */
+@media (min-width: 48rem) {
+  .pie-pagina__columnas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: 5 columnas en fila con el bloque central en el medio, como en login */
+@media (min-width: 75rem) {
+  .pie-pagina__columnas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .pie-pagina__seccion-central {
+    grid-column: auto;
+    order: 0;
+    text-align: start;
+  }
+}

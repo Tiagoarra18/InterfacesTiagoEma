@@ -571,29 +571,6 @@
   --radio-modal: 1rem;
 }
 
-/* ==========================================================================
-   PEG FOOTBALL
-   ========================================================================== */
-:root {
-  /* Panel izquierdo: en % del área para no tapar los agujeros (empiezan cerca del 31.7%) */
-  --ancho-panel-peg: 27%;
-  --margen-panel-peg: 1.5%;
-  --espacio-panel-peg: 1rem;
-  --tamano-texto-contador-peg: 1.1rem;
-  /* Botón "Jugar" de la pantalla de inicio */
-  --ancho-boton-jugar-peg: 12rem;
-  /* Cartel de fin de partida */
-  --ancho-cartel-peg: 26rem;
-  --tamano-titulo-cartel-peg: 2rem;
-  /* Colores que usa el canvas (los lee juego.js con getComputedStyle) */
-  --color-ficha-dorada-peg: #E6B422;
-  --color-ficha-roja-peg: #D62828;
-  --color-ficha-celeste-peg: #5BC0EB;
-  --color-hint-peg: #FFD60A;
-  --color-resaltado-peg: #22D3EE;
-}
-
-
   html {
   scrollbar-gutter: stable;
 }
