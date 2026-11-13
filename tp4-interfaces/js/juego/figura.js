@@ -1,13 +1,9 @@
-/**
- * Figura base que se dibuja en el canvas: guarda su posición, su relleno y el contexto donde se dibuja.
- */
 class Figura {
     /**
-     * Crea una figura.
-     * @param {number} posX Posición X en el canvas.
-     * @param {number} posY Posición Y en el canvas.
-     * @param {string|CanvasPattern} fill Relleno de la figura (color o pattern).
-     * @param {CanvasRenderingContext2D} context Contexto 2D donde se dibuja.
+     * @param {number} posX
+     * @param {number} posY 
+     * @param {string|CanvasPattern} fill
+     * @param {CanvasRenderingContext2D} context
      */
     constructor(posX, posY, fill, context) {
         this.posX = posX;
@@ -17,7 +13,6 @@ class Figura {
     }
 
     /**
-     * Devuelve la posición X.
      * @returns {number} Posición X en el canvas.
      */
     getPosX() {
@@ -34,7 +29,6 @@ class Figura {
     }
 
     /**
-     * Devuelve la posición Y.
      * @returns {number} Posición Y en el canvas.
      */
     getPosY() {
@@ -42,7 +36,6 @@ class Figura {
     }
 
     /**
-     * Cambia la posición Y.
      * @param {number} posY Nueva posición Y.
      * @returns {void}
      */
@@ -51,7 +44,6 @@ class Figura {
     }
 
     /**
-     * Devuelve el relleno.
      * @returns {string|CanvasPattern} Relleno de la figura.
      */
     getFill() {
@@ -59,7 +51,6 @@ class Figura {
     }
 
     /**
-     * Cambia el relleno.
      * @param {string|CanvasPattern} fill Nuevo relleno.
      * @returns {void}
      */
@@ -68,16 +59,14 @@ class Figura {
     }
 
     /**
-     * Devuelve el contexto donde se dibuja.
-     * @returns {CanvasRenderingContext2D} Contexto 2D.
+     * @returns {CanvasRenderingContext2D}
      */
     getContext() {
         return this.context;
     }
 
     /**
-     * Cambia el contexto donde se dibuja.
-     * @param {CanvasRenderingContext2D} context Nuevo contexto 2D.
+     * @param {CanvasRenderingContext2D} context
      * @returns {void}
      */
     setContext(context) {
@@ -85,7 +74,6 @@ class Figura {
     }
 
     /**
-     * Dibuja la figura. Cada subclase define su propia forma.
      * @returns {void}
      */
     draw() {

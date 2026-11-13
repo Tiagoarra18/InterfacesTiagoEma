@@ -1,15 +1,11 @@
-/**
- * Indicador animado sobre un agujero destino: un anillo que pulsa y una flecha que rebota.
- */
 class Hint {
     /** Velocidad de la oscilación en radianes por segundo */
     static VELOCIDAD = 6;
 
     /**
-     * Crea un hint sobre un casillero.
-     * @param {Casillero} casillero Casillero destino que se marca.
-     * @param {CanvasRenderingContext2D} context Contexto 2D donde se dibuja.
-     * @param {string} color Color del anillo y de la flecha.
+     * @param {Casillero} casillero
+     * @param {CanvasRenderingContext2D} context
+     * @param {string} color 
      */
     constructor(casillero, context, color) {
         this.casillero = casillero;
@@ -18,16 +14,13 @@ class Hint {
     }
 
     /**
-     * Devuelve el casillero que marca.
-     * @returns {Casillero} Casillero destino.
+     * @returns {Casillero}
      */
     getCasillero() {
         return this.casillero;
     }
 
     /**
-     * Dibuja el hint en un momento de la animación. El radio y la opacidad del anillo
-     * oscilan con Math.sin(tiempo); la flecha sube y baja con su valor absoluto.
      * @param {number} tiempo Tiempo actual en segundos.
      * @returns {void}
      */
@@ -38,7 +31,6 @@ class Hint {
     }
 
     /**
-     * Dibuja el anillo que pulsa alrededor del agujero.
      * @param {number} oscilacion Valor entre -1 y 1.
      * @returns {void}
      */
@@ -57,8 +49,7 @@ class Hint {
     }
 
     /**
-     * Dibuja la flecha arriba del agujero, apuntando hacia él.
-     * @param {number} rebote Valor entre 0 y 1 que la aleja del agujero.
+     * @param {number} rebote 
      * @returns {void}
      */
     dibujarFlecha(rebote) {

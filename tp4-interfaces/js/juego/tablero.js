@@ -1,7 +1,3 @@
-/**
- * Tablero en cruz de 33 agujeros: dibuja la imagen de fondo, guarda la matriz de casilleros
- * y las fichas, y aplica las reglas de movimiento.
- */
 class Tablero {
     /** Tamaño original de tableroSinFichas.jpg, sobre el que se midieron los agujeros */
     static ANCHO_IMAGEN = 1599;
@@ -18,11 +14,10 @@ class Tablero {
     static DIRECCIONES = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
     /**
-     * Crea el tablero y su matriz de casilleros escalada al tamaño del canvas.
-     * @param {HTMLImageElement} imagen Imagen del tablero vacío.
-     * @param {CanvasRenderingContext2D} context Contexto 2D donde se dibuja.
-     * @param {number} ancho Ancho del canvas en px.
-     * @param {number} alto Alto del canvas en px.
+     * @param {HTMLImageElement} imagen
+     * @param {CanvasRenderingContext2D} context
+     * @param {number} ancho
+     * @param {number} alto 
      */
     constructor(imagen, context, ancho, alto) {
         this.imagen = imagen;
@@ -38,8 +33,7 @@ class Tablero {
     }
 
     /**
-     * Arma la matriz 7 x 7 con un Casillero en cada posición válida y null en el resto.
-     * @returns {Array<Array<Casillero|null>>} Matriz de casilleros.
+     * @returns {Array<Array<Casillero|null>>} 
      */
     crearCasilleros() {
         const matriz = [];
@@ -57,10 +51,9 @@ class Tablero {
     }
 
     /**
-     * Indica si una posición de la matriz es un agujero de la cruz.
-     * @param {number} fila Fila de 0 a 6.
-     * @param {number} columna Columna de 0 a 6.
-     * @returns {boolean} true si es un agujero.
+     * @param {number} fila 
+     * @param {number} columna 
+     * @returns {boolean}
      */
     esPosicionValida(fila, columna) {
         if (fila < 0 || fila >= Tablero.TAMANO || columna < 0 || columna >= Tablero.TAMANO) {
@@ -71,17 +64,15 @@ class Tablero {
     }
 
     /**
-     * Devuelve el casillero de una posición.
-     * @param {number} fila Fila de 0 a 6.
-     * @param {number} columna Columna de 0 a 6.
-     * @returns {Casillero|null} Casillero o null si la posición no es un agujero.
+     * @param {number} fila 
+     * @param {number} columna 
+     * @returns {Casillero|null} 
      */
     obtenerCasillero(fila, columna) {
         return this.esPosicionValida(fila, columna) ? this.casilleros[fila][columna] : null;
     }
 
     /**
-     * Devuelve todos los casilleros válidos en una lista.
      * @returns {Casillero[]} Los 33 casilleros.
      */
     obtenerCasilleros() {
@@ -89,8 +80,6 @@ class Tablero {
     }
 
     /**
-     * Calcula a dónde puede saltar una ficha: en línea recta sobre una ficha vecina
-     * hasta el agujero vacío que está justo detrás.
      * @param {Ficha} ficha Ficha a mover.
      * @returns {Array<{destino: Casillero, saltado: Casillero}>} Movimientos válidos.
      */
@@ -107,8 +96,27 @@ class Tablero {
         return movimientos;
     }
 
+    obtenerDestinosInvalidos(ficha) {
+        const origen = ficha.getCasillero();
+        const validos = this.obtenerDestinosValidos(ficha);
+        const casilleros = this.obtenerCasilleros();
+        const movimientosI = [];
+        for (const casillero of casilleros) {
+            let invalido = 0;
+            for (let i = 0; i < validos.length && invalido === 0; i++) {
+                if (validos[i].destino === casillero) {
+                    invalido = 1;
+                }
+            }
+            if (invalido === 0) {
+                movimientosI.push(casillero);
+            }
+            invalido = 0;
+        }
+        return movimientosI;
+    }
+
     /**
-     * Mueve la ficha del origen al destino y retira la ficha saltada.
      * @param {Casillero} origen Casillero de la ficha que salta.
      * @param {Casillero} destino Casillero vacío donde cae.
      * @returns {Ficha} La ficha retirada.
@@ -130,7 +138,6 @@ class Tablero {
     }
 
     /**
-     * Indica si alguna ficha todavía puede saltar.
      * @returns {boolean} true si queda al menos un movimiento.
      */
     hayMovimientosPosibles() {
@@ -138,7 +145,6 @@ class Tablero {
     }
 
     /**
-     * Cuenta las fichas que quedan en el tablero.
      * @returns {number} Cantidad de fichas.
      */
     contarFichas() {
@@ -146,7 +152,6 @@ class Tablero {
     }
 
     /**
-     * Indica si un casillero es el agujero central.
      * @param {Casillero} casillero Casillero a revisar.
      * @returns {boolean} true si es el (3, 3).
      */
@@ -155,8 +160,6 @@ class Tablero {
     }
 
     /**
-     * Vuelve a la posición inicial: una ficha en cada agujero menos el central,
-     * con un tipo visual sorteado para cada una.
      * @param {Object<string, CanvasPattern>} variantes Pattern de cada tipo de ficha.
      * @returns {void}
      */
@@ -177,7 +180,6 @@ class Tablero {
     }
 
     /**
-     * Devuelve las fichas que quedan.
      * @returns {Ficha[]} Fichas del tablero.
      */
     getFichas() {
@@ -185,7 +187,6 @@ class Tablero {
     }
 
     /**
-     * Devuelve el radio de las fichas.
      * @returns {number} Radio en px del canvas.
      */
     getRadioFicha() {
@@ -193,7 +194,6 @@ class Tablero {
     }
 
     /**
-     * Dibuja la imagen del tablero ocupando todo el canvas.
      * @returns {void}
      */
     draw() {

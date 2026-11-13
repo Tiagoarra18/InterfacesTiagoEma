@@ -1,26 +1,19 @@
-/**
- * Controla el Peg Football: estados de la partida, timer, contador, capas HTML y eventos del mouse.
- * Estados: 'inicio' (portada), 'listo' (fichas visibles y bloqueadas), 'jugando' y 'terminado'.
- */
 class Juego {
     static DURACION_PARTIDA_MS = 2 * 60 * 1000;
     static INTERVALO_TIMER_MS = 1000;
     static DURACION_RETORNO_MS = 200;
     static RUTA_TABLERO = 'assets/img/tableroSinFichas.jpg';
     static RUTA_FICHA = 'assets/img/ficha.jpg';
-    /** Un píxel es parte de la pelota si es bastante opaco y no es blanco (fondo transparente o blanco) */
     static UMBRAL_ALFA = 128;
     static UMBRAL_BLANCO = 235;
     /** Aclara un poco las variantes teñidas para que los paños claros no queden apagados */
     static BRILLO_TINTE = 1.15;
-    /** Tipos de ficha y la variable de variables.css con su tinte (la clásica no se tiñe) */
     static TINTES = {
         clasica: null,
         dorada: '--color-ficha-dorada-peg',
         roja: '--color-ficha-roja-peg',
         celeste: '--color-ficha-celeste-peg'
     };
-    /** Título y texto de cada cartel de fin; el texto recibe las fichas que quedaron */
     static RESULTADOS = {
         perfecta: {
             titulo: '¡Victoria perfecta!',
@@ -42,8 +35,7 @@ class Juego {
     static CLASES_CURSOR = ['peg__canvas--agarrar', 'peg__canvas--agarrando'];
 
     /**
-     * Crea el juego dentro de su contenedor, registra los eventos y empieza a cargar las imágenes.
-     * @param {HTMLElement} contenedor Elemento .peg con el canvas y las capas HTML.
+     * @param {HTMLElement} contenedor
      */
     constructor(contenedor) {
         this.canvas = contenedor.querySelector('.peg__canvas');
@@ -86,7 +78,6 @@ class Juego {
     /* ---------- Preparación ---------- */
 
     /**
-     * Lee de variables.css los colores que usa el canvas.
      * @returns {void}
      */
     leerColores() {
@@ -100,9 +91,8 @@ class Juego {
     }
 
     /**
-     * Convierte un color hexadecimal (#RRGGBB) en sus tres canales.
-     * @param {string} hex Color en formato #RRGGBB.
-     * @returns {{r: number, g: number, b: number}} Canales de 0 a 255.
+     * @param {string} hex 
+     * @returns {{r: number, g: number, b: number}}
      */
     convertirHexARgb(hex) {
         return {
@@ -113,7 +103,6 @@ class Juego {
     }
 
     /**
-     * Carga las imágenes del tablero y de la pelota; cuando cargaron las dos, prepara los recursos.
      * @returns {void}
      */
     cargarImagenes() {
@@ -133,7 +122,6 @@ class Juego {
     }
 
     /**
-     * Recorta la pelota una sola vez y habilita el botón Jugar.
      * @returns {void}
      */
     prepararRecursos() {
@@ -142,10 +130,9 @@ class Juego {
     }
 
     /**
-     * Crea un canvas auxiliar (fuera del DOM) de un tamaño dado.
-     * @param {number} ancho Ancho en px.
-     * @param {number} alto Alto en px.
-     * @returns {HTMLCanvasElement} Canvas nuevo.
+     * @param {number} ancho 
+     * @param {number} alto
+     * @returns {HTMLCanvasElement}
      */
     crearCanvasAuxiliar(ancho, alto) {
         const canvas = document.createElement('canvas');
@@ -155,8 +142,6 @@ class Juego {
     }
 
     /**
-     * Busca la pelota dentro de ficha.jpg recorriendo sus píxeles: guarda el cuadrado
-     * que contiene a todos los píxeles de la pelota (centro y diámetro).
      * @returns {void}
      */
     recortarPelota() {
@@ -188,11 +173,10 @@ class Juego {
         };
     }
 
-    /**
-     * Indica si un píxel pertenece a la pelota: es opaco y no es blanco de fondo.
-     * @param {Uint8ClampedArray} data Datos RGBA de la imagen.
-     * @param {number} i Índice del canal rojo del píxel.
-     * @returns {boolean} true si es parte de la pelota.
+    /**.
+     * @param {Uint8ClampedArray} data RGBA
+     * @param {number} i Indice
+     * @returns {boolean} 
      */
     esPixelDePelota(data, i) {
         const esOpaco = data[i + 3] > Juego.UMBRAL_ALFA;
@@ -201,8 +185,6 @@ class Juego {
     }
 
     /**
-     * Genera un pattern por tipo de ficha: copia el recorte de la pelota al tamaño de la ficha
-     * y, para las variantes de color, la tiñe píxel a píxel.
      * @returns {void}
      */
     generarVariantes() {
@@ -223,11 +205,9 @@ class Juego {
     }
 
     /**
-     * Tiñe una imagen manteniendo sus sombras: cada píxel toma el color del tinte
-     * multiplicado por su luminancia (BT.601: 0.299 R + 0.587 G + 0.114 B).
-     * @param {CanvasRenderingContext2D} ctxVariante Contexto con la pelota dibujada.
-     * @param {number} lado Lado del canvas en px.
-     * @param {{r: number, g: number, b: number}} tinte Color del tinte.
+     * @param {CanvasRenderingContext2D} ctxVariante
+     * @param {number} lado en px
+     * @param {{r: number, g: number, b: number}} tinte
      * @returns {void}
      */
     aplicarTinte(ctxVariante, lado, tinte) {
@@ -247,7 +227,6 @@ class Juego {
     }
 
     /**
-     * Iguala el tamaño interno del canvas al tamaño con que se muestra, así las coordenadas coinciden.
      * @returns {void}
      */
     ajustarTamanoCanvas() {
@@ -258,7 +237,6 @@ class Juego {
     /* ---------- Eventos ---------- */
 
     /**
-     * Registra los eventos del canvas y de los botones.
      * @returns {void}
      */
     registrarEventos() {
@@ -274,10 +252,9 @@ class Juego {
     }
 
     /**
-     * Pasa la posición del mouse a coordenadas del canvas (por si se muestra a otro tamaño).
      * @param {MouseEvent} e Evento del mouse.
      * @returns {{x: number, y: number}} Posición en px del canvas.
-     */
+     */ 
     obtenerPosicionMouse(e) {
         return {
             x: e.offsetX * this.canvas.width / this.canvas.clientWidth,
@@ -286,13 +263,11 @@ class Juego {
     }
 
     /**
-     * Levanta la ficha clickeada y la resalta. Si tiene movimientos válidos, crea los hints
-     * de sus destinos; si no tiene, se levanta igual pero sin hints, porque no hay destinos.
      * @param {MouseEvent} e Evento mousedown.
      * @returns {void}
      */
-    onMouseDown(e) {
-        if (this.estado !== 'jugando' || this.fichaArrastrada !== null || this.animacionRetorno !== null) {
+  onMouseDown(e) {
+        if (this.estado !== 'jugando', this.fichaArrastrada !== null, this.animacionRetorno !== null) {
             return;
         }
         const { x, y } = this.obtenerPosicionMouse(e);
@@ -301,17 +276,17 @@ class Juego {
             return;
         }
         const destinos = this.tablero.obtenerDestinosValidos(ficha);
+        const destinosI = this.tablero.obtenerDestinosInvalidos(ficha);
         this.fichaArrastrada = ficha;
         this.destinos = destinos;
+        this.destinosInvalidos = destinosI;
         this.offsetAgarre = { x: x - ficha.getPosX(), y: y - ficha.getPosY() };
-        this.hints = destinos.map(({ destino }) => new Hint(destino, this.ctx, this.colorHint));
+        this.hints = destinosI.map(({ destino }) => new Hint(destino, this.ctx, this.colorHint));
         ficha.setResaltada(true);
         this.actualizarCursor(x, y);
         this.iniciarLoop();
     }
-
     /**
-     * Mueve la ficha arrastrada con el mouse o, si no hay ninguna, actualiza el cursor.
      * @param {MouseEvent} e Evento mousemove.
      * @returns {void}
      */
@@ -326,7 +301,6 @@ class Juego {
     }
 
     /**
-     * Suelta la ficha: si cae en un destino válido hace el salto; si no, la devuelve a su casillero.
      * @param {MouseEvent} e Evento mouseup.
      * @returns {void}
      */
@@ -345,7 +319,6 @@ class Juego {
     }
 
     /**
-     * Si el mouse sale del canvas con una ficha levantada, la devuelve a su casillero.
      * @returns {void}
      */
     onMouseLeave() {
@@ -356,10 +329,8 @@ class Juego {
     }
 
     /**
-     * Elige el cursor según lo que hay debajo del mouse: cualquier ficha se puede levantar,
-     * así que siempre muestra "agarrar", tenga o no movimientos válidos.
-     * @param {number} x Coordenada X en px del canvas.
-     * @param {number} y Coordenada Y en px del canvas.
+     * @param {number} x 
+     * @param {number} y 
      * @returns {void}
      */
     actualizarCursor(x, y) {
@@ -372,7 +343,6 @@ class Juego {
     }
 
     /**
-     * Deja en el canvas solo la clase de cursor indicada.
      * @param {string|null} clase Clase de cursor o null para el cursor normal.
      * @returns {void}
      */
@@ -386,9 +356,9 @@ class Juego {
     /* ---------- Jugadas ---------- */
 
     /**
-     * Busca la ficha que está debajo de un punto, empezando por las dibujadas más arriba.
-     * @param {number} x Coordenada X en px del canvas.
-     * @param {number} y Coordenada Y en px del canvas.
+ 
+     * @param {number} x 
+     * @param {number} y 
      * @returns {Ficha|null} Ficha encontrada o null.
      */
     buscarFichaEn(x, y) {
@@ -402,7 +372,6 @@ class Juego {
     }
 
     /**
-     * Hace el salto de la ficha arrastrada al destino, actualiza el contador y revisa si terminó el juego.
      * @param {Casillero} destino Casillero donde se soltó.
      * @returns {void}
      */
@@ -417,7 +386,6 @@ class Juego {
     }
 
     /**
-     * Empieza la animación que devuelve la ficha levantada a su casillero.
      * @returns {void}
      */
     devolverFicha() {
@@ -437,7 +405,6 @@ class Juego {
     }
 
     /**
-     * Avanza la animación de retorno con interpolación lineal a + (b - a) * t.
      * @param {number} ahora Tiempo actual en ms (el de requestAnimationFrame).
      * @returns {void}
      */
@@ -453,8 +420,7 @@ class Juego {
     }
 
     /**
-     * Saca el resaltado y olvida la ficha levantada, sus destinos, sus hints y la animación de retorno.
-     * Si la ficha no estaba en su casillero, la vuelve a centrar sin animación.
+
      * @returns {void}
      */
     limpiarArrastre() {
@@ -470,7 +436,6 @@ class Juego {
     }
 
     /**
-     * Si ya no quedan movimientos, termina la partida con el resultado que corresponda.
      * @returns {void}
      */
     verificarFin() {
@@ -490,7 +455,6 @@ class Juego {
     /* ---------- Estados ---------- */
 
     /**
-     * "Jugar": muestra el canvas y el panel con las fichas en su posición inicial (estado listo).
      * @returns {void}
      */
     jugar() {
@@ -504,8 +468,6 @@ class Juego {
     }
 
     /**
-     * Deja una partida nueva sin empezar: tablero inicial, timer en 02:00, fichas bloqueadas
-     * y el botón principal con el texto "Iniciar".
      * @returns {void}
      */
     prepararPartida() {
@@ -524,7 +486,6 @@ class Juego {
     }
 
     /**
-     * Botón principal del panel: Iniciar en estado listo, Reiniciar mientras se juega.
      * @returns {void}
      */
     alternarIniciar() {
@@ -536,7 +497,6 @@ class Juego {
     }
 
     /**
-     * "Iniciar": arranca el timer, habilita las fichas y cambia el botón a "Reiniciar".
      * @returns {void}
      */
     iniciar() {
@@ -546,7 +506,6 @@ class Juego {
     }
 
     /**
-     * "Salir": detiene y resetea todo y vuelve a la portada con el botón Jugar.
      * @returns {void}
      */
     salir() {
@@ -558,7 +517,6 @@ class Juego {
     }
 
     /**
-     * Termina la partida: detiene el timer y la animación, bloquea las fichas y muestra el cartel.
      * @param {string} resultado 'perfecta', 'victoria', 'derrota' o 'tiempo'.
      * @returns {void}
      */
@@ -576,7 +534,6 @@ class Juego {
     /* ---------- Interfaz ---------- */
 
     /**
-     * Muestra el cartel de fin con el título y el texto del resultado.
      * @param {string} resultado Clave de Juego.RESULTADOS.
      * @returns {void}
      */
@@ -588,7 +545,6 @@ class Juego {
     }
 
     /**
-     * Oculta el cartel de fin.
      * @returns {void}
      */
     ocultarCartel() {
@@ -596,7 +552,6 @@ class Juego {
     }
 
     /**
-     * Muestra cuántas fichas faltan sacar para ganar (fichas en el tablero menos 1).
      * @returns {void}
      */
     actualizarContador() {
@@ -604,7 +559,6 @@ class Juego {
     }
 
     /**
-     * Escribe el tiempo restante en el panel.
      * @param {number} ms Tiempo restante en milisegundos.
      * @returns {void}
      */
@@ -613,7 +567,6 @@ class Juego {
     }
 
     /**
-     * Pasa milisegundos a formato mm:ss (redondeando hacia arriba los segundos).
      * @param {number} ms Tiempo en milisegundos.
      * @returns {string} Tiempo con formato mm:ss.
      */
@@ -625,8 +578,7 @@ class Juego {
 
     /* ---------- Timer ---------- */
 
-    /**
-     * Guarda el momento de fin y revisa cada segundo cuánto falta, así el timer no se desfasa.
+    /** 
      * @returns {void}
      */
     arrancarTimer() {
@@ -635,7 +587,6 @@ class Juego {
     }
 
     /**
-     * Actualiza el tiempo restante y, si llegó a 0, termina la partida por tiempo.
      * @returns {void}
      */
     tickTimer() {
@@ -647,7 +598,6 @@ class Juego {
     }
 
     /**
-     * Detiene el timer si estaba corriendo.
      * @returns {void}
      */
     detenerTimer() {
@@ -658,7 +608,6 @@ class Juego {
     /* ---------- Animación ---------- */
 
     /**
-     * Pide el loop de animación si no hay uno corriendo.
      * @returns {void}
      */
     iniciarLoop() {
@@ -668,8 +617,6 @@ class Juego {
     }
 
     /**
-     * Un cuadro de la animación: avanza el retorno, redibuja y sigue solo mientras
-     * haya una ficha arrastrada o volviendo a su casillero.
      * @param {number} tiempo Tiempo en ms que pasa requestAnimationFrame.
      * @returns {void}
      */
@@ -686,7 +633,6 @@ class Juego {
     }
 
     /**
-     * Corta el loop de animación si estaba corriendo.
      * @returns {void}
      */
     detenerLoop() {
@@ -695,7 +641,6 @@ class Juego {
     }
 
     /**
-     * Dibuja todo: limpia, tablero, fichas quietas, hints y al final la ficha en movimiento para que quede encima.
      * @param {number} tiempo Tiempo en segundos para animar los hints.
      * @returns {void}
      */

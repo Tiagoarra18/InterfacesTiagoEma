@@ -1,14 +1,10 @@
-/**
- * Agujero del tablero: su posición en la matriz, su centro en el canvas y la ficha que contiene.
- */
 class Casillero {
     /**
-     * Crea un casillero vacío.
-     * @param {number} fila Fila en la matriz 7 x 7.
-     * @param {number} columna Columna en la matriz 7 x 7.
-     * @param {number} centroX Centro X en px del canvas.
-     * @param {number} centroY Centro Y en px del canvas.
-     * @param {number} radio Radio del agujero en px del canvas.
+     * @param {number} fila
+     * @param {number} columna
+     * @param {number} centroX
+     * @param {number} centroY
+     * @param {number} radio
      */
     constructor(fila, columna, centroX, centroY, radio) {
         this.fila = fila;
@@ -20,15 +16,13 @@ class Casillero {
     }
 
     /**
-     * Devuelve la fila.
      * @returns {number} Fila en la matriz.
-     */
+     */ 
     getFila() {
         return this.fila;
     }
 
     /**
-     * Devuelve la columna.
      * @returns {number} Columna en la matriz.
      */
     getColumna() {
@@ -36,40 +30,35 @@ class Casillero {
     }
 
     /**
-     * Devuelve el centro X.
-     * @returns {number} Centro X en px del canvas.
+     * @returns {number}
      */
     getCentroX() {
         return this.centroX;
     }
 
     /**
-     * Devuelve el centro Y.
-     * @returns {number} Centro Y en px del canvas.
+     * @returns {number}
      */
     getCentroY() {
         return this.centroY;
     }
 
     /**
-     * Devuelve el radio del agujero.
-     * @returns {number} Radio en px del canvas.
+     * @returns {number}
      */
     getRadio() {
         return this.radio;
     }
 
     /**
-     * Devuelve la ficha que contiene.
-     * @returns {Ficha|null} Ficha o null si está vacío.
+     * @returns {Ficha|null}
      */
     getFicha() {
         return this.ficha;
     }
 
     /**
-     * Pone o saca una ficha del casillero.
-     * @param {Ficha|null} ficha Ficha nueva o null para vaciarlo.
+     * @param {Ficha|null} ficha
      * @returns {void}
      */
     setFicha(ficha) {
@@ -77,18 +66,16 @@ class Casillero {
     }
 
     /**
-     * Indica si el casillero no tiene ficha.
-     * @returns {boolean} true si está vacío.
+     * @returns {boolean}
      */
     estaVacio() {
         return this.ficha === null;
     }
 
     /**
-     * Indica si un punto cae dentro del agujero.
-     * @param {number} x Coordenada X en px del canvas.
-     * @param {number} y Coordenada Y en px del canvas.
-     * @returns {boolean} true si el punto está dentro del radio del agujero.
+     * @param {number} x 
+     * @param {number} y 
+     * @returns {boolean}
      */
     contienePunto(x, y) {
         const dx = this.centroX - x;

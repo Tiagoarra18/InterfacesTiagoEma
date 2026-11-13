@@ -1,19 +1,16 @@
-/**
- * Ficha (pelota) del Peg Football: un círculo relleno con el pattern de su variante.
- */
 class Ficha extends Figura {
-    /** Color del anillo que marca la ficha levantada (lo carga Juego desde variables.css) */
+
     static colorResaltado = '';
 
     /**
      * Crea una ficha.
-     * @param {number} posX Centro X en el canvas.
-     * @param {number} posY Centro Y en el canvas.
-     * @param {number} radio Radio de la ficha en px del canvas.
-     * @param {CanvasPattern} fill Pattern de la variante de la ficha.
-     * @param {CanvasRenderingContext2D} context Contexto 2D donde se dibuja.
-     * @param {string} tipo Tipo visual: 'clasica', 'dorada', 'roja' o 'celeste'.
-     * @param {Casillero} casillero Casillero donde está la ficha.
+     * @param {number} posX 
+     * @param {number} posY
+     * @param {number} radio
+     * @param {CanvasPattern} fill
+     * @param {CanvasRenderingContext2D} context
+     * @param {string} tipo
+     * @param {Casillero} casillero
      */
     constructor(posX, posY, radio, fill, context, tipo, casillero) {
         super(posX, posY, fill, context);
@@ -24,7 +21,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Devuelve el radio.
      * @returns {number} Radio en px del canvas.
      */
     getRadio() {
@@ -32,7 +28,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Cambia el radio.
      * @param {number} radio Nuevo radio.
      * @returns {void}
      */
@@ -41,7 +36,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Devuelve el tipo visual.
      * @returns {string} Tipo de la ficha.
      */
     getTipo() {
@@ -49,7 +43,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Cambia el tipo visual.
      * @param {string} tipo Nuevo tipo.
      * @returns {void}
      */
@@ -58,7 +51,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Devuelve el casillero donde está la ficha.
      * @returns {Casillero} Casillero actual.
      */
     getCasillero() {
@@ -66,7 +58,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Cambia el casillero de la ficha.
      * @param {Casillero} casillero Nuevo casillero.
      * @returns {void}
      */
@@ -75,7 +66,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Indica si la ficha está resaltada (levantada).
      * @returns {boolean} true si está resaltada.
      */
     isResaltada() {
@@ -83,7 +73,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Marca o desmarca la ficha como resaltada.
      * @param {boolean} resaltada Nuevo estado.
      * @returns {void}
      */
@@ -92,8 +81,7 @@ class Ficha extends Figura {
     }
 
     /**
-     * Mueve la ficha al centro de un casillero.
-     * @param {Casillero} casillero Casillero donde se centra.
+     * @param {Casillero} casillero 
      * @returns {void}
      */
     centrarEn(casillero) {
@@ -102,8 +90,6 @@ class Ficha extends Figura {
     }
 
     /**
-     * Dibuja la ficha: traslada el origen a su esquina para que el pattern quede alineado
-     * y la recorta en círculo con arc(). Si está resaltada, le agrega un anillo.
      * @returns {void}
      */
     draw() {
@@ -124,10 +110,9 @@ class Ficha extends Figura {
     }
 
     /**
-     * Indica si un punto cae dentro de la ficha (distancia al centro menor o igual al radio).
-     * @param {number} x Coordenada X en px del canvas.
-     * @param {number} y Coordenada Y en px del canvas.
-     * @returns {boolean} true si el punto está dentro.
+     * @param {number} x 
+     * @param {number} y 
+     * @returns {boolean} 
      */
     isPointInside(x, y) {
         const dx = this.posX - x;
