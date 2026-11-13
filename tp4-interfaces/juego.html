@@ -138,6 +138,9 @@
                         <section class="peg__cartel" role="dialog" aria-labelledby="peg-titulo-cartel" hidden>
                             <h2 class="peg__titulo-cartel" id="peg-titulo-cartel"></h2>
                             <p class="peg__texto-cartel"></p>
+                            <button type="button" class="btn btn--primario peg__boton-reacomodar" hidden>
+                                <span class="btn__texto">Reacomodar fichas</span>
+                            </button>
                             <button type="button" class="btn btn--primario peg__boton-seguir">
                                 <span class="btn__texto">Seguir jugando</span>
                             </button>
@@ -177,10 +180,10 @@
                             sola en el tablero.
                         </p>
                         <p class="ficha-juego__texto">
-                            <strong>Reglas:</strong> una pelota puede saltar horizontal o verticalmente sobre otra pelota
-                            únicamente si la casilla siguiente está vacía. La pelota sobre la que se salta es
-                            eliminada y la pelota que realizó el salto ocupa la nueva posición. No se permiten
-                            movimientos en diagonal.
+                            <strong>Reglas:</strong> una pelota puede saltar horizontal o verticalmente sobre 1 pelota
+                            adyacente y caer en el agujero vacío siguiente, comiendo esa pelota; o sobre 2 pelotas
+                            consecutivas y caer en el agujero vacío siguiente a esas 2, comiéndolas a ambas. No se
+                            permiten movimientos en diagonal.
                         </p>
                         <p class="ficha-juego__texto">
                             <strong>Objetivo:</strong> terminar el juego con una única pelota en el tablero

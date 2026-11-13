@@ -6,13 +6,16 @@ class Juego {
     static DURACION_PARTIDA_MS = 2 * 60 * 1000;
     static INTERVALO_TIMER_MS = 1000;
     static DURACION_RETORNO_MS = 200;
-    static RUTA_TABLERO = 'assets/img/tableroSinFichas.jpg';
+    static DURACION_REACOMODO_MS = 500;
+    static RUTA_TABLERO = 'assets/img/tableroSinFichas.webp';
     static RUTA_FICHA = 'assets/img/ficha.jpg';
     /** Un píxel es parte de la pelota si es bastante opaco y no es blanco (fondo transparente o blanco) */
     static UMBRAL_ALFA = 128;
     static UMBRAL_BLANCO = 235;
     /** Aclara un poco las variantes teñidas para que los paños claros no queden apagados */
     static BRILLO_TINTE = 1.15;
+    /** Opacidad de las fichas que no se están arrastrando mientras hay una levantada */
+    static OPACIDAD_FICHA_INVALIDA = 0.4;
     /** Tipos de ficha y la variable de variables.css con su tinte (la clásica no se tiñe) */
     static TINTES = {
         clasica: null,
@@ -57,6 +60,7 @@ class Juego {
         this.botonSalir = contenedor.querySelector('.peg__boton-salir');
         this.botonSeguir = contenedor.querySelector('.peg__boton-seguir');
         this.botonSalirCartel = contenedor.querySelector('.peg__boton-salir-cartel');
+        this.botonReacomodar = contenedor.querySelector('.peg__boton-reacomodar');
         this.tiempo = contenedor.querySelector('.peg__tiempo');
         this.fichasRestantes = contenedor.querySelector('.peg__fichas-restantes');
         this.tituloCartel = contenedor.querySelector('.peg__titulo-cartel');
@@ -73,8 +77,10 @@ class Juego {
         this.destinos = [];
         this.hints = [];
         this.animacionRetorno = null;
+        this.animacionReacomodo = null;
         this.idAnimacion = null;
         this.momentoFin = 0;
+        this.tiempoRestante = 0;
         this.idIntervalo = null;
         this.loop = this.loop.bind(this);
 
@@ -91,7 +97,7 @@ class Juego {
      */
     leerColores() {
         const estilos = getComputedStyle(document.documentElement);
-        this.colorHint = estilos.getPropertyValue('--color-hint-peg').trim();
+        this.colorHint = estilos.getPropertyValue('--color-hint-invalido-peg').trim();
         Ficha.colorResaltado = estilos.getPropertyValue('--color-resaltado-peg').trim();
         this.tintes = {};
         Object.entries(Juego.TINTES).forEach(([tipo, variable]) => {
@@ -270,6 +276,7 @@ class Juego {
         this.botonSalir.addEventListener('click', () => this.salir());
         this.botonSeguir.addEventListener('click', () => this.prepararPartida());
         this.botonSalirCartel.addEventListener('click', () => this.salir());
+        this.botonReacomodar.addEventListener('click', () => this.reacomodarFichas());
     }
 
     /**
@@ -285,8 +292,8 @@ class Juego {
     }
 
     /**
-     * Levanta la ficha clickeada y la resalta. Si tiene movimientos válidos, crea los hints
-     * de sus destinos; si no tiene, se levanta igual pero sin hints, porque no hay destinos.
+     * Levanta la ficha clickeada y la resalta. Marca con un aro rojo a todas las demás fichas,
+     * porque mientras se arrastra cualquier otra ficha es un destino inválido.
      * @param {MouseEvent} e Evento mousedown.
      * @returns {void}
      */
@@ -299,13 +306,12 @@ class Juego {
         if (ficha === null) {
             return;
         }
-        const destinos = this.tablero.obtenerDestinosValidos(ficha);
-        const destinosI = this.tablero.obtenerDestinosInvalidos(ficha);
         this.fichaArrastrada = ficha;
-        this.destinos = destinos;
-        this.destinosInvalidos = destinosI;
+        this.destinos = this.tablero.obtenerDestinosValidos(ficha);
         this.offsetAgarre = { x: x - ficha.getPosX(), y: y - ficha.getPosY() };
-        this.hints = destinosI.map(({ destino }) => new Hint(destino, this.ctx, this.colorHint));
+        this.hints = this.tablero.getFichas()
+            .filter((otra) => otra !== ficha)
+            .map((otra) => new Hint(otra, this.ctx, this.colorHint));
         ficha.setResaltada(true);
         this.actualizarCursor(x, y);
         this.iniciarLoop();
@@ -340,7 +346,7 @@ class Juego {
         if (movimiento === undefined) {
             this.devolverFicha();
         } else {
-            this.soltarEn(movimiento.destino);
+            this.soltarEn(movimiento);
         }
         this.actualizarCursor(x, y);
     }
@@ -403,13 +409,14 @@ class Juego {
     }
 
     /**
-     * Hace el salto de la ficha arrastrada al destino, actualiza el contador y revisa si terminó el juego.
-     * @param {Casillero} destino Casillero donde se soltó.
+     * Hace el salto de la ficha arrastrada al destino, retirando 1 o 2 fichas según el movimiento,
+     * actualiza el contador y revisa si terminó el juego.
+     * @param {{destino: Casillero, saltados: Casillero[]}} movimiento Movimiento elegido al soltar.
      * @returns {void}
      */
-    soltarEn(destino) {
+    soltarEn(movimiento) {
         const ficha = this.fichaArrastrada;
-        this.tablero.aplicarMovimiento(ficha.getCasillero(), destino);
+        this.tablero.aplicarMovimiento(ficha.getCasillero(), movimiento.destino, movimiento.saltados);
         this.limpiarArrastre();
         this.detenerLoop();
         this.drawFigures(0);
@@ -451,6 +458,55 @@ class Juego {
             ficha.setResaltada(false);
             this.animacionRetorno = null;
         }
+    }
+
+    /**
+     * Botón "Reacomodar fichas" del cartel de derrota: cierra el cartel, calcula una disposición
+     * nueva y ganable para las mismas fichas, y las anima hasta ahí.
+     * @returns {void}
+     */
+    reacomodarFichas() {
+        this.ocultarCartel();
+        const casilleros = this.tablero.generarDisposicionGanable(this.tablero.contarFichas());
+        const movimientos = this.tablero.getFichas().map((ficha, i) => ({
+            ficha,
+            desde: { x: ficha.getPosX(), y: ficha.getPosY() },
+            hasta: { x: casilleros[i].getCentroX(), y: casilleros[i].getCentroY() }
+        }));
+        this.tablero.reasignarFichas(casilleros);
+        this.estado = 'reacomodando';
+        this.animacionReacomodo = { movimientos, inicio: performance.now() };
+        this.iniciarLoop();
+    }
+
+    /**
+     * Avanza la animación de reacomodo: interpola cada ficha de su posición vieja a la nueva,
+     * todas con la misma línea de tiempo. Al terminar, vuelve al estado "jugando".
+     * @param {number} ahora Tiempo actual en ms (el de requestAnimationFrame).
+     * @returns {void}
+     */
+    avanzarReacomodo(ahora) {
+        const { movimientos, inicio } = this.animacionReacomodo;
+        const t = Math.min(1, Math.max(0, (ahora - inicio) / Juego.DURACION_REACOMODO_MS));
+        movimientos.forEach(({ ficha, desde, hasta }) => {
+            ficha.setPosX(desde.x + (hasta.x - desde.x) * t);
+            ficha.setPosY(desde.y + (hasta.y - desde.y) * t);
+        });
+        if (t === 1) {
+            this.animacionReacomodo = null;
+            this.reanudarTrasReacomodo();
+        }
+    }
+
+    /**
+     * Vuelve al estado "jugando" cuando termina la animación de reacomodo, reanudando el timer
+     * desde el tiempo que quedaba (no lo reinicia).
+     * @returns {void}
+     */
+    reanudarTrasReacomodo() {
+        this.estado = 'jugando';
+        this.botonIniciar.disabled = false;
+        this.arrancarTimer(this.tiempoRestante);
     }
 
     /**
@@ -513,6 +569,7 @@ class Juego {
         this.detenerTimer();
         this.detenerLoop();
         this.limpiarArrastre();
+        this.animacionReacomodo = null;
         this.ocultarCartel();
         this.tablero.reiniciar(this.variantes);
         this.estado = 'listo';
@@ -560,11 +617,13 @@ class Juego {
 
     /**
      * Termina la partida: detiene el timer y la animación, bloquea las fichas y muestra el cartel.
+     * Guarda el tiempo que quedaba, para poder reanudarlo si se reacomodan las fichas.
      * @param {string} resultado 'perfecta', 'victoria', 'derrota' o 'tiempo'.
      * @returns {void}
      */
     terminar(resultado) {
         this.estado = 'terminado';
+        this.tiempoRestante = Math.max(0, this.momentoFin - Date.now());
         this.detenerTimer();
         this.detenerLoop();
         this.limpiarArrastre();
@@ -577,7 +636,8 @@ class Juego {
     /* ---------- Interfaz ---------- */
 
     /**
-     * Muestra el cartel de fin con el título y el texto del resultado.
+     * Muestra el cartel de fin con el título y el texto del resultado. "Reacomodar fichas"
+     * solo se muestra en la derrota por falta de movimientos.
      * @param {string} resultado Clave de Juego.RESULTADOS.
      * @returns {void}
      */
@@ -585,6 +645,7 @@ class Juego {
         const { titulo, texto } = Juego.RESULTADOS[resultado];
         this.tituloCartel.textContent = titulo;
         this.textoCartel.textContent = texto(this.tablero.contarFichas());
+        this.botonReacomodar.hidden = resultado !== 'derrota';
         this.cartel.hidden = false;
     }
 
@@ -628,10 +689,12 @@ class Juego {
 
     /**
      * Guarda el momento de fin y revisa cada segundo cuánto falta, así el timer no se desfasa.
+     * @param {number} [duracionMs] Milisegundos hasta el fin; por defecto los 2 minutos de una
+     *   partida nueva. Al reanudar tras un reacomodo se le pasa el tiempo que quedaba.
      * @returns {void}
      */
-    arrancarTimer() {
-        this.momentoFin = Date.now() + Juego.DURACION_PARTIDA_MS;
+    arrancarTimer(duracionMs = Juego.DURACION_PARTIDA_MS) {
+        this.momentoFin = Date.now() + duracionMs;
         this.idIntervalo = setInterval(() => this.tickTimer(), Juego.INTERVALO_TIMER_MS);
     }
 
@@ -669,8 +732,8 @@ class Juego {
     }
 
     /**
-     * Un cuadro de la animación: avanza el retorno, redibuja y sigue solo mientras
-     * haya una ficha arrastrada o volviendo a su casillero.
+     * Un cuadro de la animación: avanza el retorno o el reacomodo, redibuja y sigue solo mientras
+     * haya una ficha arrastrada, volviendo a su casillero o reacomodándose.
      * @param {number} tiempo Tiempo en ms que pasa requestAnimationFrame.
      * @returns {void}
      */
@@ -678,8 +741,11 @@ class Juego {
         if (this.animacionRetorno !== null) {
             this.avanzarRetorno(tiempo);
         }
+        if (this.animacionReacomodo !== null) {
+            this.avanzarReacomodo(tiempo);
+        }
         this.drawFigures(tiempo / 1000);
-        if (this.fichaArrastrada !== null || this.animacionRetorno !== null) {
+        if (this.fichaArrastrada !== null || this.animacionRetorno !== null || this.animacionReacomodo !== null) {
             this.idAnimacion = requestAnimationFrame(this.loop);
         } else {
             this.idAnimacion = null;
@@ -696,7 +762,8 @@ class Juego {
     }
 
     /**
-     * Dibuja todo: limpia, tablero, fichas quietas, hints y al final la ficha en movimiento para que quede encima.
+     * Dibuja todo: limpia, tablero, fichas quietas (atenuadas mientras se arrastra otra), hints rojos
+     * y al final la ficha en movimiento para que quede encima.
      * @param {number} tiempo Tiempo en segundos para animar los hints.
      * @returns {void}
      */
@@ -704,8 +771,17 @@ class Juego {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.tablero.draw();
         const enMovimiento = this.fichaArrastrada !== null ? this.fichaArrastrada : this.animacionRetorno?.ficha;
+        const arrastrando = this.fichaArrastrada !== null;
         this.tablero.getFichas().forEach((ficha) => {
-            if (ficha !== enMovimiento) {
+            if (ficha === enMovimiento) {
+                return;
+            }
+            if (arrastrando) {
+                this.ctx.save();
+                this.ctx.globalAlpha = Juego.OPACIDAD_FICHA_INVALIDA;
+                ficha.draw();
+                this.ctx.restore();
+            } else {
                 ficha.draw();
             }
         });
