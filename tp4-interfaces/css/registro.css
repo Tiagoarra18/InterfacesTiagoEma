@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* El main se estira y deja el footer pegado al fondo de la pantalla */
 body {
   display: flex;
   flex-direction: column;
@@ -28,7 +27,6 @@ input {
   font: inherit;
 }
 
-/* Main: centra el formulario sin ocupar toda la pantalla */
 .registro {
   flex: 1;
   display: grid;
@@ -36,7 +34,6 @@ input {
   padding-block: var(--espacio-xl);
 }
 
-/* Formulario */
 .formulario {
   display: flex;
   flex-direction: column;
@@ -75,7 +72,6 @@ input {
   font-size: var(--tamano-label);
 }
 
-/* Campos */
 .campo {
   position: relative;
 }
@@ -87,7 +83,6 @@ input {
   font-size: var(--tamano-label);
 }
 
-/* line-height 0: el asterisco más grande no agranda la línea del label */
 .campo__obligatorio {
   color: var(--color-error);
   font-size: var(--tamano-asterisco);
@@ -109,7 +104,6 @@ input {
   border-color: var(--color-error);
 }
 
-/* Cartel de error: fuera del formulario, a la derecha del input */
 .campo__error {
   display: none;
   position: absolute;
@@ -129,7 +123,6 @@ input {
   align-items: center;
 }
 
-/* Contraseñas: input + botón de ojo superpuestos */
 .campo__control {
   display: grid;
   grid-template-rows: var(--alto-input);
@@ -197,7 +190,6 @@ input {
   display: block;
 }
 
-/* Captcha */
 .captcha {
   display: flex;
   flex-direction: column;
@@ -233,7 +225,6 @@ input {
   border-radius: var(--radio-chico);
 }
 
-/* Botón Crear Cuenta */
 .btn {
   position: relative;
   overflow: hidden;
@@ -278,7 +269,6 @@ input {
   z-index: 1;
 }
 
-/* Éxito del registro: el botón se rellena de verde y aparece un tilde */
 .btn--primario::after {
   content: "";
   position: absolute;
@@ -317,7 +307,6 @@ input {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Crear con redes */
 .redes {
   display: flex;
   flex-direction: column;

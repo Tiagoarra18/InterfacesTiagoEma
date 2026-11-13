@@ -1,7 +1,3 @@
-/* Mobile First: en mobile y tablet el bloque central va arriba y las columnas en grilla.
-   Desde 75rem (desktop) queda igual al footer de login. */
-
-/* Mismo reseteo que aplica login.css con *, acotado al footer: así se ve igual en todas las páginas */
 .pie-pagina,
 .pie-pagina * {
   box-sizing: border-box;
@@ -108,14 +104,12 @@
   height: var(--tamano-copyright-icon-height);
 }
 
-/* Tablet: las 4 columnas en una fila, debajo del bloque central */
 @media (min-width: 48rem) {
   .pie-pagina__columnas {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* Desktop: 5 columnas en fila con el bloque central en el medio, como en login */
 @media (min-width: 75rem) {
   .pie-pagina__columnas {
     display: flex;

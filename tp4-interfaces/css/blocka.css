@@ -1,9 +1,3 @@
-/* ==========================================================================
-   BLOCKA - El juego ocupa la pantalla horizontal de la página del juego
-   (el resto de la página usa juego.css)
-   ========================================================================== */
-
-/* Pantalla: primero muestra el menú de Blocka; al elegir una dificultad, el juego */
 .pantalla-blocka {
     width: 100%;
     aspect-ratio: var(--proporcion-pantalla-juego);
@@ -11,7 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--color-pantalla-blocka);
-    /* Capa oscura encima de la imagen: oscurece solo el fondo, no el panel ni el tablero */
+
     background-image:
         linear-gradient(var(--oscurecer-fondo-pantalla-blocka), var(--oscurecer-fondo-pantalla-blocka)),
         var(--imagen-fondo-pantalla-blocka);
@@ -20,7 +14,6 @@
     border-radius: var(--radio-pantalla-blocka);
 }
 
-/* El JS alterna entre el menú y el juego con la clase --jugando */
 .pantalla-blocka__juego {
     display: none;
 }
@@ -29,14 +22,12 @@
     display: none;
 }
 
-/* Juego: panel a la izquierda y tablero a la derecha */
 .pantalla-blocka--jugando .pantalla-blocka__juego {
     display: flex;
     align-items: center;
     gap: var(--espacio-pantalla-blocka);
 }
 
-/* Menú de Blocka: récords arriba y las 3 opciones de dificultad abajo */
 .menu-blocka {
     display: flex;
     flex-direction: column;
@@ -55,7 +46,6 @@
     list-style: none;
 }
 
-/* Título "Récords" con la lista de los 3 tiempos debajo */
 .menu-blocka__seccion-records {
     display: flex;
     flex-direction: column;
@@ -102,7 +92,6 @@
     line-height: 1;
 }
 
-/* Panel con tiempo, récord, nivel y botones */
 .blocka-panel {
     width: var(--ancho-panel-blocka);
     display: flex;
@@ -128,7 +117,6 @@
     gap: var(--espacio-md);
 }
 
-/* Botones del juego */
 .btn {
     position: relative;
     overflow: hidden;
@@ -156,7 +144,6 @@
     background-color: var(--color-primario);
 }
 
-/* Relleno más oscuro de izquierda a derecha, igual que en login */
 .btn--primario::before {
     content: "";
     position: absolute;
@@ -189,7 +176,6 @@
     z-index: 1;
 }
 
-/* Botón anulado (Comenzar durante la partida, Ayuditas agotadas): gris y sin hover */
 .btn:disabled,
 .btn--agotado {
     background-color: var(--color-boton-deshabilitado);
@@ -202,12 +188,10 @@
     display: none;
 }
 
-/* Botones del cartel de nivel que se muestran según el momento del juego */
 .btn--oculto {
     display: none;
 }
 
-/* Tablero: la grilla (2x2, 3x3 o 4x4) la define el modificador de cada dificultad */
 .blocka-tablero {
     display: grid;
     flex-shrink: 0;
@@ -217,8 +201,6 @@
     background-color: var(--color-tablero-blocka);
 }
 
-/* Cada pieza es un canvas que llena su celda con su porción de la imagen filtrada.
-   Sobresale un poco hacia cada lado para pisar a sus vecinas y que no se vea el fondo entre ellas */
 .blocka-tablero__pieza {
     width: calc(100% + 2 * var(--solape-pieza-blocka));
     height: calc(100% + 2 * var(--solape-pieza-blocka));
@@ -227,7 +209,7 @@
     cursor: pointer;
     transition: transform var(--duracion-hover) ease;
 }
-/* Dificultades: grilla de lado x lado celdas cuadradas */
+
 .blocka-tablero--4-piezas {
     grid-template-columns: repeat(var(--lado-blocka-4), minmax(0, 1fr));
     grid-template-rows: repeat(var(--lado-blocka-4), minmax(0, 1fr));
@@ -241,7 +223,6 @@
     grid-template-rows: repeat(var(--lado-blocka-16), minmax(0, 1fr));
 }
 
-/* Modales de instrucciones y de nivel completado */
 .blocka-modal {
     position : absolute;
     width: 900px;

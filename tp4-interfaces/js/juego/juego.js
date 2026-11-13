@@ -133,7 +133,6 @@ class Juego {
     }
 
     /**
-     * Recorta la pelota una sola vez y habilita el botón Jugar.
      * @returns {void}
      */
     prepararRecursos() {
@@ -301,10 +300,12 @@ class Juego {
             return;
         }
         const destinos = this.tablero.obtenerDestinosValidos(ficha);
+        const destinosI = this.tablero.obtenerDestinosInvalidos(ficha);
         this.fichaArrastrada = ficha;
         this.destinos = destinos;
+        this.destinosInvalidos = destinosI;
         this.offsetAgarre = { x: x - ficha.getPosX(), y: y - ficha.getPosY() };
-        this.hints = destinos.map(({ destino }) => new Hint(destino, this.ctx, this.colorHint));
+        this.hints = destinosI.map(({ destino }) => new Hint(destino, this.ctx, this.colorHint));
         ficha.setResaltada(true);
         this.actualizarCursor(x, y);
         this.iniciarLoop();

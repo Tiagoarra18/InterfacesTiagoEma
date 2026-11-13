@@ -1,9 +1,5 @@
-/* ==========================================================================
-   ENCABEZADO PRINCIPAL (HEADER) - Mobile First
-   Mobile: dos filas (íconos arriba, buscador abajo). Tablet y desktop: una fila.
-   ========================================================================== */
 .encabezado-principal {
-  position: relative; /* Mantiene la jerarquía del header por encima del carrusel */
+  position: relative;
   z-index: var(--z-encabezado);
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -38,7 +34,6 @@
   grid-area: derecha;
 }
 
-/* Área táctil mínima de 44x44 en mobile y tablet; en desktop miden lo que su ícono */
 .encabezado-principal__boton-menu,
 .encabezado-principal__boton-perfil,
 .encabezado-principal__enlace-logo {
@@ -80,7 +75,6 @@
   border-radius: 50%;
 }
 
-/* Tablet en adelante: una sola fila, como el diseño de desktop */
 @media (min-width: 48rem) {
   .encabezado-principal {
     display: flex;
@@ -88,9 +82,6 @@
   }
 }
 
-/* ==========================================================================
-   BUSCADOR CON LUPA
-   ========================================================================== */
 .buscador {
   position: relative;
   display: flex;
@@ -101,8 +92,8 @@
 .buscador__input {
   width: 100%;
   height: var(--alto-buscador);
-  padding-left: var(--relleno-buscador-izquierda); /* Espacio para el texto al escribir */
-  padding-right: var(--relleno-buscador-derecha); /* Espacio reservado a la derecha para la lupa */
+  padding-left: var(--relleno-buscador-izquierda);
+  padding-right: var(--relleno-buscador-derecha);
   border: none;
   border-radius: var(--radio-buscador);
   background-color: var(--color-texto-secundario);
@@ -114,21 +105,17 @@
 }
 
 .buscador__input::placeholder {
-  color: white; /* Color del placeholder */
+  color: white;
 }
 
-/* Ícono de la lupa a la derecha dentro del buscador */
 .buscador__icono {
   position: absolute;
   right: var(--espacio-lupa);
   width: var(--tamano-lupa);
   height: var(--tamano-lupa);
-  pointer-events: none; /* Evita interferir al hacer clic en el campo de texto */
+  pointer-events: none;
 }
 
-/* ==========================================================================
-   MENÚ DESPLEGABLE DE PERFIL
-   ========================================================================== */
 .overlay-perfil {
     position: fixed;
     top: 0;
@@ -209,9 +196,6 @@
     color: var(--color-texto-cerrar-sesion);
 }
 
-/* ==========================================================================
-   MENÚ LATERAL DE CATEGORÍAS
-   ========================================================================== */
 .overlay-categorias {
     position: fixed;
     top: 0;
@@ -277,7 +261,7 @@
 }
 
 .menu-categorias__navegacion {
-    padding-left: 0.5rem; 
+    padding-left: 0.5rem;
 }
 .menu-categorias__lista {
     list-style: none;

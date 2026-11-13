@@ -9,7 +9,6 @@ body {
   overflow: hidden;
 }
 
-/* Pantalla de carga */
 .pantalla-carga {
   position: fixed;
   inset: 0;
@@ -86,7 +85,6 @@ body {
   font-weight: var(--peso-bold);
 }
 
-/* Carrusel principal pegado al header */
 .carrusel {
   margin-top: 0;
   padding-top: 0;
@@ -197,7 +195,6 @@ body {
   font-weight: var(--peso-ligero);
 }
 
-/* Flechas */
 .carrusel__flecha {
   position: absolute;
   inset-block: 0;
@@ -311,7 +308,6 @@ body {
   }
 }
 
-/* Indicadores */
 .carrusel__indicadores {
   display: flex;
   justify-content: center;
@@ -404,7 +400,6 @@ body {
   }
 }
 
-/* Separador entre carruseles */
 .separador-home {
   width: var(--ancho-carrusel-secundario);
   margin: var(--espacio-separador-home) auto;
@@ -412,7 +407,6 @@ body {
   border-top: var(--borde-fino) solid var(--color-borde);
 }
 
-/* Carruseles secundarios */
 .carrusel-secundario {
   box-sizing: border-box;
   width: var(--ancho-carrusel-secundario);
@@ -530,7 +524,6 @@ body {
     transition: transform var(--duracion-carrusel-secundario) var(--curva-carrusel-secundario);
   }
 
-  /* 3 estados: inicio (sin clase), medio y fin. Cada uno corre la fila 2 cards */
   .carrusel-secundario__fila--medio {
     transform: translateX(calc(-2 * (var(--ancho-card) + var(--separacion))));
   }
@@ -586,7 +579,6 @@ body {
   }
 }
 
-/* Card de juego */
 .tarjeta-juego {
   position: relative;
   box-sizing: border-box;

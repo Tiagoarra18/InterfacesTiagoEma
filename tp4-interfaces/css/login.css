@@ -13,7 +13,7 @@ body.pagina-login {
 }
 
 .pagina-login {
-  background-color: var(--color-fondo); 
+  background-color: var(--color-fondo);
   font-family: var(--fuente-principal);
   display: flex;
   flex-direction: column;
@@ -25,14 +25,13 @@ body.pagina-login {
   justify-content: center;
   align-items: center;
   flex: 1;
-  padding-top: 15px;    /* Despega del techo */
-  padding-bottom: 15px; /* Despega del footer */
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-/* Tarjeta Login */
 .tarjeta-login {
-  width: var(--ancho-tarjeta-login); /* 440px */
-  height: var(--alto-tarjeta-login); /* 641px */
+  width: var(--ancho-tarjeta-login);
+  height: var(--alto-tarjeta-login);
   background-color: var(--color-tarjeta-fondo);
   border: var(--borde-tarjeta-peso) solid var(--color-borde-tarjeta);
   border-radius: var(--radio-tarjeta-login);
@@ -41,7 +40,7 @@ body.pagina-login {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start; /* Alinea todos los hijos al margen izquierdo */
+  align-items: flex-start;
 }
 
 .tarjeta-login__titulo {
@@ -51,19 +50,18 @@ body.pagina-login {
   font-size: var(--tamano-titulo-login);
   color: var(--color-texto-blanco);
   text-align: left;
-  margin-bottom: var(--espacio-titulo-input); /* Separación aumentada con el primer label */
+  margin-bottom: var(--espacio-titulo-input);
 }
 
 .tarjeta-login__formulario {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea los elementos internos al borde izquierdo */
+  align-items: flex-start;
   justify-content: space-between;
   flex: 1;
 }
 
-/* Campos de Formulario */
 .campo-formulario {
   width: 100%;
   display: flex;
@@ -135,11 +133,10 @@ body.pagina-login {
   font-size: var(--tamano-link-cyan);
   color: var(--color-link-cyan);
   text-decoration: none;
-  align-self: flex-start; /* Alineado verticalmente a la izquierda con el título y labels */
-  margin-top: var(--espacio-md); /* Espacio incrementado respecto al input de contraseña */
+  align-self: flex-start;
+  margin-top: var(--espacio-md);
 }
 
-/* Botón Iniciar Sesión */
 .btn {
   position: relative;
   overflow: hidden;
@@ -232,10 +229,9 @@ body.pagina-login {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Crear con redes */
 .redes {
   display: flex;
-  align-self: center; /* Centrado horizontal en la tarjeta */
+  align-self: center;
   flex-direction: column;
   align-items: center;
   gap: var(--espacio-sm);
@@ -305,17 +301,16 @@ body.pagina-login {
   font-weight: var(--peso-regular);
   font-size: var(--tamano-link-cyan);
   color: var(--color-leyenda);
-  text-align: left; /* Alineado al margen izquierdo con título y labels */
+  text-align: left;
 }
 
 .formulario-login__asterisco-leyenda {
   color: var(--color-asterisco);
 }
 
-/* Pie de Página */
 .pie-pagina {
   width: 100%;
-  height: var(--alto-footer); /* 309px */
+  height: var(--alto-footer);
   background-color: var(--color-footer-fondo);
   display: flex;
   justify-content: center;
