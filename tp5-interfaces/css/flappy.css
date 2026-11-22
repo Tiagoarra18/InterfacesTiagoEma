@@ -1,0 +1,205 @@
+.flappy {
+    position: relative;
+    width: var(--flappy-ancho);
+    aspect-ratio: var(--flappy-proporcion);
+    border-radius: var(--flappy-radio);
+    overflow: hidden;
+    background-color: #000;
+}
+
+.flappy [hidden] {
+    display: none !important;
+}
+
+/* Pantalla de inicio */
+.flappy__inicio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--flappy-z-cartel);
+}
+
+.flappy__imagen-inicio {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
+
+.flappy__boton-jugar {
+    position: relative;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.flappy__icono-jugar {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+/* Escenario y Parallax */
+.flappy__escenario {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flappy__capa {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-size: cover;
+    animation: moverParallax linear infinite;
+    z-index: var(--flappy-z-capas);
+}
+
+.flappy__capa--1 { background-image: url('../assets/flappy/capa-1-cielo.webp'); animation-duration: var(--flappy-vel-capa-1); }
+.flappy__capa--2 { background-image: url('../assets/flappy/capa-2-tribunas.webp'); animation-duration: var(--flappy-vel-capa-2); }
+.flappy__capa--3 { background-image: url('../assets/flappy/capa-3-carteles.webp'); animation-duration: var(--flappy-vel-capa-3); }
+.flappy__capa--4 { background-image: url('../assets/flappy/capa-4-cesped.webp'); animation-duration: var(--flappy-vel-capa-4); }
+
+@keyframes moverParallax {
+    from { background-position-x: 0; }
+    to { background-position-x: -100vw; }
+}
+
+/* Estado de Pausa (se aplica a todos los elementos animados) */
+.flappy__escenario--pausado .flappy__capa,
+.flappy__escenario--pausado .flappy__jugador,
+.flappy__escenario--pausado .flappy__obstaculo,
+.flappy__escenario--pausado .flappy__item {
+    animation-play-state: paused;
+}
+
+/* HUD */
+.flappy__hud {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: var(--flappy-z-hud);
+}
+
+.flappy__hud-texto {
+    font-family: var(--fuente-roboto);
+    font-size: 1.5rem;
+    font-weight: var(--peso-audaz);
+    color: var(--color-texto-blanco);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin: 0;
+}
+
+/* Entidades (postes e ítems) */
+.flappy__entidades {
+    position: absolute;
+    inset: 0;
+    z-index: var(--flappy-z-entidades);
+}
+
+.flappy__obstaculo {
+    position: absolute;
+    width: var(--flappy-poste-ancho);
+    background-color: var(--flappy-poste-color);
+    border: var(--flappy-poste-borde);
+    border-radius: 0.25rem;
+    /* Movimiento inyectado vía JS interpolando su 'left' para precisión física, o CSS en fallback */
+}
+
+/* Elementos (Items) */
+.flappy__item {
+    position: absolute;
+    width: var(--flappy-item-tamano);
+    height: var(--flappy-item-tamano);
+    background-repeat: repeat-x;
+    background-size: 400% 100%;
+    background-position: 0 0;
+}
+
+.flappy__item--trofeo {
+    background-image: url('../assets/flappy/trofeo-sprite.webp');
+    animation: animarSprite 0.8s steps(4) infinite;
+}
+
+.flappy__item--tarjeta {
+    background-image: url('../assets/flappy/yellow-card (1).webp');
+    animation: animarSprite 0.8s steps(4) infinite;
+}
+
+/* Jugador */
+.flappy__jugador {
+    position: absolute;
+    left: var(--flappy-jugador-pos-x);
+    width: var(--flappy-jugador-tamano);
+    height: var(--flappy-jugador-tamano);
+    background-image: url('../assets/flappy/pelota-sprite.webp');
+    background-size: 400% 100%;
+    z-index: var(--flappy-z-jugador);
+    transform-origin: center;
+}
+
+.flappy__jugador--volando {
+    animation: animarSprite 0.5s steps(4) infinite;
+}
+
+.flappy__jugador--impulso {
+    animation: animarImpulso 0.3s ease-out;
+}
+
+.flappy__jugador--choque {
+    animation: animarChoque 1.5s linear;
+}
+
+@keyframes animarSprite {
+    from { background-position-x: 0; }
+    to { background-position-x: -400%; }
+}
+
+@keyframes animarImpulso {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(-25deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes animarChoque {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    20%, 60% { opacity: 0.25; transform: scale(0.85); }
+    40%, 80% { opacity: 1; transform: scale(1.1); }
+}
+/* Cartel Fin de Juego */
+.flappy__cartel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2.5rem;
+    background-color: rgba(16, 0, 62, 0.95);
+    border: 0.125rem solid var(--color-borde);
+    border-radius: 1rem;
+    text-align: center;
+    z-index: var(--flappy-z-cartel);
+}
+
+.flappy__titulo-cartel {
+    font-size: 2rem;
+    font-weight: var(--peso-audaz);
+    margin: 0;
+}
+
+.flappy__texto-cartel {
+    font-size: 1.25rem;
+    margin: 0;
+}
