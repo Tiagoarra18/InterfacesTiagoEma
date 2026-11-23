@@ -24,7 +24,7 @@ function initFlappy() {
 
     // Estado del juego
     let bucleJuego = null;
-    let tiempoRestante = 10; // segundos
+    let tiempoRestante = 60; // segundos
     let puntos = 0;
     let record = localStorage.getItem('flappyRecord') || 0;
     let pausado = true;
@@ -50,7 +50,7 @@ function initFlappy() {
     textoRecord.textContent = record;
 
    function resetearEstado() {
-        tiempoRestante = 10;
+        tiempoRestante = 60;
         puntos = 0;
         aperturaVertical = 250;
         acumuladorTiempo = 0;
