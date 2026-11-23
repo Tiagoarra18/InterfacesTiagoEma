@@ -139,15 +139,17 @@
                         </div>
 
                         <section class="flappy__cartel" id="flappy-cartel" role="dialog" aria-labelledby="flappy-titulo-cartel" hidden>
+                            <div class="flappy__icono-victoria" id="flappy-icono-victoria" hidden></div>
                             <h2 class="flappy__titulo-cartel" id="flappy-titulo-cartel">¡Tiempo Terminado!</h2>
+                            <p class="flappy__subtitulo-cartel" id="flappy-subtitulo-cartel" hidden>¡Sobreviviste todo el partido!</p>
                             <p class="flappy__texto-cartel">Puntaje Final: <span id="flappy-puntos-final"></span></p>
                             <p class="flappy__texto-cartel">Récord Actual: <span id="flappy-record-final"></span></p>
                             <button type="button" class="btn btn--primario flappy__boton-reiniciar" id="flappy-btn-reiniciar">
                                 <span class="btn__texto">Volver a jugar</span>
                             </button>
-                            <a href="index.html" class="btn btn--secundario flappy__boton-salir">
+                            <button type="button" class="btn btn--secundario flappy__boton-salir" id="flappy-btn-salir">
                                 <span class="btn__texto">Salir</span>
-                            </a>
+                            </button>
                         </section>
                     </div>
                 </div>
@@ -155,9 +157,9 @@
                 <aside class="revision-juego">
                     <h3 class="revision-juego__titulo">Review del juego</h3>
                     <div class="revision-juego__imagenes">
-                        <img src="assets/img/flappy/review1.webp" alt="Captura 1" class="revision-juego__img">
-                        <img src="assets/img/flappy/review2.webp" alt="Captura 2" class="revision-juego__img">
-                        <img src="assets/img/flappy/review3.webp" alt="Captura 3" class="revision-juego__img">
+                        <img src="assets/flappy/review-comienzo.webp" alt="Captura 1" class="revision-juego__img">
+                        <img src="assets/flappy/review-mitad-juego.webp" alt="Captura 2" class="revision-juego__img">
+                        <img src="assets/flappy/review-victoria.webp" alt="Captura 3" class="revision-juego__img">
                     </div>
                 </aside>
             </section>
@@ -175,6 +177,7 @@
                         <h2 class="ficha-juego__subtitulo">Acerca del juego</h2>
                         <p class="ficha-juego__texto">Mantené la pelota en el aire sorteando postes, recolectando trofeos y evitando tarjetas.</p>
                         <p class="ficha-juego__texto"><strong>Objetivo:</strong> Sobrevivir 60 segundos sumando la mayor cantidad de puntos.</p>
+                        <p class="ficha-juego__texto"><strong>Puntaje:</strong> Superar cada poste suma <strong>+5 pts</strong>, agarrar un trofeo suma <strong>+15 pts</strong> y tocar una tarjeta amarilla resta <strong>-10 pts</strong>.</p>
                     </article>
                     <div class="ficha-juego__divisor" role="separator"></div>
                     <article class="ficha-juego__controles">

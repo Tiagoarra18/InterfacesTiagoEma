@@ -53,13 +53,15 @@
 
 .flappy__capa {
     position: absolute;
-    inset: 0;
-    width: 100%;
+    top: 0;
+    left: 0;
+    width: 200%;
     height: 100%;
     background-repeat: repeat-x;
-    background-size: cover;
+    background-size: 50% 100%;
     animation: moverParallax linear infinite;
     z-index: var(--flappy-z-capas);
+    will-change: transform;
 }
 
 .flappy__capa--1 { background-image: url('../assets/flappy/capa-1-cielo.webp'); animation-duration: var(--flappy-vel-capa-1); }
@@ -68,9 +70,9 @@
 .flappy__capa--4 { background-image: url('../assets/flappy/capa-4-cesped.webp'); animation-duration: var(--flappy-vel-capa-4); }
 
 @keyframes moverParallax {
-    from { background-position-x: 0; }
-    to { background-position-x: -100vw; }
-}
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}   
 
 /* Estado de Pausa (se aplica a todos los elementos animados) */
 .flappy__escenario--pausado .flappy__capa,
@@ -132,7 +134,7 @@
 }
 
 .flappy__item--tarjeta {
-    background-image: url('../assets/flappy/yellow-card (1).webp');
+    background-image: url('../assets/flappy/yellow-card.webp');
     animation: animarSprite 0.8s steps(4) infinite;
 }
 
@@ -202,4 +204,74 @@
 .flappy__texto-cartel {
     font-size: 1.25rem;
     margin: 0;
+}
+
+/* Cartel Fin de Juego */
+.flappy__cartel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2.5rem;
+    background-color: rgba(16, 0, 62, 0.95);
+    border: 0.125rem solid var(--color-borde);
+    border-radius: 1rem;
+    text-align: center;
+    z-index: var(--flappy-z-cartel);
+}
+
+.flappy__titulo-cartel {
+    font-size: 2rem;
+    font-weight: var(--peso-audaz);
+    margin: 0;
+}
+
+.flappy__texto-cartel {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* === AGREGAR ESTO AL FINAL === */
+
+/* Variante Victoria del Cartel */
+.flappy__cartel--victoria {
+    border-color: #FFD700;
+    box-shadow: 0 0 2rem rgba(255, 215, 0, 0.45);
+    animation: aparecerVictoria 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flappy__cartel--victoria .flappy__titulo-cartel {
+    color: #FFD700;
+    text-shadow: 0 0 0.75rem rgba(255, 215, 0, 0.6);
+}
+
+.flappy__icono-victoria {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0 auto;
+    background-image: url('../assets/flappy/trofeo-sprite.webp');
+    background-repeat: repeat-x;
+    background-size: 400% 100%;
+    animation: animarSprite 0.8s steps(4) infinite;
+}
+
+.flappy__subtitulo-cartel {
+    font-size: 1.1rem;
+    font-weight: var(--peso-medio);
+    color: #33FF00;
+    margin: -0.5rem 0 0;
+}
+
+@keyframes aparecerVictoria {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

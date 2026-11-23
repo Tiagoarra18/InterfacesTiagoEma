@@ -10,6 +10,8 @@ function initFlappy() {
     const pantallaFin = document.getElementById('flappy-cartel');
     const btnJugar = document.getElementById('flappy-btn-jugar');
     const btnReiniciar = document.getElementById('flappy-btn-reiniciar');
+    const btnSalir = document.getElementById('flappy-btn-salir');
+    
     
     const jugadorDOM = document.getElementById('flappy-jugador');
     const entidadesDOM = document.getElementById('flappy-entidades');
@@ -22,12 +24,14 @@ function initFlappy() {
 
     // Estado del juego
     let bucleJuego = null;
-    let tiempoRestante = 60; // segundos
+    let tiempoRestante = 10; // segundos
     let puntos = 0;
     let record = localStorage.getItem('flappyRecord') || 0;
     let pausado = true;
     let tiempoAnterior = 0;
     let acumuladorGeneracion = 0;
+    let acumuladorTiempo = 0;
+    let proximoSpawn = 1.8;
     let invulnerable = false;
     let aperturaVertical = 250; // Dificultad decreciente
 
@@ -46,7 +50,7 @@ function initFlappy() {
     textoRecord.textContent = record;
 
    function resetearEstado() {
-        tiempoRestante = 60;
+        tiempoRestante = 10;
         puntos = 0;
         aperturaVertical = 250;
         acumuladorTiempo = 0;
@@ -77,15 +81,20 @@ function initFlappy() {
     }
 
     // Controles
-    function registrarControles() {
+function registrarControles() {
         const handler = (e) => {
-            if ((e.type === 'keydown' && (e.code === 'Space' || e.code === 'ArrowUp')) || e.type === 'mousedown') {
+            if ((e.type === 'keydown' && (e.code === 'Space' || e.code === 'ArrowUp')) || (e.type === 'mousedown' && e.button === 0)) {
                 e.preventDefault();
                 aplicarImpulso();
             }
         };
         document.addEventListener('keydown', handler);
         escenario.addEventListener('mousedown', handler);
+
+        // Evita que se abra el menú contextual al hacer clic derecho dentro del juego
+        contenedor.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
     }
 
     function generarEntidades() {
@@ -215,12 +224,25 @@ function initFlappy() {
         actualizarHUD();
     }
 
-    function finPartida(motivo = '¡Tiempo Terminado!') {
+    function finPartida(motivo = '¡Chocaste con el poste!', esVictoria = false) {
         pausado = true;
         escenario.classList.add('flappy__escenario--pausado');
         
         const tituloCartel = document.getElementById('flappy-titulo-cartel');
+        const subtituloCartel = document.getElementById('flappy-subtitulo-cartel');
+        const iconoVictoria = document.getElementById('flappy-icono-victoria');
+
         if (tituloCartel) tituloCartel.textContent = motivo;
+
+        if (esVictoria) {
+            pantallaFin.classList.add('flappy__cartel--victoria');
+            if (subtituloCartel) subtituloCartel.hidden = false;
+            if (iconoVictoria) iconoVictoria.hidden = false;
+        } else {
+            pantallaFin.classList.remove('flappy__cartel--victoria');
+            if (subtituloCartel) subtituloCartel.hidden = true;
+            if (iconoVictoria) iconoVictoria.hidden = true;
+        }
 
         if (puntos > record) {
             record = puntos;
@@ -231,10 +253,6 @@ function initFlappy() {
         
         pantallaFin.hidden = false;
     }
-
-    // Declara estas dos variables justo debajo de "let acumuladorGeneracion = 0;" al inicio de initFlappy
-    let acumuladorTiempo = 0;
-    let proximoSpawn = 1.8;
 
     function loop(tiempoActual) {
         if (pausado) return;
@@ -251,7 +269,7 @@ function initFlappy() {
             actualizarHUD();
             
             if (tiempoRestante <= 0) {
-                finPartida('¡Tiempo Terminado!');
+                finPartida('¡Victoria!', true);
                 return;
             }
         }
@@ -298,9 +316,17 @@ function initFlappy() {
     bucleJuego = requestAnimationFrame(loop);
 }
 
+function volverAlInicio() {
+    resetearEstado();
+    pantallaFin.hidden = true;
+    escenario.hidden = true;
+    pantallaInicio.hidden = false;
+}
+
     // Listeners
     btnJugar.addEventListener('click', iniciarJuego);
     btnReiniciar.addEventListener('click', iniciarJuego);
+    btnSalir.addEventListener('click', volverAlInicio);
     registrarControles();
 }
 // Agrega esto al final de tu archivo flappy.js
