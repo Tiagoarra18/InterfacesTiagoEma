@@ -15,7 +15,8 @@ function initFlappy() {
     
     const jugadorDOM = document.getElementById('flappy-jugador');
     const entidadesDOM = document.getElementById('flappy-entidades');
-    
+    const vidasDOM = contenedor.querySelectorAll('.flappy__vida');
+
     const textoTiempo = document.getElementById('flappy-tiempo');
     const textoPuntos = document.getElementById('flappy-puntos');
     const textoRecord = document.getElementById('flappy-record');
@@ -34,6 +35,11 @@ function initFlappy() {
     let proximoSpawn = 1.8;
     let invulnerable = false;
     let aperturaVertical = 250; // Dificultad decreciente
+
+    const VIDAS_INICIALES = vidasDOM.length;
+    const DURACION_GRACIA_MS = 3000;
+    let vidas = VIDAS_INICIALES;
+    let idGracia = null;
 
     const velocidadEscenario = 250; // px por segundo
     let entidades = []; // Obstáculos e items
@@ -64,6 +70,14 @@ function initFlappy() {
         textoPuntos.style.color = '';
         jugadorDOM.classList.remove('flappy__jugador--choque');
         escenario.classList.remove('flappy__escenario--pausado');
+
+        vidas = VIDAS_INICIALES;
+        vidasDOM.forEach((vida) => vida.classList.remove('flappy__vida--perdida'));
+        clearTimeout(idGracia);
+        idGracia = null;
+        jugadorDOM.classList.remove('flappy__jugador--invulnerable');
+        jugadorDOM.classList.add('flappy__jugador--volando');
+
         actualizarHUD();
     }
 
@@ -73,7 +87,7 @@ function initFlappy() {
     }
 
     function aplicarImpulso() {
-        if (pausado) return;
+        if (pausado || invulnerable) return;
         jugadorFisica.vy = jugadorFisica.impulso;
         jugadorDOM.classList.remove('flappy__jugador--impulso');
         void jugadorDOM.offsetWidth; // Reflow forzar reinicio animación
@@ -164,10 +178,9 @@ function registrarControles() {
                 const rSup = ent.domes[0].getBoundingClientRect();
                 const rInf = ent.domes[1].getBoundingClientRect();
 
-                // Chocar con un poste termina el juego
+                // Chocar con un poste resta una vida
                 if (chocan(rectJugador, rSup) || chocan(rectJugador, rInf)) {
-                    jugadorDOM.classList.add('flappy__jugador--choque');
-                    finPartida('¡Chocaste con el poste!');
+                    perderVida(ent);
                     return;
                 }
 
@@ -224,6 +237,40 @@ function registrarControles() {
         actualizarHUD();
     }
 
+    function perderVida(poste) {
+        vidas--;
+        vidasDOM[vidas].classList.add('flappy__vida--perdida');
+
+        if (vidas <= 0) {
+            jugadorDOM.classList.add('flappy__jugador--choque');
+            finPartida('¡Chocaste con el poste!');
+            return;
+        }
+
+        poste.domes.forEach((dom) => dom.remove());
+        entidades.splice(entidades.indexOf(poste), 1);
+
+        jugadorFisica.y = escenario.clientHeight / 2 - jugadorFisica.radio;
+        jugadorFisica.vy = 0;
+        jugadorDOM.style.top = `${jugadorFisica.y}px`;
+
+        invulnerable = true;
+        escenario.classList.add('flappy__escenario--pausado');
+        jugadorDOM.classList.remove('flappy__jugador--volando');
+        jugadorDOM.classList.add('flappy__jugador--invulnerable');
+
+        idGracia = setTimeout(reanudarTrasGracia, DURACION_GRACIA_MS);
+    }
+
+    function reanudarTrasGracia() {
+        invulnerable = false;
+        escenario.classList.remove('flappy__escenario--pausado');
+        jugadorDOM.classList.remove('flappy__jugador--invulnerable');
+        jugadorDOM.classList.add('flappy__jugador--volando');
+        tiempoAnterior = performance.now();
+        bucleJuego = requestAnimationFrame(loop);
+    }
+
     function finPartida(motivo = '¡Chocaste con el poste!', esVictoria = false) {
         pausado = true;
         escenario.classList.add('flappy__escenario--pausado');
@@ -255,7 +302,7 @@ function registrarControles() {
     }
 
     function loop(tiempoActual) {
-        if (pausado) return;
+        if (pausado || invulnerable) return;
         
         let dt = (tiempoActual - tiempoAnterior) / 1000;
         if (dt > 0.1) dt = 0.1; // Evita saltos bruscos y encimamiento al hacer Alt+Tab
@@ -300,7 +347,7 @@ function registrarControles() {
 
         actualizarEntidades(dt);
 
-        if (!pausado) {
+        if (!pausado && !invulnerable) {
             bucleJuego = requestAnimationFrame(loop);
         }
     }

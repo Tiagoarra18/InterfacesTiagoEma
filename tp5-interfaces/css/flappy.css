@@ -82,6 +82,10 @@
     animation-play-state: paused;
 }
 
+.flappy__escenario--pausado .flappy__jugador--invulnerable {
+    animation-play-state: running;
+}
+
 /* HUD */
 .flappy__hud {
     position: absolute;
@@ -100,6 +104,26 @@
     color: var(--color-texto-blanco);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     margin: 0;
+}
+
+.flappy__vidas {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.flappy__vida {
+    width: var(--flappy-vida-tamano);
+    height: var(--flappy-vida-tamano);
+    background-image: url('../assets/flappy/pelota-sprite.webp');
+    background-size: 400% 100%;
+    background-position: 0 0;
+    border-radius: 50%;
+}
+
+.flappy__vida--perdida {
+    opacity: 0.2;
+    filter: grayscale(1);
 }
 
 /* Entidades (postes e ítems) */
@@ -162,6 +186,10 @@
     animation: animarChoque 1.5s linear;
 }
 
+.flappy__jugador--invulnerable {
+    animation: animarInvulnerable 0.3s steps(1) infinite;
+}
+
 @keyframes animarSprite {
     from { background-position-x: 0; }
     to { background-position-x: -400%; }
@@ -177,6 +205,10 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     20%, 60% { opacity: 0.25; transform: scale(0.85); }
     40%, 80% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes animarInvulnerable {
+    50% { opacity: 0.3; }
 }
 /* Cartel Fin de Juego */
 .flappy__cartel {
